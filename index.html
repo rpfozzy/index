@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новостной Блог</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            background: #444;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .post {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .post h2 {
+            color: #333;
+        }
+        .post p {
+            color: #666;
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-download {
+            background-color: #e74c3c; /* Красная кнопка */
+        }
+        .btn-creator {
+            background-color: #3498db; /* Синяя кнопка */
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .category, .home {
+            display: none;
+        }
+        .category.active, .home.active {
+            display: block;
+        }
+        .home img {
+            width: 50%; /* Настраиваемый размер изображения */
+            max-width: 600px; /* Максимальная ширина изображения */
+            height: auto;
+            display: block;
+            margin: 20px auto; /* Центровка изображения */
+        }
+    </style>
+</head>
+<body onload="showHome()">
+    <header>
+        <div class="container">
+            <h1>Новостной Блог</h1>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a onclick="showHome()">Главная</a></li>
+            <li><a onclick="showCategory('politics')">Политика</a></li>
+            <li><a onclick="showCategory('sports')">Спорт</a></li>
+            <li><a onclick="showCategory('entertainment')">Развлечения</a></li>
+            <li><a onclick="showCategory('technology')">Технологии</a></li>
+            <li><a onclick="showCategory('resource-packs')">Ресурс-Паки</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section id="home" class="home">
+            <h2>КТО ТАКОЙ ФОЗЗИ?</h2>
+            <img src="https://via.placeholder.com/600x400" alt="Изображение Фоззи">
+            <p>Описание о том, кто такой Фоззи. Это пример текста, который можно заменить на реальную информацию о Фоззи.</p>
+        </section>
+        <section id="politics" class="category">
+            <h2>Политика</h2>
+            <div class="post">
+                <h2>Заголовок Новости 1</h2>
+                <p>Дата: 27 мая 2024</p>
+                <img src="https://via.placeholder.com/600x400" alt="Изображение новости 1">
+                <p>Краткое описание новости 1. Это пример текста для первой новости в блоге.</p>
+            </div>
+        </section>
+        <section id="sports" class="category">
+            <h2>Спорт</h2>
+            <div class="post">
+                <h2>Заголовок Новости 2</h2>
+                <p>Дата: 26 мая 2024</p>
+                <img src="https://via.placeholder.com/600x400" alt="Изображение новости 2">
+                <p>Краткое описание новости 2. Это пример текста для второй новости в блоге.</p>
+            </div>
+        </section>
+        <section id="entertainment" class="category">
+            <h2>Развлечения</h2>
+            <div class="post">
+                <h2>Заголовок Новости 3</h2>
+                <p>Дата: 25 мая 2024</p>
+                <img src="https://via.placeholder.com/600x400" alt="Изображение новости 3">
+                <p>Краткое описание новости 3. Это пример текста для третьей новости в блоге.</p>
+            </div>
+        </section>
+        <section id="technology" class="category">
+            <h2>Технологии</h2>
+            <div class="post">
+                <h2>Заголовок Новости 4</h2>
+                <p>Дата: 24 мая 2024</p>
+                <img src="https://via.placeholder.com/600x400" alt="Изображение новости 4">
+                <p>Краткое описание новости 4. Это пример текста для четвертой новости в блоге.</p>
+            </div>
+        </section>
+        <section id="resource-packs" class="category">
+            <h2>Ресурс-Паки</h2>
+            <div class="post">
+                <img src="https://legra.ph/file/2cdf0490fac46cb2b3f28.jpg" alt="Custom Menu">
+                <p><strong>РП | ДОПОЛНЕНИЕ『Custom Menu』</strong></p>
+                <p>≡ Кастомное меню</p>
+                <p>Дополнение создано для версии 1.1.5</p>
+                <p>• наша группа: <a href="https://t.me/rpfozzy_chat" target="_blank">@rpfozzy_chat</a></p>
+                <p>• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ ДОПОЛНЕНИЕ</a>
+                <a href="https://youtube.com/@morderix" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ</a>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="container">
+            <p>BY: <a href="http://t.me/rpfozzy" target="_blank">TH2FOZZY</a></p>
+        </div>
+    </footer>
+    <script>
+        function showHome() {
+            var categories = document.querySelectorAll('.category');
+            categories.forEach(function(category) {
+                category.classList.remove('active');
+            });
+            var home = document.getElementById('home');
+            home.classList.add('active');
+        }
+
+        function showCategory(categoryId) {
+            var categories = document.querySelectorAll('.category');
+            categories.forEach(function(category) {
+                category.classList.remove('active');
+            });
+            var home = document.getElementById('home');
+            home.classList.remove('active');
+            var activeCategory = document.getElementById(categoryId);
+            activeCategory.classList.add('active');
+        }
+    </script>
+</body>
+  </html>
