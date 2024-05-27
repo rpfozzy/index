@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новостной Блог</title>
+    <title>RPFOZZY НОВОСТИ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #222;
         }
         header {
             background: #333;
@@ -36,6 +36,11 @@
             color: #fff;
             text-decoration: none;
             cursor: pointer;
+            padding: 5px 10px;
+        }
+        nav ul li a.active {
+            background: #3498db;
+            border-radius: 50px;
         }
         .container {
             width: 80%;
@@ -43,7 +48,7 @@
             overflow: hidden;
         }
         .post {
-            background: #fff;
+            background: #223;
             margin: 20px 0;
             padding: 20px;
             border: 1px solid #ddd;
@@ -60,24 +65,35 @@
             height: auto;
             display: block;
             margin-bottom: 10px;
+            border-radius: 10px; /* Округленные края превьюшки */
         }
         .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .btn-download {
-            background-color: #e74c3c; /* Красная кнопка */
-        }
-        .btn-creator {
-            background-color: #3498db; /* Синяя кнопка */
-        }
+    display: inline-block;
+    width: 250px; /* Желаемая ширина кнопок */
+    padding: 10px 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s; /* Добавляем плавный переход для 3D эффекта */
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.05); /* Добавляем 3D эффект при наведении */
+}
+
+.btn-download {
+    background-color: #e74c3c; /* Красная кнопка */
+}
+
+.btn-creator {
+    width: 300px; /* Увеличиваем ширину кнопки */
+    /* остальные стили */
+    background-color: #3498db; /* Синяя кнопка */
+}
         footer {
             background: #333;
             color: #fff;
@@ -90,10 +106,14 @@
             text-decoration: none;
         }
         .category, .home {
-            display: none;
-        }
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Плавная анимация */
+}
+
         .category.active, .home.active {
-            display: block;
+    opacity: 1;
+          display: block;
         }
         .home img {
             width: 50%; /* Настраиваемый размер изображения */
@@ -102,37 +122,141 @@
             display: block;
             margin: 20px auto; /* Центровка изображения */
         }
+        <style>
+    /* Существующий стиль для .home h2 */
+    .home h2 {
+        color: #fff; /* Новый цвет текста */
+    }
+
+    /* Новое правило для .category h2 */
+    .category h2 {
+        color: #fff; /* Белый цвет текста */
+    }
     </style>
 </head>
 <body onload="showHome()">
     <header>
         <div class="container">
-            <h1>Новостной Блог</h1>
+            <h1>ВСЁ ВАЖНОЕ В RPFOZZY</h1>
         </div>
     </header>
     <nav>
         <ul>
-            <li><a onclick="showHome()">Главная</a></li>
-            <li><a onclick="showCategory('politics')">Политика</a></li>
-            <li><a onclick="showCategory('sports')">Спорт</a></li>
-            <li><a onclick="showCategory('entertainment')">Развлечения</a></li>
-            <li><a onclick="showCategory('technology')">Технологии</a></li>
-            <li><a onclick="showCategory('resource-packs')">Ресурс-Паки</a></li>
+            <li><a onclick="showHome()" id="nav-home">Главная</a></li>
+            <li><a onclick="showCategory('politics')" id="nav-politics">IFLORIUM CLIENT</a></li>
+            <li><a onclick="showCategory('sports')" id="nav-sports">Спорт</a></li>
+            <li><a onclick="showCategory('entertainment')" id="nav-entertainment">Развлечения</a></li>
+            <li><a onclick="showCategory('technology')" id="nav-technology">Технологии</a></li>
+            <li><a onclick="showCategory('resource-packs')" id="nav-resource-packs">Ресурс-Паки</a></li>
         </ul>
     </nav>
     <div class="container">
         <section id="home" class="home">
-            <h2>КТО ТАКОЙ ФОЗЗИ?</h2>
-            <img src="https://via.placeholder.com/600x400" alt="Изображение Фоззи">
-            <p>Описание о том, кто такой Фоззи. Это пример текста, который можно заменить на реальную информацию о Фоззи.</p>
+            <div style="position: relative;">
+    <img src="https://legra.ph/file/8a17bace5edb76e211c4a.jpg" alt="Превьюшка" style="width: 100%; height: auto; border-radius: 10px;">
+    <img src="https://legra.ph/file/935ba756f5b33f5131b82.jpg" alt="Аватарка" style="position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+</div>
+<h2 style="text-align: center; color: #fff; margin-top: 50px;">КТО ТАКОЙ ФОЗЗИ?</h2>
+<p style="text-align: center; color: #fff; font-weight: bold; font-style: italic;">• РП-мейкер •</p>
+
+<div style="text-align: center; font-style: italic; font-weight: bold; margin-top: 20px;">
+    <div class="button-block">
+        <a href="https://t.me/rpfozzy" class="btn btn-creator" target="_blank">Telegram - RPFOZZY</a>
+    </div>
+    <div class="button-block">
+        <a href="https://oxy.name/d/Amgh" class="btn btn-creator" target="_blank">IFLORIUM CLIENT (последняя версия)</a>
+    </div>
+    <div class="button-block">
+        <a href="https://rpfozzy_bot" class="btn btn-creator" target="_blank">Telegram Bot RPFOZZY</a>
+    </div>
+    <div class="button-block">
+        <a href="https://rpfozzy_chat" class="btn btn-creator" target="_blank">Telegram Group RPFOZZY</a>
+    </div>
+    <div class="button-block">
+        <a href="https://t.me/tominecraftARCHIVE" class="btn btn-creator" target="_blank">Telegram - (Архив tominecraft)</a>
+    </div>
+    <div class="button-block">
+        <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">CLAYNI PACKS (by Clayni0)</a>
+    </div>
+    <div class="button-block">
+        <a href="https://t.me/tominecraft" class="btn btn-creator" target="_blank">TOMINECRAFT (by Clayni0)</a>
+    </div>
+</div>
         </section>
         <section id="politics" class="category">
-            <h2>Политика</h2>
+            <h2>IFLORIUM CLIENT</h2>
             <div class="post">
-                <h2>Заголовок Новости 1</h2>
-                <p>Дата: 27 мая 2024</p>
-                <img src="https://via.placeholder.com/600x400" alt="Изображение новости 1">
-                <p>Краткое описание новости 1. Это пример текста для первой новости в блоге.</p>
+                <h2>IFLORIUM CLIENT V3</h2>
+                <p>Дата: 17 сентября 2023</p>
+                <p>IFlorium Client - один из лучших клиентов в виде ресурс пака!</p>
+                <p>≈≈≈ Клиент разработан для 1.1.5 ≈≈≈</p>
+                <title>Dropdown Menu</title>
+<style>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<div class="dropdown">
+  <span style="color: white;">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</span>
+  <div class="dropdown-content">
+    <a href="https://telegra.ph/IFlorium-Client-v3-09-17">Ссылка на пост в телеграфе</a>
+    <a href="https://t.me/rpfozzy/473">Ссылка на пост в телеграмме</a>
+    <a href="https://oxy.name/d/Amgh">СКАЧАТЬ</a>
+  </div>
+</div>
+                <img src="https://legra.ph/file/e7ab9daf6f95dc3b97f1c.jpg" alt="Изображение 1">
+                <img src="https://legra.ph/file/13857e0cd47f8439fd870.jpg" alt="Изображение 2">
+                <img src="https://legra.ph/file/1666bc135666dbbda6651.jpg" alt="Изображение 3">
+                <img src="https://legra.ph/file/28277b0ccf936bfe07361.jpg" alt="Изображение 4">
+                <img src="https://legra.ph/file/302a399e994ac025d11dd.jpg" alt="Изображение 5">
+                <img src="https://legra.ph/file/9e266dd0c7c51c287cdab.jpg" alt="Изображение 6">
+                <img src="https://legra.ph/file/f2b34606bf4e9b437b7b3.jpg" alt="Изображение 7">
+                <img src="https://legra.ph/file/0415eb53095ac30136932.jpg" alt="Изображение 8">
+                <img src="https://legra.ph/file/3f3c5104a165269d6721b.jpg" alt="Изображение 9">
+                <img src="https://legra.ph/file/84bd2b6bf4e59d38e3b1d.jpg" alt="Изображение 10">
+                <img src="https://legra.ph/file/abdbe195996d936beff1b.jpg" alt="Изображение 11">
+                <img src="https://legra.ph/file/35ca3595006ddda7fa634.jpg" alt="Изображение 12">
+                <img src="https://legra.ph/file/5f90475d26eec27f0fc1a.jpg" alt="Изображение 13">
+                <img src="https://legra.ph/file/8eaa483ca0acab7b14cb4.jpg" alt="Изображение 14">
+                <img src="https://legra.ph/file/d12ab304281f42acf5e6c.jpg" alt="Изображение 15">
+                <img src="https://legra.ph/file/08bb8621ade7fdc5d5b80.jpg" alt="Изображение 16">
+                <img src="https://legra.ph/file/871955d13d8d2b2626787.jpg" alt="Изображение 17">
+                <img src="https://legra.ph/file/1e2e523137a11b5bf1f9e.jpg" alt="Изображение 18">
+                <img src="https://legra.ph/file/bee1ac876991d06e02ec4.jpg" alt="Изображение 19">
+                <img src="https://legra.ph/file/084f57e81a759eeb5f4a8.jpg" alt="Изображение 20">
+                <img src="https://legra.ph/file/627e8a91e3b7155579eb3.jpg" alt="Изображение 21">
+                <img src="https://legra.ph/file/19497778c518ac1d7be60.jpg" alt="Изображение 22">
+                <img src="https://legra.ph/file/8a382ae3e70ba5365d12a.jpg" alt="Изображение 23">
+                <img src="https://legra.ph/file/a9a6254d0ce1f37f26f95.jpg" alt="Изображение 24">
+                <img src="https://legra.ph/file/7df83c8e3ea1da77fe4be.jpg" alt="Изображение 25">
             </div>
         </section>
         <section id="sports" class="category">
@@ -178,29 +302,37 @@
     </div>
     <footer>
         <div class="container">
-            <p>BY: <a href="http://t.me/rpfozzy" target="_blank">TH2FOZZY</a></p>
+            <p><a href="http://t.me/rpfozzy" target="_blank"><span style="color: blue;">THEFOZZY</span></a> | 2 0 2 2 — 2 0 2 4</p>
         </div>
     </footer>
     <script>
         function showHome() {
-            var categories = document.querySelectorAll('.category');
-            categories.forEach(function(category) {
-                category.classList.remove('active');
-            });
-            var home = document.getElementById('home');
-            home.classList.add('active');
+            setActiveCategory('home');
+            setActiveNav('nav-home');
         }
 
         function showCategory(categoryId) {
-            var categories = document.querySelectorAll('.category');
+            setActiveCategory(categoryId);
+            setActiveNav('nav-' + categoryId);
+        }
+
+        function setActiveCategory(categoryId) {
+            var categories = document.querySelectorAll('.category, .home');
             categories.forEach(function(category) {
                 category.classList.remove('active');
             });
-            var home = document.getElementById('home');
-            home.classList.remove('active');
             var activeCategory = document.getElementById(categoryId);
             activeCategory.classList.add('active');
         }
+
+        function setActiveNav(navId) {
+            var navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(function(navLink) {
+                navLink.classList.remove('active');
+            });
+            var activeNavLink = document.getElementById(navId);
+            activeNavLink.classList.add('active');
+        }
     </script>
 </body>
-  </html>
+</html>
