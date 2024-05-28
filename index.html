@@ -73,9 +73,10 @@
             padding: 10px 10px;
             margin: 10px 0;
             border: none;
-            border-radius: 5px;
+            border-radius: 15px;
             color: #fff;
             text-align: center;
+            font-size: 16px;
             text-decoration: none;
             cursor: pointer;
             transition: transform 0.3s; /* Добавляем плавный переход для 3D эффекта */
@@ -85,8 +86,14 @@
             transform: translateY(-2px) scale(1.05); /* Добавляем 3D эффект при наведении */
         }
 
+  .btn: active {
+    box-shadow: 0 5px #666
+  }
+  
         .btn-download {
             background-color: #e74c3c; /* Красная кнопка */
+          width: 300px; /* Увеличиваем ширину кнопки */
+            /* остальные стили */
         }
 
         .btn-creator {
@@ -99,6 +106,8 @@
             display: block;
             width: 100%; /* Ширина равна ширине поста */
             margin: 20px 35px; /* Центрирование */
+          width: 250px; /* Увеличиваем ширину кнопки */
+            /* остальные стили */
         }
 
         footer {
@@ -345,10 +354,10 @@
 <body>
 
 <div class="dropdown">
-    <a href="#" class="btn btn-creator btn-post" id="openModalBtn">IFLORIUM CLIENT V3</a>
-<div id="myModal" class="modal">
+    <a href="#" class="btn btn-creator btn-post" id="openModalBtn1">IFLORIUM CLIENT V3</a>
+<div id="myModal1" class="modal">
     <div class="modal-content" style="background-color: #333; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
-        <span class="close">&times;</span>
+        <span class="close3">&times;</span>
         <h2>IFLORIUM CLIENT V3</h2>
         <p>
             Дата: 17 сентября 2023
@@ -361,8 +370,8 @@
         </p>
 
         <div class="dropdown">
-            <button id="myBtn">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
-            <div id="dropdownContent" class="dropdown-content">
+            <button id="myBtn1">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+            <div id="dropdownContent1" class="dropdown-content">
                 <a href="https://telegra.ph/IFlorium-Client-v3-09-17">Ссылка на пост в телеграфе</a>
                 <a href="https://t.me/rpfozzy/473">Ссылка на пост в телеграмме</a>
                 <a href="https://oxy.name/d/Amgh">СКАЧАТЬ</a>
@@ -395,6 +404,142 @@
         <img src="https://legra.ph/file/7df83c8e3ea1da77fe4be.jpg" alt="Изображение 25">
     </div>
 </div>
+  
+
+<script>
+    var modal = document.getElementById("myModal1");
+    var btn = document.getElementById("openModalBtn1");
+    var span = document.getElementsByClassName("close3")[0];
+    var dropdownBtn = document.getElementById("myBtn1");
+    var dropdownContent = document.getElementById("dropdownContent1");
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    dropdownBtn.onclick = function() {
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }
+</script>
+  
+  <div class="dropdown">
+    <a href="#" class="btn btn-creator btn-post" id="openModalBtn2">IFLORIUM CLIENT V2</a>
+<div id="myModal2" class="modal">
+    <div class="modal-content" style="background-color: #333; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+        <span class="close2">&times;</span>
+        <h2>IFLORIUM CLIENT V2</h2>
+        <p>
+            Дата: 3 сентября 2023
+        </p>
+        <p>
+            FOZZY Client - старое название клиента, IFlorium - новое
+        </p>
+        <p>
+            Работает на 1.1.5
+        </p>
+
+        <div class="dropdown">
+            <button id="myBtn2">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+            <div id="dropdownContent2" class="dropdown-content">
+                <a href="https://telegra.ph/IFlorium-client-09-03">Ссылка на пост в телеграфе</a>
+                <a href="https://t.me/rpfozzy/457">Ссылка на пост в телеграмме</a>
+                <a href="https://oxy.name/d/yBdh">СКАЧАТЬ</a>
+            </div>
+        </div>
+        <img src="https://legra.ph/file/8d79f3068074c1090fdad.jpg" alt="Изображение 1">
+        <img src="https://legra.ph/file/0e0f6cc34774e74229eff.jpg" alt="Изображение 2">
+        <img src="https://legra.ph/file/d336cc4e6cd801b6f1124.jpg" alt="Изображение 3">
+        <img src="https://legra.ph/file/309b8a6b781a9822ba1e1.jpg" alt="Изображение 4">
+        <img src="https://legra.ph/file/302a399e994ac025d11dd.jpg" alt="Изображение 5">
+        <img src="https://legra.ph/file/0a1251757f9ac63f01c3f.jpg" alt="Изображение 6">
+    </div>
+</div>
+  
+
+<script>
+    var modal = document.getElementById("myModal2");
+    var btn = document.getElementById("openModalBtn2");
+    var span = document.getElementsByClassName("close2")[0];
+    var dropdownBtn = document.getElementById("myBtn2");
+    var dropdownContent = document.getElementById("dropdownContent2");
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    dropdownBtn.onclick = function() {
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }
+</script>
+  
+  <div class="dropdown">
+    <a href="#" class="btn btn-creator btn-post" id="openModalBtn">FOZZY CLIENT</a>
+<div id="myModal" class="modal">
+    <div class="modal-content" style="background-color: #333; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+        <span class="close">&times;</span>
+        <h2>FOZZY CLIENT</h2>
+        <p>
+            Дата: 31 августа 2023
+        </p>
+        <p>
+            Клиент от самого фоззи. Клиент в виде ресурс пака .mcpack
+        </p>
+        <p>
+            Работает только на 1.1.5
+        </p>
+
+        <div class="dropdown">
+            <button id="myBtn">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+            <div id="dropdownContent" class="dropdown-content">
+                <a href="https://telegra.ph/FOZZY-Client-08-31">Ссылка на пост в телеграфе</a>
+                <a href="https://t.me/rpfozzy/453">Ссылка на пост в телеграмме</a>
+                <a href="https://oxy.name/d/xTch">СКАЧАТЬ</a>
+            </div>
+        </div>
+        <img src="https://legra.ph/file/6b2dfc071daba3d693d62.jpg" alt="Изображение 1">
+        <img src="https://legra.ph/file/6a4857c2b7995cc86709d.jpg" alt="Изображение 2">
+        <img src="https://legra.ph/file/f0393ec7c91a7592251db.jpg" alt="Изображение 3">
+        <img src="https://legra.ph/file/c1a82be26cad78ca9b0e5.jpg" alt="Изображение 4">
+        <img src="https://legra.ph/file/78511faad097e77ea906b.jpg" alt="Изображение 5">
+        <img src="https://legra.ph/file/48b275ed5ab2809fe569d.jpg" alt="Изображение 6">
+        <img src="https://legra.ph/file/00d4e6cb58d44b1b9a0f3.jpg" alt="Изображение 7">
+        <img src="https://legra.ph/file/f22bac3d9a2f5e391639f.jpg" alt="Изображение 8">
+        <img src="https://legra.ph/file/bf42568777ebd35f22779.jpg" alt="Изображение 9">
+        <img src="https://legra.ph/file/8c73303beffbc32e84a5d.jpg" alt="Изображение 10">
+        <img src="https://legra.ph/file/8504d294aa45da94360e8.jpg" alt="Изображение 11">
+        <img src="https://legra.ph/file/e9a040cc0aeeb10c96151.jpg" alt="Изображение 12">
+        <img src="https://legra.ph/file/a57e44fde09b418ea5392.jpg" alt="Изображение 13">
+    </div>
+</div>
+  
 
 <script>
     var modal = document.getElementById("myModal");
