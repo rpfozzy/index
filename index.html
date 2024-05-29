@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
 <title>Search</title>
 <style>
   /* Стили для поисковика */
@@ -83,16 +82,16 @@
   }
   
   .search-results {
-  position: absolute;
-  bottom: 120px;
-  right: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  display: none;
-  max-height: 200px; /* Устанавливаем максимальную высоту для прокрутки */
-  overflow-y: auto; /* Добавляем прокрутку по вертикали */
+    position: absolute;
+    bottom: 120px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+    max-height: 200px; /* Устанавливаем максимальную высоту для прокрутки */
+    overflow-y: auto; /* Добавляем прокрутку по вертикали */
   }
   
   .search-results.show {
@@ -110,11 +109,23 @@
     background-color: #f0f0f0;
   }
   
-  /* Стиль для выделения найденного текста */
-  .highlight {
-    background-color: yellow;
-    display: inline; /* Добавлено, чтобы выделение было внутри текста */
+  /* Анимация пульсации для найденного текста */
+  @keyframes pulse {
+    0% {
+      background-color: lightblue;
+    }
+    50% {
+      background-color: blue;
+    }
+    100% {
+      background-color: lightblue;
+    }
   }
+
+  .highlight-pulse {
+  animation: pulse 0.2s infinite;
+  border-radius: 10px; /* Добавьте это свойство */
+}
 </style>
 </head>
 <body>
@@ -148,6 +159,7 @@
     searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
   });
 
+  
   searchSubmit.addEventListener('click', () => {
     const searchTerm = searchField.value.trim();
     if (searchTerm) {
@@ -165,7 +177,18 @@
         const listItem = document.createElement('li');
         listItem.textContent = result.innerText;
         listItem.addEventListener('click', () => {
-          result.scrollIntoView({ behavior: 'smooth' }); // Прокручиваем родительский элемент, содержащий текст
+          const viewportHeight = window.innerHeight;
+          const elementRect = result.getBoundingClientRect();
+          const elementY = elementRect.top + window.scrollY;
+          const scrollToY = elementY - (viewportHeight / 2);
+          window.scrollTo({
+            top: scrollToY,
+            behavior: 'smooth'
+          });
+          result.classList.add('highlight-pulse'); // Применяем класс с анимацией
+          setTimeout(() => {
+            result.classList.remove('highlight-pulse'); // Убираем анимацию через 2 секунды
+          }, 4000);
           searchCancel.click(); // Закрываем результаты поиска при клике на элементе списка
         });
         searchResults.appendChild(listItem);
@@ -288,6 +311,7 @@
             width: 300px; /* Увеличиваем ширину кнопки */
             /* остальные стили */
             background-color: #3498db; /* Синяя кнопка */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Это добавит тень для кнопки */
         }
 
         .btn-post {
@@ -444,11 +468,12 @@
     <div class="container">
         <section id="home" class="home">
             <div style="position: relative;">
-    <img src="https://legra.ph/file/8a17bace5edb76e211c4a.jpg" alt="Превьюшка" style="width: 100%; height: auto; border-radius: 10px;">
-    <img src="https://legra.ph/file/935ba756f5b33f5131b82.jpg" alt="Аватарка" style="position: absolute; bottom: -70px; left: 36%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <img src="https://legra.ph/file/8a17bace5edb76e211c4a.jpg" alt="Превьюшка" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);">
+    <img src="https://legra.ph/file/935ba756f5b33f5131b82.jpg" alt="Аватарка" style="position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);">
 </div>
-<h2 style="text-align: center; color: #fff; margin-top: 50px;">КТО ТАКОЙ ФОЗЗИ?</h2>
-<p style="text-align: center; color: #fff; font-weight: bold; font-style: italic;">• РП-мейкер •</p>
+
+          <h2 style="text-align: center; color: #fff; margin-top: 50px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">КТО ТАКОЙ ФОЗЗИ?</h2>
+<p style="text-align: center; color: #fff; font-weight: bold; font-style: italic; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">• РП-мейкер •</p>
 
 <div style="text-align: center; font-style: italic; font-weight: bold; margin-top: 20px;">
     <div class="button-block">
