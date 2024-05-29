@@ -160,7 +160,8 @@ body {
 
 /* Дополнительная анимация для текста */
 h1,
-p {
+p,
+img {
   opacity: 0; /* Изначально текст скрыт */
   animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards; /* Применяем анимацию с сохранением финального состояния */
 }
@@ -184,3 +185,4 @@ p {
   opacity: 0; /* Изначально текст скрыт */
   animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards; /* Применяем анимацию с сохранением финального состояния */
 }
+
