@@ -131,26 +131,26 @@ p {
 }
 
 
-/* Анимация для появления элементов из левой стороны */
-@keyframes slideInFromLeft {
+/* Анимация для появления элементов из левой стороны с небольшим вращением */
+@keyframes slideInSubtleRotateFromLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(-100%) rotate(-10deg);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) rotate(0);
   }
 }
 
 /* Применяем анимацию к контейнеру сайта */
 body {
-  animation: slideInFromLeft 1s ease-in-out;
+  animation: slideInSubtleRotateFromLeft 1s ease-in-out;
 }
 
 /* Дополнительная анимация для текста */
 h1,
 p {
   opacity: 0;
-  animation: slideInFromLeft 1s ease-in-out forwards;
+  animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards;
 }
