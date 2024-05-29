@@ -37,10 +37,12 @@
             text-decoration: none;
             cursor: pointer;
             padding: 5px 10px;
+          transition: background-color 0.2s, border-radius 0.1s;
         }
         nav ul li a.active {
             background: #3498db;
             border-radius: 50px;
+          
         }
         .container {
             width: 80%;
@@ -121,15 +123,16 @@
             color: #fff;
             text-decoration: none;
         }
-        .category, .home {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out; /* Плавная анимация */
-        }
+        .category, .home, .contacts {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+}
 
-        .category.active, .home.active {
-            opacity: 1;
-            display: block;
+.category.active, .home.active, .contacts.active {
+    opacity: 1;
+    height: auto;
         }
 
         .home img {
@@ -148,6 +151,19 @@
             color: #fff; /* Белый цвет текста */
         }
 
+       @keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#openModalBtn, #myBtn {
+    animation: fade-in 0.5s ease-in-out;
+}
+
         .modal {
             display: none;
             position: fixed;
@@ -157,7 +173,9 @@
             width: 100%;
             height: 100%;
             overflow: auto;
+            background-color: rgb(0,0,0);
             background-color: rgba(0,0,0,0.4);
+          animation: fade-in 0.3s ease-in-out;
         }
 
         .modal-content {
@@ -166,6 +184,7 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
+            animation: fade-in 0.3s ease-in-out;
         }
 
         .close {
@@ -657,7 +676,7 @@
                 <p>• наша группа: <a href="https://t.me/rpfozzy_chat" target="_blank">@rpfozzy_chat</a></p>
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
-                <a href="https://youtube.com/@morderix" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ В ТГ</a>
+                <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ В ТГ</a>
             <a href="https://youtu.be/2rFZsaK6LwA?si=zQu3M4TPVR_7xdJT" class="btn btn-creator" target="_blank">ВИДЕО ОБЗОР</a>
             
             
