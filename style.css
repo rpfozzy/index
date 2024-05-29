@@ -109,14 +109,14 @@ input[type="submit"]:hover {
 
 /* Применяем анимацию к контейнеру сайта */
 body {
-  animation: fadeIn 1.5s ease-out;
+  animation: fadeIn 1.5s ease-in-out; /* изменение ease-out на ease-in-out */
 }
 
 /* Дополнительная анимация для текста */
 h1,
 p {
   opacity: 0;
-  animation: fadeInText 1s ease-out forwards;
+  animation: fadeInText 1s ease-in-out forwards; /* изменение ease-out на ease-in-out */
 }
 
 @keyframes fadeInText {
@@ -129,4 +129,3 @@ p {
     transform: translateY(0);
   }
 }
-
