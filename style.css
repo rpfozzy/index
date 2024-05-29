@@ -129,3 +129,28 @@ p {
     transform: translateY(0);
   }
 }
+
+
+/* Анимация для появления элементов из левой стороны */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Применяем анимацию к контейнеру сайта */
+body {
+  animation: slideInFromLeft 1s ease-in-out;
+}
+
+/* Дополнительная анимация для текста */
+h1,
+p {
+  opacity: 0;
+  animation: slideInFromLeft 1s ease-in-out forwards;
+}
