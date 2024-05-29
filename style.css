@@ -1,3 +1,11 @@
+/* Эффект касания при активации */
+.btn:active {
+  transform: scale(0.95);
+}
+
+
+
+
 /* Стили для ссылок */
 a {
   color: #007bff;
@@ -131,6 +139,8 @@ p {
 }
 
 
+
+
 /* Анимация для появления элементов из левой стороны с небольшим вращением */
 @keyframes slideInSubtleRotateFromLeft {
   0% {
@@ -151,6 +161,26 @@ body {
 /* Дополнительная анимация для текста */
 h1,
 p {
-  opacity: 0;
-  animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards;
+  opacity: 0; /* Изначально текст скрыт */
+  animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards; /* Применяем анимацию с сохранением финального состояния */
+}
+
+
+/* Анимация для затухания */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
+/* Дополнительная анимация для текста */
+h1,
+p {
+  opacity: 0; /* Изначально текст скрыт */
+  animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards; /* Применяем анимацию с сохранением финального состояния */
 }
