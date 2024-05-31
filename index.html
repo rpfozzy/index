@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    
+
+
 
  <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@
     right: 20px;
     z-index: 1000; /* чтобы поисковик был поверх всех элементов */
   }
-  
+
   .search-button {
     background-color: #007BFF; /* Синий цвет фона */
     border: none;
@@ -33,16 +33,16 @@
     margin-right: 10px; /* Добавлено расстояние между кнопками */
     transition: background-color 0.3s ease; /* Плавный переход цвета */
   }
-  
+
   .search-button:hover {
     background-color: #0056b3; /* Темно-синий цвет при наведении */
   }
-  
+
   .search-button img {
     height: 20px;
     width: 20px;
   }
-  
+
   .search-input {
     display: none;
     position: absolute;
@@ -55,11 +55,11 @@
     width: 220px; /* Увеличена ширина */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавлена тень */
   }
-  
+
   .search-input.show {
     display: block;
   }
-  
+
   .search-input input[type="text"] {
     width: 100%;
     height: 30px; /* Увеличена высота */
@@ -69,7 +69,7 @@
     box-sizing: border-box;
     margin-bottom: 10px; /* Добавлен отступ снизу */
   }
-  
+
   .search-input button[type="button"] {
     background-color: #007BFF; /* Синий цвет фона */
     border: none;
@@ -82,11 +82,11 @@
     color: #fff; /* Белый цвет текста */
     transition: background-color 0.3s ease; /* Плавный переход цвета */
   }
-  
+
   .search-input button[type="button"]:hover {
     background-color: #0056b3; /* Темно-синий цвет при наведении */
   }
-  
+
   .search-results {
     position: absolute;
     bottom: 120px;
@@ -100,11 +100,11 @@
     overflow-y: auto; /* Добавляем прокрутку по вертикали */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавлена тень */
   }
-  
+
   .search-results.show {
     display: block;
   }
-  
+
   .search-results li {
     list-style: none;
     padding: 5px;
@@ -112,11 +112,11 @@
     cursor: pointer; /* добавлено для указания, что элементы списка кликабельны */
     transition: background-color 0.3s ease; /* Плавный переход цвета */
   }
-  
+
   .search-results li:hover {
     background-color: #f0f0f0;
   }
-  
+
   /* Анимация пульсации для найденного текста */
   @keyframes pulse {
     0% {
@@ -139,18 +139,18 @@
 <body>
 
 <div class="search-container">
-  
+
   <button class="search-button" id="search-button">
     <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Loupe">
   </button>
-  
+
   <div class="search-input" id="search-input">
     <div style="font-weight: bold; color: red; margin-bottom: 5px;">❗️❗️СНАЧАЛА ВЫБЕРИ РУБРИКУ В КОТОРОЙ НУЖНО ИСКАТЬ❗️❗️</div>
     <input type="text" id="search-field" placeholder="Поиск...">
     <button type="button" id="search-cancel">Отмена</button>
     <button type="button" id="search-submit">Искать</button>
   </div>
-  
+
   <ul class="search-results" id="search-results"></ul>
 </div>
 
@@ -167,7 +167,7 @@
     searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
   });
 
-  
+
   searchSubmit.addEventListener('click', () => {
     const searchTerm = searchField.value.trim();
     if (searchTerm) {
@@ -214,13 +214,13 @@
 
 </body>
 </html>
- 
-  
-  
+
+
+
 </script>
     </form>
     <title>RPFOZZY НОВОСТИ</title>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -259,7 +259,7 @@
         nav ul li a.active {
             background: #3498db;
             border-radius: 50px;
-          
+
         }
         .container {
             width: 80%;
@@ -504,7 +504,69 @@
     </div>
     <div class="button-block">
         <a href="https://t.me/tominecraft" class="btn btn-creator" target="_blank">TOMINECRAFT (by Clayni0)</a>
-    </div>
+      <div class="dropdown">
+        
+        
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Example</title>
+  <style>
+    /* Ваши стили модального окна */
+  </style>
+</head>
+<body>
+
+<a href="#" class="btn btn-creator btn-creator" id="openModalBtn5">СВЯЗЬ С ФОЗЗИ</a>
+<div id="myModal5" class="modal">
+  <div class="modal-content">
+    <span class="close close5">&times;</span>
+    <h2>Связь с создателем RPFOZZY</h2>
+    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Telgram: @Th2FoZzY</p>
+    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Место жительства: Украина, Киевская область</p>
+    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">GMAIL: rpfozzy@gmail.com</p>
+    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">YouTube: @rpfozzy</p>
+    <div class="dropdown">
+  </div>
+</div>
+
+<script>
+  // СВЯЗЬ С ФОЗЗИ
+  var modal5 = document.getElementById("myModal5");
+  var btn5 = document.getElementById("openModalBtn5");
+  var span5 = document.getElementsByClassName("close5")[0];
+  var dropdownBtn5 = document.getElementById("myBtn5");
+  var dropdownContent5 = document.getElementById("dropdownContent5");
+
+  btn5.onclick = function() {
+    modal5.style.display = "block";
+  }
+
+  span5.onclick = function() {
+    modal5.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal5) {
+      modal5.style.display = "none";
+    }
+  }
+
+  dropdownBtn5.onclick = function() {
+    if (dropdownContent5.style.display === "block") {
+      dropdownContent5.style.display = "none";
+    } else {
+      dropdownContent5.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
+          
+          
 </div>
         </section>
         <section id="politics" class="category">
@@ -898,8 +960,8 @@
         </section>
         <section id="sports" class="category">
             <h2 class="text-center">Моды | Аддоны</h2>
- 
- 
+
+
    <div class="post">
                 <img src="https://legra.ph/file/2cdf0490fac46cb2b3f28.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП | ДОПОЛНЕНИЕ『Custom Menu』</strong></p>
@@ -908,11 +970,11 @@
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ ДОПОЛНЕНИЕ</a>
             <a href="https://youtube.com/@morderix" class="btn btn-download" target="_blank">СОЗДАТЕЛЬ</a>
-            
-              
+
+
             </div>
- 
- 
+
+
             <div class="post">
                 <img src="https://legra.ph/file/ebe234d9679f498e38212.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП | МОД『X-Ray + Night Vision』</strong></p>
@@ -923,7 +985,7 @@
                 <a href="https://oxy.name/d/soDh" class="btn btn-download" target="_blank">СКАЧАТЬ X-RAY</a>
             <a href="https://oxy.st/d/LoDh" class="btn btn-download" target="_blank">СКАЧАТЬ НОЧНОЕ ЗРЕНИЕ ОТДЕЛЬНО ДЛЯ 1.1.5</a>
             </div>
-          
+
           <div class="post">
                 <img src="https://legra.ph/file/ac3b700a7bf2c899eb65d.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП | МОД</strong></p>
@@ -931,8 +993,8 @@
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/Zdxh" class="btn btn-download" target="_blank">СКАЧАТЬ МОД</a>
           </div>
-          
-          
+
+
           <div class="post">
                 <img src="https://legra.ph/file/bee4ebb06e77ff7daec9b.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП Resources 1.20 to 1.1.5</strong></p>
@@ -941,13 +1003,13 @@
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/Ukwh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРСЫ ИЗ 1.20 ДЛЯ 1.1.5</a>
           </div>
-          
-          
+
+
         </section>
         <section id="entertainment" class="category">
             <h2 class="text-center">Карты</h2>
-          
-          
+
+
             <div class="post">
                 <p>Дата: 12 октября 2023</p>
                 <img src="https://legra.ph/file/27a948f0d1039b3248d82.jpg" alt="Изображение новости 3">
@@ -956,7 +1018,7 @@
               <p>Обзор на карту: <a href="https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf" target="_blank">https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf</a></p>
               <a href="https://oxy.name/d/jKkh" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
             </div>
-              
+
               <div class="post">
                 <p>Дата: 10 мая 2023</p>
                 <img src="https://legra.ph/file/9d1a325ff40aec41a9895.jpg" alt="Изображение новости 4">
@@ -964,7 +1026,7 @@
               <p>Работает только на версии 1.1.5</p>
               <a href="https://oxy.name/d/CUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
               </div>
-          
+
           <div class="post">
               <p>Дата: 10 мая 2023</p>
                 <img src="https://legra.ph/file/8abfb7a2d9634d3a85210.jpg" alt="Изображение новости 5">
@@ -972,7 +1034,7 @@
               <p>Работает только на версии 1.1.5</p>
               <a href="https://oxy.name/d/uUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
           </div>
-              
+
               <div class="post">
               <p>Дата: 2 апреля 2022</p>
                 <img src="https://legra.ph/file/724ab584bb07fb51dbb07.jpg" alt="Изображение новости 6">
@@ -980,9 +1042,9 @@
               <p>Работает только на версии 1.1.5</p>
               <a href="https://www.mediafire.com/file/hkyw2yq6xm33nak/WORLD+PVP.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
               </div>
-              
-          
-          
+
+
+
           <div class="post">
               <p>Дата: 29 марта 2022</p>
                 <img src="https://legra.ph/file/1dfd8e37b3dee198360fc.jpg" alt="Изображение новости 7">
@@ -990,8 +1052,8 @@
               <p>Работает только на версии 1.1.5</p>
               <a href="https://www.mediafire.com/file/pabj53f9gspwjxp/CONSTRUCTION+TRAINING.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
           </div>
-              
-          
+
+
           <div class="post">
               <p>Дата: 29 марта 2022</p>
                 <img src="https://legra.ph/file/513fdbe98892eeb95fac5.jpg" alt="Изображение новости 6">
@@ -1003,8 +1065,8 @@
         <section id="technology" class="category">
            <h2 class="text-center">Клиенты от версии 1.1.5 по 1.20</h2>
             <div class="post">
-              
-              
+
+
                 <h2>[Better Client] - "лучший клиент" для Minecraft Bedrock Edition</h2>
                 <p>Поддерживаемые версии: 1.10 - 1.20</p>
                 <img src="https://legra.ph/file/1a8693c61dc2b08dc70f8.jpg" alt="Изображение новости 4">
@@ -1013,10 +1075,10 @@
               <a href="https://oxy.st/d/kZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.10 - 1.18</a> 
               <a href="https://oxy.st/d/nZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.19 - 1.20</a> 
               </div>
-          
-          
-          
-          
+
+
+
+
                       <div class="post">
                         <h2>[Utility UI] - "Пользовательский интерфейс утилиты" для Minecraft Bedrock Edition(мод меню)</h2>
                 <p>Поддерживаемые версии: 1.18 - 1.20</p>
@@ -1025,8 +1087,8 @@
                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/528" target="_blank">https://t.me/rpfozzy/528</a></p>
               <a href="https://oxy.name/d/pMFh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.18 - 1.20</a> 
               </div>
-                        
-                        
+
+
         </section>
         <section id="resource-packs" class="category">
             <h2 class="text-center">Ресурс-Паки</h2>
@@ -1040,7 +1102,7 @@
                 <a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
                 <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ В ТГ</a>
             <a href="https://youtu.be/2rFZsaK6LwA?si=zQu3M4TPVR_7xdJT" class="btn btn-creator" target="_blank">ВИДЕО ОБЗОР</a>
-            
+
             </div>
                         <div class="post">
                 <img src="https://legra.ph/file/4217a2d3f4455cf1ebb09.jpg" alt="Custom Menu">
@@ -1051,9 +1113,9 @@
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/BVIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
                         </div>
-            
-       
-            
+
+
+
             <div class="post">
              <img src="https://legra.ph/file/7c5257834775d0ff6238e.jpg" alt="Custom Menu">
                 <p><strong>РП 128x128</strong></p>
@@ -1062,7 +1124,7 @@
             <p>• нᴇбᴏ – <a href="https://telegra.ph/green-16x16-02-18" target="_blank">https://telegra.ph/green-16x16-02-18</a></p>
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/ucIh" class="btn btn-download" target="_blank">СКАЧАТЬ РП</a>
-            
+
             </div>
         </section>
     </div>
