@@ -3,15 +3,87 @@
 <head>
     <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
- <!DOCTYPE html>
+<title>Search</title>
+  <link rel="stylesheet" href="style.css">
+  
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000; /* черный цвет фона */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 200px;
+            height: 200px;
+            background-image: url('https://legra.ph/file/4cef98fe8dd2a8b7a5b43.jpg'); /* Пример ссылки на изображение */
+            background-size: cover;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .content {
+            opacity: 0;
+            display: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .loaded .loader-wrapper {
+            opacity: 0;
+        }
+
+        .loaded .content {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div class="content">
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.body.classList.add('loaded');
+            setTimeout(function() {
+                document.querySelector('.loader-wrapper').style.display = 'none';
+            }, 1000);
+        }, 4000);
+    </script>
+    
+</body>
+</html>
+  
+  
 <style>
   /* Стили для поисковика */
   .search-container {
@@ -20,7 +92,7 @@
     right: 20px;
     z-index: 1000; /* чтобы поисковик был поверх всех элементов */
   }
-
+  
   .search-button {
     background-color: #007BFF; /* Синий цвет фона */
     border: none;
@@ -33,16 +105,16 @@
     margin-right: 10px; /* Добавлено расстояние между кнопками */
     transition: background-color 0.3s ease; /* Плавный переход цвета */
   }
-
+  
   .search-button:hover {
     background-color: #0056b3; /* Темно-синий цвет при наведении */
   }
-
+  
   .search-button img {
     height: 20px;
     width: 20px;
   }
-
+  
   .search-input {
     display: none;
     position: absolute;
@@ -55,11 +127,11 @@
     width: 220px; /* Увеличена ширина */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавлена тень */
   }
-
+  
   .search-input.show {
     display: block;
   }
-
+  
   .search-input input[type="text"] {
     width: 100%;
     height: 30px; /* Увеличена высота */
@@ -69,7 +141,7 @@
     box-sizing: border-box;
     margin-bottom: 10px; /* Добавлен отступ снизу */
   }
-
+  
   .search-input button[type="button"] {
     background-color: #007BFF; /* Синий цвет фона */
     border: none;
@@ -82,11 +154,11 @@
     color: #fff; /* Белый цвет текста */
     transition: background-color 0.3s ease; /* Плавный переход цвета */
   }
-
+  
   .search-input button[type="button"]:hover {
     background-color: #0056b3; /* Темно-синий цвет при наведении */
   }
-
+  
   .search-results {
     position: absolute;
     bottom: 120px;
@@ -100,11 +172,11 @@
     overflow-y: auto; /* Добавляем прокрутку по вертикали */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавлена тень */
   }
-
+  
   .search-results.show {
     display: block;
   }
-
+  
   .search-results li {
     list-style: none;
     padding: 5px;
@@ -112,11 +184,11 @@
     cursor: pointer; /* добавлено для указания, что элементы списка кликабельны */
     transition: background-color 0.3s ease; /* Плавный переход цвета */
   }
-
+  
   .search-results li:hover {
     background-color: #f0f0f0;
   }
-
+  
   /* Анимация пульсации для найденного текста */
   @keyframes pulse {
     0% {
@@ -139,18 +211,18 @@
 <body>
 
 <div class="search-container">
-
+  
   <button class="search-button" id="search-button">
     <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Loupe">
   </button>
-
+  
   <div class="search-input" id="search-input">
     <div style="font-weight: bold; color: red; margin-bottom: 5px;">❗️❗️СНАЧАЛА ВЫБЕРИ РУБРИКУ В КОТОРОЙ НУЖНО ИСКАТЬ❗️❗️</div>
     <input type="text" id="search-field" placeholder="Поиск...">
     <button type="button" id="search-cancel">Отмена</button>
     <button type="button" id="search-submit">Искать</button>
   </div>
-
+  
   <ul class="search-results" id="search-results"></ul>
 </div>
 
@@ -167,7 +239,7 @@
     searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
   });
 
-
+  
   searchSubmit.addEventListener('click', () => {
     const searchTerm = searchField.value.trim();
     if (searchTerm) {
@@ -212,11 +284,9 @@
   });
 </script>
 
-</body>
-</html>
-
-
-
+ 
+  
+  
 </script>
     </form>
     <title>RPFOZZY НОВОСТИ</title>
@@ -505,8 +575,8 @@
     <div class="button-block">
         <a href="https://t.me/tominecraft" class="btn btn-creator" target="_blank">TOMINECRAFT (by Clayni0)</a>
       <div class="dropdown">
-        
-        
+
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -565,8 +635,8 @@
 
 </body>
 </html>
-          
-          
+
+
 </div>
         </section>
         <section id="politics" class="category">
@@ -1133,34 +1203,47 @@
             <p><a href="http://t.me/rpfozzy" target="_blank"><span style="color: red;">THEFOZZY</span></a> | 2 0 2 2 — 2 0 2 4</p>
         </div>
     </footer>
-    <script>
-        function showHome() {
-            setActiveCategory('home');
-            setActiveNav('nav-home');
-        }
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Добавляем класс анимации при загрузке страницы
+        const elements = document.querySelectorAll('a, ul, li, img, input, textarea, .btn');
+        elements.forEach(element => {
+            element.classList.add('slide-in');
+        });
+    });
 
-        function showCategory(categoryId) {
-            setActiveCategory(categoryId);
-            setActiveNav('nav-' + categoryId);
-        }
+    function showHome() {
+        setActiveCategory('home');
+        setActiveNav('nav-home');
+    }
 
-        function setActiveCategory(categoryId) {
-            var categories = document.querySelectorAll('.category, .home');
-            categories.forEach(function(category) {
-                category.classList.remove('active');
-            });
-            var activeCategory = document.getElementById(categoryId);
-            activeCategory.classList.add('active');
-        }
+    function showCategory(categoryId) {
+        setActiveCategory(categoryId);
+        setActiveNav('nav-' + categoryId);
+    }
 
-        function setActiveNav(navId) {
-            var navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(function(navLink) {
-                navLink.classList.remove('active');
-            });
-            var activeNavLink = document.getElementById(navId);
-            activeNavLink.classList.add('active');
-        }
-    </script>
+    function setActiveCategory(categoryId) {
+        var categories = document.querySelectorAll('.category, .home');
+        categories.forEach(function(category) {
+            category.classList.remove('active', 'slide-in');
+            category.classList.add('slide-out');
+            category.addEventListener('animationend', function() {
+                category.classList.remove('slide-out');
+            }, { once: true });
+        });
+        var activeCategory = document.getElementById(categoryId);
+        activeCategory.classList.remove('slide-out');
+        activeCategory.classList.add('active', 'slide-in');
+    }
+
+    function setActiveNav(navId) {
+        var navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(function(navLink) {
+            navLink.classList.remove('active');
+        });
+        var activeNavLink = document.getElementById(navId);
+        activeNavLink.classList.add('active');
+    }
+      </script>
 </body>
 </html>
