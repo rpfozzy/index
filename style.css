@@ -98,3 +98,9 @@ input[type="submit"]:hover {
   width: 100%;
   margin: 20px 35px;
 }
+
+<div class="modal-dialog" style="max-width: 100px;">
+    <div class="modal-content">
+        <!-- Содержимое модального окна -->
+    </div>
+</div>
