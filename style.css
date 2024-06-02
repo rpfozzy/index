@@ -1,10 +1,30 @@
+#loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#content {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+
 /* Эффект касания при активации */
 .btn:active {
   transform: scale(0.95);
 }
-
-
-
 
 /* Стили для ссылок */
 a {
@@ -94,95 +114,11 @@ input[type="submit"]:hover {
 }
 
 
-
-
-/* Анимация для появления сайта */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) rotateY(45deg) translateY(100px);
-    filter: blur(20px);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1) rotateY(30deg) translateY(-20px);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotateY(0deg) translateY(0);
-    filter: blur(0);
-  }
+/* Классы для анимаций */
+.slide-in {
+  animation: slideIn 1s ease-out forwards;
 }
 
-/* Применяем анимацию к контейнеру сайта */
-body {
-  animation: fadeIn 1.5s ease-in-out; /* изменение ease-out на ease-in-out */
+.slide-out {
+  animation: slideOut 1s ease-out forwards;
 }
-
-/* Дополнительная анимация для текста */
-h1,
-p {
-  opacity: 0;
-  animation: fadeInText 1s ease-in-out forwards; /* изменение ease-out на ease-in-out */
-}
-
-@keyframes fadeInText {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-
-
-/* Анимация для появления элементов из левой стороны с небольшим вращением */
-@keyframes slideInSubtleRotateFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%) rotate(-10deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) rotate(0);
-  }
-}
-
-/* Применяем анимацию к контейнеру сайта */
-body {
-  animation: slideInSubtleRotateFromLeft 1s ease-in-out;
-}
-
-/* Дополнительная анимация для текста */
-h1,
-p,
-img {
-  opacity: 0; /* Изначально текст скрыт */
-  animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards; /* Применяем анимацию с сохранением финального состояния */
-}
-
-
-/* Анимация для затухания */
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-
-
-/* Дополнительная анимация для текста */
-h1,
-p {
-  opacity: 0; /* Изначально текст скрыт */
-  animation: slideInSubtleRotateFromLeft 1s ease-in-out forwards; /* Применяем анимацию с сохранением финального состояния */
-}
-
