@@ -24,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000; /* черный цвет фона */
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,7 +36,7 @@
         .loader {
             width: 200px;
             height: 200px;
-            background-image: url('https://legra.ph/file/4cef98fe8dd2a8b7a5b43.jpg'); /* Пример ссылки на изображение */
+            background-image: url('https://legra.ph/file/4cef98fe8dd2a8b7a5b43.jpg');
             background-size: cover;
             animation: spin 4s linear infinite;
         }
@@ -79,212 +79,308 @@
             }, 1000);
         }, 4000);
     </script>
-    
-</body>
-</html>
-  
-  
-<style>
-  /* Стили для поисковика */
-  .search-container {
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-    z-index: 1000; /* чтобы поисковик был поверх всех элементов */
-  }
-  
-  .search-button {
-    background-color: #007BFF; /* Синий цвет фона */
-    border: none;
-    border-radius: 10px; /* Квадратная кнопка с закругленными краями */
-    cursor: pointer;
-    height: 40px; /* Увеличен размер */
-    width: 40px; /* Увеличен размер */
-    padding: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Более выраженная тень */
-    margin-right: 10px; /* Добавлено расстояние между кнопками */
-    transition: background-color 0.3s ease; /* Плавный переход цвета */
-  }
-  
-  .search-button:hover {
-    background-color: #0056b3; /* Темно-синий цвет при наведении */
-  }
-  
-  .search-button img {
-    height: 20px;
-    width: 20px;
-  }
-  
-  .search-input {
-    display: none;
-    position: absolute;
-    bottom: 80px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    width: 220px; /* Увеличена ширина */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавлена тень */
-  }
-  
-  .search-input.show {
-    display: block;
-  }
-  
-  .search-input input[type="text"] {
-    width: 100%;
-    height: 30px; /* Увеличена высота */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-bottom: 10px; /* Добавлен отступ снизу */
-  }
-  
-  .search-input button[type="button"] {
-    background-color: #007BFF; /* Синий цвет фона */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 30px; /* Увеличена высота */
-    width: 70px; /* Увеличена ширина */
-    padding: 5px;
-    margin-right: 10px; /* Добавлено расстояние между кнопками */
-    color: #fff; /* Белый цвет текста */
-    transition: background-color 0.3s ease; /* Плавный переход цвета */
-  }
-  
-  .search-input button[type="button"]:hover {
-    background-color: #0056b3; /* Темно-синий цвет при наведении */
-  }
-  
-  .search-results {
-    position: absolute;
-    bottom: 120px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    display: none;
-    max-height: 200px; /* Устанавливаем максимальную высоту для прокрутки */
-    overflow-y: auto; /* Добавляем прокрутку по вертикали */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавлена тень */
-  }
-  
-  .search-results.show {
-    display: block;
-  }
-  
-  .search-results li {
-    list-style: none;
-    padding: 5px;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer; /* добавлено для указания, что элементы списка кликабельны */
-    transition: background-color 0.3s ease; /* Плавный переход цвета */
-  }
-  
-  .search-results li:hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Анимация пульсации для найденного текста */
-  @keyframes pulse {
-    0% {
-      background-color: lightblue;
-    }
-    50% {
-      background-color: blue;
-    }
-    100% {
-      background-color: lightblue;
-    }
-  }
 
-  .highlight-pulse {
-    animation: pulse 0.2s infinite;
-    border-radius: 10px; /* Добавьте это свойство */
-  }
-</style>
+    <style>
+        /* Левая панель */
+        .panel-container-left {
+            position: fixed;
+            bottom: 50px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .panel-button {
+            background-color: #28a745;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        
+        }
+
+        .panel-button img {
+            height: 20px;
+            width: 20px;
+        }
+
+  
+
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 30px;
+            width: 30px;
+            color: #fff;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Правая панель */
+        .search-container {
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .search-button {
+            background-color: #007BFF;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-button img {
+            height: 20px;
+            width: 20px;
+        }
+
+        .search-input {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 220px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input.show {
+            display: block;
+        }
+
+        .search-input input[type="text"] {
+            width: 100%;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .search-input button[type="button"] {
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 30px;
+            width: 70px;
+            padding: 5px;
+            margin-right: 10px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-input button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        .search-results {
+            position: absolute;
+            bottom: 120px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results.show {
+            display: block;
+        }
+
+        .search-results li {
+            list-style: none;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-results li:hover {
+            background-color: #f0f0f0;
+        }
+
+        @keyframes pulse {
+            0% {
+                background-color: lightblue;
+            }
+            50% {
+                background-color: blue;
+            }
+            100% {
+                background-color: lightblue;
+            }
+        }
+
+        .highlight-pulse {
+            animation: pulse 0.2s infinite;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
+<div class="panel-container-left">
+    <button class="panel-button" id="panel-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Site">
+    </button>
+</div>
+
+  
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <button class="close-button" id="close-button">&times;</button>
+        <iframe src="https://www.example.com" id="modal-iframe"></iframe>
+    </div>
+</div>
+
 <div class="search-container">
-  
-  <button class="search-button" id="search-button">
-    <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Loupe">
-  </button>
-  
-  <div class="search-input" id="search-input">
-    <div style="font-weight: bold; color: red; margin-bottom: 5px;">❗️❗️СНАЧАЛА ВЫБЕРИ РУБРИКУ В КОТОРОЙ НУЖНО ИСКАТЬ❗️❗️</div>
-    <input type="text" id="search-field" placeholder="Поиск...">
-    <button type="button" id="search-cancel">Отмена</button>
-    <button type="button" id="search-submit">Искать</button>
-  </div>
-  
-  <ul class="search-results" id="search-results"></ul>
+    <button class="search-button" id="search-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Search">
+    </button>
+
+    <div class="search-input" id="search-input">
+        <div style="font-weight: bold; color: red; margin-bottom: 5px;">❗️❗️СНАЧАЛА ВЫБЕРИ РУБРИКУ В КОТОРОЙ НУЖНО ИСКАТЬ❗️❗️</div>
+        <input type="text" id="search-field" placeholder="Поиск...">
+        <button type="button" id="search-cancel">Отмена</button>
+        <button type="button" id="search-submit">Искать</button>
+    </div>
+
+    <ul class="search-results" id="search-results"></ul>
 </div>
 
 <script>
-  const searchButton = document.getElementById('search-button');
-  const searchInput = document.getElementById('search-input');
-  const searchField = document.getElementById('search-field');
-  const searchSubmit = document.getElementById('search-submit');
-  const searchCancel = document.getElementById('search-cancel');
-  const searchResults = document.getElementById('search-results');
+    // Логика для левой панели
+const panelButton = document.getElementById('panel-button');
+const modal = document.getElementById('modal');
+const modalIframe = document.getElementById('modal-iframe');
 
-  searchButton.addEventListener('click', () => {
-    searchInput.classList.toggle('show');
-    searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
-  });
+let isModalOpen = false; // Переменная для отслеживания состояния модального окна
 
-  
-  searchSubmit.addEventListener('click', () => {
-    const searchTerm = searchField.value.trim();
-    if (searchTerm) {
-      const results = [];
-      const elements = document.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, td, th'); // Only search within these elements
-      for (let i = 0; i < elements.length; i++) {
-        if (elements[i].innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
-          results.push(elements[i]);
-        }
-      }
-
-      searchResults.innerHTML = '';
-      for (let i = 0; i < results.length; i++) {
-        const result = results[i];
-        const listItem = document.createElement('li');
-        listItem.textContent = result.innerText;
-        listItem.addEventListener('click', () => {
-          const viewportHeight = window.innerHeight;
-          const elementRect = result.getBoundingClientRect();
-          const elementY = elementRect.top + window.scrollY;
-          const scrollToY = elementY - (viewportHeight / 2);
-          window.scrollTo({
-            top: scrollToY,
-            behavior: 'smooth'
-          });
-          result.classList.add('highlight-pulse'); // Применяем класс с анимацией
-          setTimeout(() => {
-            result.classList.remove('highlight-pulse'); // Убираем анимацию через 2 секунды
-          }, 4000);
-          searchCancel.click(); // Закрываем результаты поиска при клике на элементе списка
-        });
-        searchResults.appendChild(listItem);
-      }
-
-      searchResults.classList.add('show');
+panelButton.addEventListener('click', () => {
+    if (isModalOpen) {
+        modal.style.display = 'none'; // Закрыть модальное окно
+        isModalOpen = false; // Установить состояние модального окна на закрыто
+    } else {
+        modal.style.display = 'flex';
+        modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
+        isModalOpen = true; // Установить состояние модального окна на открыто
     }
-  });
+});
 
-  searchCancel.addEventListener('click', () => {
-    searchInput.classList.remove('show');
-    searchResults.classList.remove('show');
-  });
+    // Определение элемента closeButton
+const closeButton = document.getElementById('close-button');
+
+// Логика закрытия модального окна при клике на кнопку закрытия
+closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+    });
+
+    // Логика для правой панели (поиск)
+    const searchButton = document.getElementById('search-button');
+    const searchInput = document.getElementById('search-input');
+    const searchField = document.getElementById('search-field');
+    const searchSubmit = document.getElementById('search-submit');
+    const searchCancel = document.getElementById('search-cancel');
+    const searchResults = document.getElementById('search-results');
+
+    searchButton.addEventListener('click', () => {
+        searchInput.classList.toggle('show');
+        searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
+    });
+
+    searchSubmit.addEventListener('click', () => {
+        const searchTerm = searchField.value.trim();
+        if (searchTerm) {
+            const results = [];
+            const elements = document.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, td, th'); // Only search within these elements
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    results.push(elements[i]);
+                }
+            }
+
+            searchResults.innerHTML = '';
+            for (let i = 0; i < results.length; i++) {
+                const result = results[i];
+                const listItem = document.createElement('li');
+                listItem.textContent = result.innerText;
+                listItem.addEventListener('click', () => {
+                    const viewportHeight = window.innerHeight;
+                    const elementRect = result.getBoundingClientRect();
+                    const elementY = elementRect.top + window.scrollY;
+                    const scrollToY = elementY - (viewportHeight / 2);
+                    window.scrollTo({
+                        top: scrollToY,
+                        behavior: 'smooth'
+                    });
+                    result.classList.add('highlight-pulse'); // Применяем класс с анимацией
+                    setTimeout(() => {
+                        result.classList.remove('highlight-pulse'); // Убираем анимацию через 2 секунды
+                    }, 4000);
+                    searchCancel.click(); // Закрываем результаты поиска при клике на элементе списка
+                });
+                searchResults.appendChild(listItem);
+            }
+
+            searchResults.classList.add('show');
+        }
+    });
+
+    searchCancel.addEventListener('click', () => {
+        searchInput.classList.remove('show');
+        searchResults.classList.remove('show');
+    });
 </script>
 
+</body>
+</html>
+
  
+  
+  
+  
   
   
 </script>
