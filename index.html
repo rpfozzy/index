@@ -818,6 +818,43 @@ closeButton.addEventListener('click', () => {
     </style>
 </head>
 <body>
+  
+  
+  <div class="dropdown">
+    <a href="#" class="btn btn-download btn-post" id="openModalBtn6">APK FILE FOR IFLORIUM</a>
+    <div id="myModal6" class="modal">
+        <div class="modal-content">
+            <span class="close close6">&times;</span>
+            <h2>APK FILE FOR IFLORIUM</h2>
+            <p>Дата: 3 июня 2024</p>
+                        <div class="dropdown">
+                <button id="myBtn6">СКАЧАТЬ ПРИЛОЖЕНИЕ</button>
+                <div id="dropdownContent6" class="dropdown-content">
+                    <a href="https://oxy.name/d/XQSh">Через Oxy Cloud</a>
+                </div>
+            </div>
+            <p>Этот APK нужен для работы IFLORIUM CLIENT 4.</p> 
+            <span style="color:white;">Почему именно так?</span>
+            <p>— Этот APK совмещает Блок Лаунчер версии 1.1.5 и Minecraft версии 1.16.2</p>
+            <span style="color:white;">Работают ли сервера в этом Блок Лаунчере?</span>
+            
+            <p>— Да, здесь все точно так же, как и в версии 1.1.5, но в этом Блок Лаунчере исправлены ошибки, которые были в 1.1.5. То есть, при запуске обычного официального Minecraft 1.1.5 этот IFLORIUM CLIENT V2-V4 будет содержать ошибки и кучу багов, но наш APK исправит эти баги, и их просто не будет. Короче говоря, если удалить оригинальный майнкрафт - блок лаунчер работать будет и без майнкрафта</p> 
+          <span style="color:white;">Как играть на серверах, если у вас вылетает из сервера?</span>
+            <p>— Перейдите в настройки Блок Лаунчера (значок шестеренки сверху экрана), затем найдите пункт "Безопасный режим" и наслаждайтесь игрой.</p>
+            <span style="color:lightblue;">Работает только на 1.1.5, на других версиях выше этой — миллион багов</span>
+            
+          <p style="color:white;">Работает ли этот APK на Android 10-14?</p>
+          <p>— Да, всё отлично работает</p>
+            
+            <img src="https://legra.ph/file/788b7317486eca200bdcb.jpg" alt="Изображение 1">
+            <img src="https://legra.ph/file/d9081bce5cad568931934.jpg" alt="Изображение 2">
+        </div>
+    </div>
+</div>
+
+  
+  
+  
 
 <div class="dropdown">
     <a href="#" class="btn btn-creator btn-post" id="openModalBtn4">IFLORIUM CLIENT V4</a>
@@ -1005,6 +1042,38 @@ closeButton.addEventListener('click', () => {
 }
 </style>
   <script>
+  
+// APK FILE FOR IFLORIUM
+var modal6 = document.getElementById("myModal6");
+var btn6 = document.getElementById("openModalBtn6");
+var span6 = document.getElementsByClassName("close6")[0];
+var dropdownBtn6 = document.getElementById("myBtn6");
+var dropdownContent6 = document.getElementById("dropdownContent6");
+
+btn6.onclick = function() {
+    modal6.style.display = "block";
+}
+
+span6.onclick = function() {
+    modal6.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal6) {
+        modal6.style.display = "none";
+    }
+}
+
+dropdownBtn6.onclick = function() {
+    if (dropdownContent6.style.display === "block") {
+        dropdownContent6.style.display = "none";
+    } else {
+        dropdownContent6.style.display = "block";
+    }
+}
+
+  
+  
     // IFLORIUM CLIENT V4
     var modal4 = document.getElementById("myModal4");
     var btn4 = document.getElementById("openModalBtn4");
