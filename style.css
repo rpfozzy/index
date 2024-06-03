@@ -104,3 +104,15 @@ input[type="submit"]:hover {
         <!-- Содержимое модального окна -->
     </div>
 </div>
+
+/* Стили для светлой темы */
+body.light-theme {
+    background-color: #000000;
+    color: #000000;
+}
+
+/* Стили для темной темы */
+body.dark-theme {
+    background-color: #000000;
+    color: #000000;
+}
