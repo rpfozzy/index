@@ -181,7 +181,7 @@
             position: absolute;
             bottom: 80px;
             right: 20px;
-            background-color: #fff;
+background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
@@ -204,7 +204,7 @@
         }
 
         .search-input button[type="button"] {
-            background-color: #007BFF;
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -224,7 +224,8 @@
             position: absolute;
             bottom: 120px;
             right: 20px;
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.5); /* Черный цвет с 50% непрозрачностью */
+            color: #fff;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
@@ -400,287 +401,832 @@
 </form>
 <title>RPFOZZY НОВОСТИ</title>
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background-color: #222;
-    }
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://legra.ph/file/dc877205ae8ac5d341d53.jpg'); /* Ссылка на ваше изображение */
+            background-size: cover; /* Изображение покрывает весь экран */
+            background-position: center; /* Центрирование изображения */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            z-index: -1; /* Поместить фон позади всего остального содержимого */
+        }
 
-    header {
-        background: #333;
-        color: #fff;
-        padding: 10px 0;
-        text-align: center;
-    }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
 
-    nav {
-        background: #444;
-        color: #fff;
-        padding: 10px 0;
-    }
+        nav {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            color: #fff;
+            padding: 10px 0;
+        }
 
-    nav ul {
-        list-style: none;
-        padding: 0;
-        text-align: center;
-    }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
 
-    nav ul li {
-        display: inline;
-        margin: 0 10px;
-    }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
 
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
-        padding: 5px 10px;
-        transition: background-color 0.2s, border-radius 0.1s;
-    }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: background-color 0.2s, border-radius 0.1s;
+        }
 
-    nav ul li a.active {
-        background: #3498db;
-        border-radius: 50px;
+        nav ul li a.active {
+            background: #3498db;
+            border-radius: 50px;
+        }
 
-    }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
 
-    .container {
-        width: 80%;
-        margin: auto;
-        overflow: hidden;
-    }
+        .post {
+            background: #223;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
-    .post {
-        background: #223;
-        margin: 20px 0;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
+        .post h2 {
+            color: #333;
+        }
 
-    .post h2 {
-        color: #333;
-    }
+        .post p {
+            color: #666;
+        }
 
-    .post p {
-        color: #666;
-    }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            /* Округленные края превьюшки */
+        }
 
-    .post img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin-bottom: 10px;
-        border-radius: 10px;
-        /* Округленные края превьюшки */
-    }
+        .btn {
+            display: inline-block;
+            width: 250px;
+            /* Желаемая ширина кнопок */
+            padding: 10px 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+            /* Добавляем плавный переход для 3D эффекта */
+        }
 
-    .btn {
-        display: inline-block;
-        width: 250px;
-        /* Желаемая ширина кнопок */
-        padding: 10px 10px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 15px;
-        color: #fff;
-        text-align: center;
-        font-size: 16px;
-        text-decoration: none;
-        cursor: pointer;
-        transition: transform 0.3s;
-        /* Добавляем плавный переход для 3D эффекта */
-    }
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            /* Добавляем 3D эффект при наведении */
+        }
 
-    .btn:hover {
-        transform: translateY(-2px) scale(1.05);
-        /* Добавляем 3D эффект при наведении */
-    }
+        .btn: active {
+            box-shadow: 0 5px #666;
+        }
 
-    .btn: active {
-        box-shadow: 0 5px #666
-    }
+        .btn-download {
+            background-color: #e74c3c;
+            /* Красная кнопка */
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+        }
 
-    .btn-download {
-        background-color: #e74c3c;
-        /* Красная кнопка */
-        width: 300px;
-        /* Увеличиваем ширину кнопки */
-        /* остальные стили */
-    }
+        .btn-creator {
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+            background-color: #3498db;
+            /* Синяя кнопка */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            /* Это добавит тень для кнопки */
+        }
 
-    .btn-creator {
-        width: 300px;
-        /* Увеличиваем ширину кнопки */
-        /* остальные стили */
-        background-color: #3498db;
-        /* Синяя кнопка */
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        /* Это добавит тень для кнопки */
-    }
+        .btn-post {
+            display: block;
+            width: 100%;
+            /* Ширина равна ширине поста */
+            margin: 20px 35px;
+            /* Центрирование */
+            width: 250px;
+            /* Увеличиваем ширину кнопки */
+        }
 
-    .btn-post {
-        display: block;
-        width: 100%;
-        /* Ширина равна ширине поста */
-        margin: 20px 35px;
-        /* Центрирование */
-        width: 250px;
-        /* Увеличиваем ширину кнопки */
-        /* остальные стили */
-    }
+        main {
+            flex: 1;
+        }
 
-    footer {
-        background: #333;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-        margin-top: 20px;
-    }
+        footer {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 50% непрозрачностью */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
 
-    footer a {
-        color: #fff;
-        text-decoration: none;
-    }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-    .category,
-    .home,
-    .contacts {
-        opacity: 0;
-        height: 0;
-        overflow: hidden;
-        transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
-    }
-
-    .category.active,
-    .home.active,
-    .contacts.active {
-        opacity: 1;
-        height: auto;
-    }
-
-    .home img {
-        width: 50%;
-        /* Настраиваемый размер изображения */
-        max-width: 600px;
-        /* Максимальная ширина изображения */
-        height: auto;
-        display: block;
-        margin: 20px auto;
-        /* Центровка изображения */
-    }
-
-    .home h2 {
-        color: #fff;
-        /* Новый цвет текста */
-    }
-
-    .category h2 {
-        color: #fff;
-        /* Белый цвет текста */
-    }
-
-    @keyframes fade-in {
-        from {
+        .category, .home, .contacts {
             opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
         }
 
-        to {
+        .category.active, .home.active, .contacts.active {
             opacity: 1;
+            height: auto;
         }
-    }
 
-    #openModalBtn,
-    #myBtn {
-        animation: fade-in 0.5s ease-in-out;
-    }
+        .home img {
+            width: 50%;
+            /* Настраиваемый размер изображения */
+            max-width: 600px;
+            /* Максимальная ширина изображения */
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            /* Центровка изображения */
+        }
 
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-        animation: fade-in 0.3s ease-in-out;
-    }
+        .home h2 {
+            color: #fff;
+            /* Новый цвет текста */
+        }
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        animation: fade-in 0.3s ease-in-out;
-    }
+        .category h2 {
+            color: #fff;
+            /* Белый цвет текста */
+        }
 
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+            to {
+                opacity: 1;
+            }
+        }
 
-    .modal-content img {
-        width: 100%;
-        display: block;
-        margin: 10px auto;
-        border-radius: 15px;
-    }
+        #openModalBtn, #myBtn {
+            animation: fade-in 0.5s ease-in-out;
+        }
 
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fade-in 0.3s ease-in-out;
+        }
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
+       .modal-content {
+    background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+    color: #fff; /* Цвет текста белый */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 15px;
+    animation: fade-in 0.3s ease-in-out;
+}
 
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        border: 1px solid #ddd;
-        margin-top: -1px;
-        /* Prevent double borders */
-        background-color: #fff;
-        text-align: center;
-        cursor: pointer;
-    }
 
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-    }
-</style>
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+            width: 100%;
+            display: block;
+            margin: 10px auto;
+            border-radius: 15px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            /* Prevent double borders */
+            background-color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style> <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://legra.ph/file/dc877205ae8ac5d341d53.jpg'); /* Ссылка на ваше изображение */
+            background-size: cover; /* Изображение покрывает весь экран */
+            background-position: center; /* Центрирование изображения */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            z-index: -1; /* Поместить фон позади всего остального содержимого */
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: background-color 0.2s, border-radius 0.1s;
+        }
+
+        nav ul li a.active {
+            background: #3498db;
+            border-radius: 50px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .post {
+            background: #223;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .post h2 {
+            color: #333;
+        }
+
+        .post p {
+            color: #666;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            /* Округленные края превьюшки */
+        }
+
+        .btn {
+            display: inline-block;
+            width: 250px;
+            /* Желаемая ширина кнопок */
+            padding: 10px 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+            /* Добавляем плавный переход для 3D эффекта */
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            /* Добавляем 3D эффект при наведении */
+        }
+
+        .btn: active {
+            box-shadow: 0 5px #666;
+        }
+
+        .btn-download {
+            background-color: #e74c3c;
+            /* Красная кнопка */
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+        }
+
+        .btn-creator {
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+            background-color: #3498db;
+            /* Синяя кнопка */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            /* Это добавит тень для кнопки */
+        }
+
+        .btn-post {
+            display: block;
+            width: 100%;
+            /* Ширина равна ширине поста */
+            margin: 20px 35px;
+            /* Центрирование */
+            width: 250px;
+            /* Увеличиваем ширину кнопки */
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 50% непрозрачностью */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .category, .home, .contacts {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+        }
+
+        .category.active, .home.active, .contacts.active {
+            opacity: 1;
+            height: auto;
+        }
+
+        .home img {
+            width: 50%;
+            /* Настраиваемый размер изображения */
+            max-width: 600px;
+            /* Максимальная ширина изображения */
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            /* Центровка изображения */
+        }
+
+        .home h2 {
+            color: #fff;
+            /* Новый цвет текста */
+        }
+
+        .category h2 {
+            color: #fff;
+            /* Белый цвет текста */
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #openModalBtn, #myBtn {
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fade-in 0.3s ease-in-out;
+        }
+
+        .modal-content {
+    background-color: #000; /* Устанавливаем черный фон */
+    color: #fff; /* Цвет текста белый */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 15px;
+    animation: fade-in 0.3s ease-in-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+            width: 100%;
+            display: block;
+            margin: 10px auto;
+            border-radius: 15px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            /* Prevent double borders */
+            background-color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style> <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://legra.ph/file/dc877205ae8ac5d341d53.jpg'); /* Ссылка на ваше изображение */
+            background-size: cover; /* Изображение покрывает весь экран */
+            background-position: center; /* Центрирование изображения */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            z-index: -1; /* Поместить фон позади всего остального содержимого */
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: background-color 0.2s, border-radius 0.1s;
+        }
+
+        nav ul li a.active {
+            background: #3498db;
+            border-radius: 50px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .post {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .post h2 {
+            color: #333;
+        }
+
+        .post p {
+            color: #666;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            /* Округленные края превьюшки */
+        }
+
+        .btn {
+            display: inline-block;
+            width: 250px;
+            /* Желаемая ширина кнопок */
+            padding: 10px 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+            /* Добавляем плавный переход для 3D эффекта */
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            /* Добавляем 3D эффект при наведении */
+        }
+
+        .btn: active {
+            box-shadow: 0 5px #666;
+        }
+
+        .btn-download {
+            background-color: #e74c3c;
+            /* Красная кнопка */
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+        }
+
+        .btn-creator {
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+            background-color: #3498db;
+            /* Синяя кнопка */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            /* Это добавит тень для кнопки */
+        }
+
+        .btn-post {
+            display: block;
+            width: 100%;
+            /* Ширина равна ширине поста */
+            margin: 20px 35px;
+            /* Центрирование */
+            width: 250px;
+            /* Увеличиваем ширину кнопки */
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 50% непрозрачностью */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .category, .home, .contacts {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+        }
+
+        .category.active, .home.active, .contacts.active {
+            opacity: 1;
+            height: auto;
+        }
+
+        .home img {
+            width: 50%;
+            /* Настраиваемый размер изображения */
+            max-width: 600px;
+            /* Максимальная ширина изображения */
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            /* Центровка изображения */
+        }
+
+        .home h2 {
+            color: #fff;
+            /* Новый цвет текста */
+        }
+
+        .category h2 {
+            color: #fff;
+            /* Белый цвет текста */
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #openModalBtn, #myBtn {
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            animation: fade-in 0.3s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            animation: fade-in 0.3s ease-in-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+            width: 100%;
+            display: block;
+            margin: 10px auto;
+            border-radius: 15px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            /* Prevent double borders */
+            background-color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 
 <body onload="showHome()">
-    <header>
-        <div class="container">
-            <h1>ВСЁ ВАЖНОЕ В RPFOZZY</h1>
-        </div>
-    </header>
     <nav>
         <ul>
             <li><a onclick="showHome()" id="nav-home"><strong>Главная</strong></a></li>
@@ -732,9 +1278,7 @@
                             <meta charset="UTF-8">
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <title>Modal Example</title>
-                            <style>
-                                /* Ваши стили модального окна */
-                            </style>
+                          
                         </head>
 
                         <body>
@@ -814,7 +1358,7 @@
                         }
 
                         .modal-content {
-                            background-color: #fefefe;
+                            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
                             margin: 15% auto;
                             padding: 20px;
                             border: 1px solid #888;
@@ -850,7 +1394,7 @@
                         .dropdown-content {
                             display: none;
                             position: absolute;
-                            background-color: #f9f9f9;
+                            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
                             min-width: 160px;
                             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                             z-index: 1;
@@ -1077,7 +1621,7 @@
                         }
 
                         .modal-content {
-                            background-color: #333;
+                            background-color: rgba(0, 0, 0, 0.9); /* Черный цвет с 80% непрозрачностью */
                             margin: 15% auto;
                             padding: 20px;
                             border: 1px solid #888;
@@ -1529,7 +2073,7 @@
         </section>
     </div>
     <footer>
-        <div class="container">
+         <div class="container">
             <p><a href="http://t.me/rpfozzy" target="_blank"><span style="color: red;">THEFOZZY</span></a> | 2 0 2 2 — 2 0 2 4</p>
         </div>
     </footer>
