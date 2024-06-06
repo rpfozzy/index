@@ -1,68 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-  
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-        }
+    <title>Search</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
+    <!DOCTYPE html>
+    <html lang="en">
 
-        .loader {
-            width: 200px;
-            height: 200px;
-            background-image: url('https://legra.ph/file/4cef98fe8dd2a8b7a5b43.jpg');
-            background-size: cover;
-            animation: spin 4s linear infinite;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
 
-        @keyframes spin {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
-        }
+            .loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+            }
 
-        .content {
-            opacity: 0;
-            display: none;
-            transition: opacity 0.5s ease;
-        }
+            .loader {
+                width: 200px;
+                height: 200px;
+                background-image: url('https://legra.ph/file/4cef98fe8dd2a8b7a5b43.jpg');
+                background-size: cover;
+                animation: spin 4s linear infinite;
+            }
 
-        .loaded .loader-wrapper {
-            opacity: 0;
-        }
+            @keyframes spin {
+                0% {
+                    transform: rotateY(0deg);
+                }
 
-        .loaded .content {
-            display: block;
-            opacity: 1;
-        }
-    </style>
-</head>
+                100% {
+                    transform: rotateY(360deg);
+                }
+            }
+
+            .content {
+                opacity: 0;
+                display: none;
+                transition: opacity 0.5s ease;
+            }
+
+            .loaded .loader-wrapper {
+                opacity: 0;
+            }
+
+            .loaded .content {
+                display: block;
+                opacity: 1;
+            }
+        </style>
+    </head>
+
 <body>
 
     <div class="loader-wrapper">
@@ -101,7 +109,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             margin-right: 10px;
             transition: background-color 0.3s ease;
-        
+
         }
 
         .panel-button img {
@@ -109,7 +117,7 @@
             width: 20px;
         }
 
-  
+
 
         .modal-content iframe {
             width: 100%;
@@ -246,9 +254,11 @@
             0% {
                 background-color: lightblue;
             }
+
             50% {
                 background-color: blue;
             }
+
             100% {
                 background-color: lightblue;
             }
@@ -259,371 +269,412 @@
             border-radius: 10px;
         }
     </style>
-</head>
-<body>
+    </head>
 
-<div class="panel-container-left">
-    <button class="panel-button" id="panel-button">
-        <img src="https://img.icons8.com/?size=160&id=FoTRkp18eB9r&format=png" alt="Site">
-    </button>
-</div>
+    <body>
 
-  
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <button class="close-button" id="close-button">&times;</button>
-        <iframe src="https://rpfozzy.github.io/Totem/" id="modal-iframe"></iframe>
-    </div>
-</div>
+        <div class="panel-container-left">
+            <button class="panel-button" id="panel-button">
+                <img src="https://img.icons8.com/?size=160&id=FoTRkp18eB9r&format=png" alt="Site">
+            </button>
+        </div>
 
-<div class="search-container">
-    <button class="search-button" id="search-button">
-        <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Search">
-    </button>
 
-    <div class="search-input" id="search-input">
-        <div style="font-weight: bold; color: red; margin-bottom: 5px;">❗️❗️СНАЧАЛА ВЫБЕРИ РУБРИКУ В КОТОРОЙ НУЖНО ИСКАТЬ❗️❗️</div>
-        <input type="text" id="search-field" placeholder="Поиск...">
-        <button type="button" id="search-cancel">Отмена</button>
-        <button type="button" id="search-submit">Искать</button>
-    </div>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <button class="close-button" id="close-button">&times;</button>
+                <iframe src="https://rpfozzy.github.io/Totem/" id="modal-iframe"></iframe>
+            </div>
+        </div>
 
-    <ul class="search-results" id="search-results"></ul>
-</div>
+        <div class="search-container">
+            <button class="search-button" id="search-button">
+                <img src="https://cdn-icons-png.flaticon.com/512/751/751463.png" alt="Search">
+            </button>
 
-<script>
-    // Логика для левой панели
-const panelButton = document.getElementById('panel-button');
-const modal = document.getElementById('modal');
-const modalIframe = document.getElementById('modal-iframe');
+            <div class="search-input" id="search-input">
+                <div style="font-weight: bold; color: red; margin-bottom: 5px;">❗️❗️СНАЧАЛА ВЫБЕРИ РУБРИКУ В КОТОРОЙ НУЖНО ИСКАТЬ❗️❗️</div>
+                <input type="text" id="search-field" placeholder="Поиск...">
+                <button type="button" id="search-cancel">Отмена</button>
+                <button type="button" id="search-submit">Искать</button>
+            </div>
 
-let isModalOpen = false; // Переменная для отслеживания состояния модального окна
+            <ul class="search-results" id="search-results"></ul>
+        </div>
 
-panelButton.addEventListener('click', () => {
-    if (isModalOpen) {
-        modal.style.display = 'none'; // Закрыть модальное окно
-        isModalOpen = false; // Установить состояние модального окна на закрыто
-    } else {
-        modal.style.display = 'flex';
-        modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
-        isModalOpen = true; // Установить состояние модального окна на открыто
-    }
-});
+        <script>
+            // Логика для левой панели
+            const panelButton = document.getElementById('panel-button');
+            const modal = document.getElementById('modal');
+            const modalIframe = document.getElementById('modal-iframe');
 
-    // Определение элемента closeButton
-const closeButton = document.getElementById('close-button');
+            let isModalOpen = false; // Переменная для отслеживания состояния модального окна
 
-// Логика закрытия модального окна при клике на кнопку закрытия
-closeButton.addEventListener('click', () => {
-    modal.style.display = 'none';
-    });
-
-    // Логика для правой панели (поиск)
-    const searchButton = document.getElementById('search-button');
-    const searchInput = document.getElementById('search-input');
-    const searchField = document.getElementById('search-field');
-    const searchSubmit = document.getElementById('search-submit');
-    const searchCancel = document.getElementById('search-cancel');
-    const searchResults = document.getElementById('search-results');
-
-    searchButton.addEventListener('click', () => {
-        searchInput.classList.toggle('show');
-        searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
-    });
-
-    searchSubmit.addEventListener('click', () => {
-        const searchTerm = searchField.value.trim();
-        if (searchTerm) {
-            const results = [];
-            const elements = document.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, td, th'); // Only search within these elements
-            for (let i = 0; i < elements.length; i++) {
-                if (elements[i].innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    results.push(elements[i]);
+            panelButton.addEventListener('click', () => {
+                if (isModalOpen) {
+                    modal.style.display = 'none'; // Закрыть модальное окно
+                    isModalOpen = false; // Установить состояние модального окна на закрыто
+                } else {
+                    modal.style.display = 'flex';
+                    modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
+                    isModalOpen = true; // Установить состояние модального окна на открыто
                 }
-            }
+            });
 
-            searchResults.innerHTML = '';
-            for (let i = 0; i < results.length; i++) {
-                const result = results[i];
-                const listItem = document.createElement('li');
-                listItem.textContent = result.innerText;
-                listItem.addEventListener('click', () => {
-                    const viewportHeight = window.innerHeight;
-                    const elementRect = result.getBoundingClientRect();
-                    const elementY = elementRect.top + window.scrollY;
-                    const scrollToY = elementY - (viewportHeight / 2);
-                    window.scrollTo({
-                        top: scrollToY,
-                        behavior: 'smooth'
-                    });
-                    result.classList.add('highlight-pulse'); // Применяем класс с анимацией
-                    setTimeout(() => {
-                        result.classList.remove('highlight-pulse'); // Убираем анимацию через 2 секунды
-                    }, 4000);
-                    searchCancel.click(); // Закрываем результаты поиска при клике на элементе списка
-                });
-                searchResults.appendChild(listItem);
-            }
+            // Определение элемента closeButton
+            const closeButton = document.getElementById('close-button');
 
-            searchResults.classList.add('show');
-        }
-    });
+            // Логика закрытия модального окна при клике на кнопку закрытия
+            closeButton.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
 
-    searchCancel.addEventListener('click', () => {
-        searchInput.classList.remove('show');
-        searchResults.classList.remove('show');
-    });
-</script>
+            // Логика для правой панели (поиск)
+            const searchButton = document.getElementById('search-button');
+            const searchInput = document.getElementById('search-input');
+            const searchField = document.getElementById('search-field');
+            const searchSubmit = document.getElementById('search-submit');
+            const searchCancel = document.getElementById('search-cancel');
+            const searchResults = document.getElementById('search-results');
 
-</body>
+            searchButton.addEventListener('click', () => {
+                searchInput.classList.toggle('show');
+                searchResults.classList.remove('show'); // Скрыть результаты при открытии поиска
+            });
+
+            searchSubmit.addEventListener('click', () => {
+                const searchTerm = searchField.value.trim();
+                if (searchTerm) {
+                    const results = [];
+                    const elements = document.body.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, td, th'); // Only search within these elements
+                    for (let i = 0; i < elements.length; i++) {
+                        if (elements[i].innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            results.push(elements[i]);
+                        }
+                    }
+
+                    searchResults.innerHTML = '';
+                    for (let i = 0; i < results.length; i++) {
+                        const result = results[i];
+                        const listItem = document.createElement('li');
+                        listItem.textContent = result.innerText;
+                        listItem.addEventListener('click', () => {
+                            const viewportHeight = window.innerHeight;
+                            const elementRect = result.getBoundingClientRect();
+                            const elementY = elementRect.top + window.scrollY;
+                            const scrollToY = elementY - (viewportHeight / 2);
+                            window.scrollTo({
+                                top: scrollToY,
+                                behavior: 'smooth'
+                            });
+                            result.classList.add('highlight-pulse'); // Применяем класс с анимацией
+                            setTimeout(() => {
+                                result.classList.remove('highlight-pulse'); // Убираем анимацию через 2 секунды
+                            }, 4000);
+                            searchCancel.click(); // Закрываем результаты поиска при клике на элементе списка
+                        });
+                        searchResults.appendChild(listItem);
+                    }
+
+                    searchResults.classList.add('show');
+                }
+            });
+
+            searchCancel.addEventListener('click', () => {
+                searchInput.classList.remove('show');
+                searchResults.classList.remove('show');
+            });
+        </script>
+
+    </body>
+
 </html>
 
- 
-  
-  
-  
-  
-  
+
+
+
+
+
+
 </script>
-    </form>
-    <title>RPFOZZY НОВОСТИ</title>
+</form>
+<title>RPFOZZY НОВОСТИ</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #222;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            background: #444;
-            color: #fff;
-            padding: 10px 0;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 5px 10px;
-          transition: background-color 0.2s, border-radius 0.1s;
-        }
-        nav ul li a.active {
-            background: #3498db;
-            border-radius: 50px;
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #222;
+    }
 
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .post {
-            background: #223;
-            margin: 20px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .post h2 {
-            color: #333;
-        }
-        .post p {
-            color: #666;
-        }
-        .post img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 10px;
-            border-radius: 10px; /* Округленные края превьюшки */
-        }
-        .btn {
-            display: inline-block;
-            width: 250px; /* Желаемая ширина кнопок */
-            padding: 10px 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 15px;
-            color: #fff;
-            text-align: center;
-            font-size: 16px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.3s; /* Добавляем плавный переход для 3D эффекта */
-        }
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px) scale(1.05); /* Добавляем 3D эффект при наведении */
-        }
+    nav {
+        background: #444;
+        color: #fff;
+        padding: 10px 0;
+    }
 
-  .btn: active {
-    box-shadow: 0 5px #666
-  }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
 
-        .btn-download {
-            background-color: #e74c3c; /* Красная кнопка */
-          width: 300px; /* Увеличиваем ширину кнопки */
-            /* остальные стили */
-        }
+    nav ul li {
+        display: inline;
+        margin: 0 10px;
+    }
 
-        .btn-creator {
-            width: 300px; /* Увеличиваем ширину кнопки */
-            /* остальные стили */
-            background-color: #3498db; /* Синяя кнопка */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Это добавит тень для кнопки */
-        }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        transition: background-color 0.2s, border-radius 0.1s;
+    }
 
-        .btn-post {
-            display: block;
-            width: 100%; /* Ширина равна ширине поста */
-            margin: 20px 35px; /* Центрирование */
-          width: 250px; /* Увеличиваем ширину кнопки */
-            /* остальные стили */
-        }
+    nav ul li a.active {
+        background: #3498db;
+        border-radius: 50px;
 
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .category, .home, .contacts {
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
-}
+    }
 
-.category.active, .home.active, .contacts.active {
-    opacity: 1;
-    height: auto;
-        }
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
 
-        .home img {
-            width: 50%; /* Настраиваемый размер изображения */
-            max-width: 600px; /* Максимальная ширина изображения */
-            height: auto;
-            display: block;
-            margin: 20px auto; /* Центровка изображения */
-        }
+    .post {
+        background: #223;
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
 
-        .home h2 {
-            color: #fff; /* Новый цвет текста */
-        }
+    .post h2 {
+        color: #333;
+    }
 
-        .category h2 {
-            color: #fff; /* Белый цвет текста */
-        }
+    .post p {
+        color: #666;
+    }
 
-       @keyframes fade-in {
-    from {
+    .post img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        /* Округленные края превьюшки */
+    }
+
+    .btn {
+        display: inline-block;
+        width: 250px;
+        /* Желаемая ширина кнопок */
+        padding: 10px 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 15px;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.3s;
+        /* Добавляем плавный переход для 3D эффекта */
+    }
+
+    .btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        /* Добавляем 3D эффект при наведении */
+    }
+
+    .btn: active {
+        box-shadow: 0 5px #666
+    }
+
+    .btn-download {
+        background-color: #e74c3c;
+        /* Красная кнопка */
+        width: 300px;
+        /* Увеличиваем ширину кнопки */
+        /* остальные стили */
+    }
+
+    .btn-creator {
+        width: 300px;
+        /* Увеличиваем ширину кнопки */
+        /* остальные стили */
+        background-color: #3498db;
+        /* Синяя кнопка */
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        /* Это добавит тень для кнопки */
+    }
+
+    .btn-post {
+        display: block;
+        width: 100%;
+        /* Ширина равна ширине поста */
+        margin: 20px 35px;
+        /* Центрирование */
+        width: 250px;
+        /* Увеличиваем ширину кнопки */
+        /* остальные стили */
+    }
+
+    footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+
+    footer a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .category,
+    .home,
+    .contacts {
         opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
     }
-    to {
+
+    .category.active,
+    .home.active,
+    .contacts.active {
         opacity: 1;
+        height: auto;
     }
-}
 
-#openModalBtn, #myBtn {
-    animation: fade-in 0.5s ease-in-out;
-}
+    .home img {
+        width: 50%;
+        /* Настраиваемый размер изображения */
+        max-width: 600px;
+        /* Максимальная ширина изображения */
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        /* Центровка изображения */
+    }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-          animation: fade-in 0.3s ease-in-out;
+    .home h2 {
+        color: #fff;
+        /* Новый цвет текста */
+    }
+
+    .category h2 {
+        color: #fff;
+        /* Белый цвет текста */
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            animation: fade-in 0.3s ease-in-out;
+        to {
+            opacity: 1;
         }
+    }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+    #openModalBtn,
+    #myBtn {
+        animation: fade-in 0.5s ease-in-out;
+    }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        animation: fade-in 0.3s ease-in-out;
+    }
 
-        .modal-content img {
-            width: 100%;
-            display: block;
-            margin: 10px auto;
-            border-radius: 15px;
-        }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        animation: fade-in 0.3s ease-in-out;
+    }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            border: 1px solid #ddd;
-            margin-top: -1px; /* Prevent double borders */
-            background-color: #fff;
-            text-align: center;
-            cursor: pointer;
-        }
+    .modal-content img {
+        width: 100%;
+        display: block;
+        margin: 10px auto;
+        border-radius: 15px;
+    }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border: 1px solid #ddd;
+        margin-top: -1px;
+        /* Prevent double borders */
+        background-color: #fff;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+</style>
 </head>
+
 <body onload="showHome()">
     <header>
         <div class="container">
@@ -632,580 +683,585 @@ closeButton.addEventListener('click', () => {
     </header>
     <nav>
         <ul>
-            <li><a onclick="showHome()" id="nav-home">Главная</a></li>
-            <li><a onclick="showCategory('politics')" id="nav-politics">IFLORIUM CLIENT</a></li>
-            <li><a onclick="showCategory('sports')" id="nav-sports">Моды для 1.1.5</a></li>
-            <li><a onclick="showCategory('entertainment')" id="nav-entertainment">Карты</a></li>
-            <li><a onclick="showCategory('technology')" id="nav-technology">Клиенты для всех версий</a></li>
-            <li><a onclick="showCategory('resource-packs')" id="nav-resource-packs">Ресурс-Паки</a></li>
+            <li><a onclick="showHome()" id="nav-home"><strong>Главная</strong></a></li>
+            <li><a onclick="showCategory('politics')" id="nav-politics"><strong>IFLORIUM CLIENT</strong></a></li>
+            <li><a onclick="showCategory('sports')" id="nav-sports"><strong>Моды для 1.1.5</strong></a></li>
+            <li><a onclick="showCategory('entertainment')" id="nav-entertainment"><strong>Карты</strong></a></li>
+            <li><a onclick="showCategory('technology')" id="nav-technology"><strong>Клиенты для всех версий</strong></a></li>
+            <li><a onclick="showCategory('resource-packs')" id="nav-resource-packs"><strong>Ресурс-Паки</strong></a></li>
         </ul>
     </nav>
     <div class="container">
         <section id="home" class="home">
             <div style="position: relative;">
-    <img src="https://legra.ph/file/8a17bace5edb76e211c4a.jpg" alt="Превьюшка" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);">
-    <img src="https://legra.ph/file/935ba756f5b33f5131b82.jpg" alt="Аватарка" style="position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);">
-</div>
+                <img src="https://legra.ph/file/8a17bace5edb76e211c4a.jpg" alt="Превьюшка" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);">
+                <img src="https://legra.ph/file/935ba756f5b33f5131b82.jpg" alt="Аватарка" style="position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);">
+            </div>
 
-          <h2 style="text-align: center; color: #fff; margin-top: 50px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">КТО ТАКОЙ ФОЗЗИ?</h2>
-<p style="text-align: center; color: #fff; font-weight: bold; font-style: italic; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">• РП-мейкер •</p>
+            <h2 style="text-align: center; color: #fff; margin-top: 50px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">КТО ТАКОЙ ФОЗЗИ?</h2>
+            <p style="text-align: center; color: #fff; font-weight: bold; font-style: italic; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">• РП-мейкер •</p>
 
-<div style="text-align: center; font-style: italic; font-weight: bold; margin-top: 20px;">
-    <div class="button-block">
-        <a href="https://t.me/rpfozzy" class="btn btn-creator" target="_blank">Telegram - RPFOZZY</a>
-    </div>
-    <div class="button-block">
-        <a href="https://oxy.name/d/Amgh" class="btn btn-creator" target="_blank">IFLORIUM CLIENT (последняя версия)</a>
-    </div>
-    <div class="button-block">
-        <a href="https://rpfozzy_bot" class="btn btn-creator" target="_blank">Telegram Bot RPFOZZY</a>
-    </div>
-    <div class="button-block">
-        <a href="https://rpfozzy_chat" class="btn btn-creator" target="_blank">Telegram Group RPFOZZY</a>
-    </div>
-    <div class="button-block">
-        <a href="https://t.me/tominecraftARCHIVE" class="btn btn-creator" target="_blank">Telegram - (Архив tominecraft)</a>
-    </div>
-    <div class="button-block">
-        <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">CLAYNI PACKS (by Clayni0)</a>
-    </div>
-    <div class="button-block">
-        <a href="https://t.me/tominecraft" class="btn btn-creator" target="_blank">TOMINECRAFT (by Clayni0)</a>
-      <div class="dropdown">
-
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modal Example</title>
-  <style>
-    /* Ваши стили модального окна */
-  </style>
-</head>
-<body>
-
-<a href="#" class="btn btn-creator btn-creator" id="openModalBtn5">СВЯЗЬ С ФОЗЗИ</a>
-<div id="myModal5" class="modal">
-  <div class="modal-content">
-    <span class="close close5">&times;</span>
-    <h2>Связь с создателем RPFOZZY</h2>
-    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Telgram: @Th2FoZzY</p>
-    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Место жительства: Украина, Киевская область</p>
-    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">GMAIL: rpfozzy@gmail.com</p>
-    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">YouTube: @rpfozzy</p>
-    <div class="dropdown">
-  </div>
-</div>
-
-<script>
-  // СВЯЗЬ С ФОЗЗИ
-  var modal5 = document.getElementById("myModal5");
-  var btn5 = document.getElementById("openModalBtn5");
-  var span5 = document.getElementsByClassName("close5")[0];
-  var dropdownBtn5 = document.getElementById("myBtn5");
-  var dropdownContent5 = document.getElementById("dropdownContent5");
-
-  btn5.onclick = function() {
-    modal5.style.display = "block";
-  }
-
-  span5.onclick = function() {
-    modal5.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal5) {
-      modal5.style.display = "none";
-    }
-  }
-
-  dropdownBtn5.onclick = function() {
-    if (dropdownContent5.style.display === "block") {
-      dropdownContent5.style.display = "none";
-    } else {
-      dropdownContent5.style.display = "block";
-    }
-  }
-</script>
-
-</body>
-</html>
+            <div style="text-align: center; font-style: italic; font-weight: bold; margin-top: 20px;">
+                <div class="button-block">
+                    <a href="https://t.me/rpfozzy" class="btn btn-creator" target="_blank">Telegram - RPFOZZY</a>
+                </div>
+                <div class="button-block">
+                    <a href="https://oxy.name/d/Amgh" class="btn btn-creator" target="_blank">IFLORIUM CLIENT (последняя версия)</a>
+                </div>
+                <div class="button-block">
+                    <a href="https://rpfozzy_bot" class="btn btn-creator" target="_blank">Telegram Bot RPFOZZY</a>
+                </div>
+                <div class="button-block">
+                    <a href="https://rpfozzy_chat" class="btn btn-creator" target="_blank">Telegram Group RPFOZZY</a>
+                </div>
+                <div class="button-block">
+                    <a href="https://t.me/tominecraftARCHIVE" class="btn btn-creator" target="_blank">Telegram - (Архив tominecraft)</a>
+                </div>
+                <div class="button-block">
+                    <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">CLAYNI PACKS (by Clayni0)</a>
+                </div>
+                <div class="button-block">
+                    <a href="https://t.me/tominecraft" class="btn btn-creator" target="_blank">TOMINECRAFT (by Clayni0)</a>
+                    <div class="dropdown">
 
 
-</div>
+                        <!DOCTYPE html>
+                        <html lang="en">
+
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>Modal Example</title>
+                            <style>
+                                /* Ваши стили модального окна */
+                            </style>
+                        </head>
+
+                        <body>
+
+                            <a href="#" class="btn btn-creator btn-creator" id="openModalBtn5">СВЯЗЬ С ФОЗЗИ</a>
+                            <div id="myModal5" class="modal">
+                                <div class="modal-content">
+                                    <span class="close close5">&times;</span>
+                                    <h2>Связь с создателем RPFOZZY</h2>
+                                    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Telgram: @Th2FoZzY</p>
+                                    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Место жительства: Украина, Киевская область</p>
+                                    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">GMAIL: rpfozzy@gmail.com</p>
+                                    <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">YouTube: @rpfozzy</p>
+                                    <div class="dropdown">
+                                    </div>
+                                </div>
+
+                                <script>
+                                    // СВЯЗЬ С ФОЗЗИ
+                                    var modal5 = document.getElementById("myModal5");
+                                    var btn5 = document.getElementById("openModalBtn5");
+                                    var span5 = document.getElementsByClassName("close5")[0];
+                                    var dropdownBtn5 = document.getElementById("myBtn5");
+                                    var dropdownContent5 = document.getElementById("dropdownContent5");
+
+                                    btn5.onclick = function() {
+                                        modal5.style.display = "block";
+                                    }
+
+                                    span5.onclick = function() {
+                                        modal5.style.display = "none";
+                                    }
+
+                                    window.onclick = function(event) {
+                                        if (event.target == modal5) {
+                                            modal5.style.display = "none";
+                                        }
+                                    }
+
+                                    dropdownBtn5.onclick = function() {
+                                        if (dropdownContent5.style.display === "block") {
+                                            dropdownContent5.style.display = "none";
+                                        } else {
+                                            dropdownContent5.style.display = "block";
+                                        }
+                                    }
+                                </script>
+
+                        </body>
+
+                        </html>
+
+
+                    </div>
         </section>
         <section id="politics" class="category">
             <h2 class="text-center">IFLORIUM CLIENT</h2>
             <div class="post">
-<h2 class="text-center">Все версии клиента</h2>
+                <h2 class="text-center">Все версии клиента</h2>
 
                 <title>Dropdown Menu</title>
-    <style>
-    .text-center {
-        text-align: center;
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-        }
+                <style>
+                    .text-center {
+                        text-align: center;
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgb(0, 0, 0);
+                            background-color: rgba(0, 0, 0, 0.4);
+                        }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+                        .modal-content {
+                            background-color: #fefefe;
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 80%;
+                        }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+                        .close {
+                            color: #aaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
 
-        .modal-content img {
-            width: 100%;
-            display: block;
-            margin: 10px auto;
-            border-radius: 15px;
-        }
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+                        .modal-content img {
+                            width: 100%;
+                            display: block;
+                            margin: 10px auto;
+                            border-radius: 15px;
+                        }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
+                        .dropdown {
+                            position: relative;
+                            display: inline-block;
+                        }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            border: 1px solid #ddd;
-            margin-top: -1px; /* Prevent double borders */
-            background-color: #fff;
-            text-align: center;
-            cursor: pointer;
-        }
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f9f9f9;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index: 1;
+                        }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
-</head>
-<body>
-  
-  
-  <div class="dropdown">
-    <a href="#" class="btn btn-download btn-post" id="openModalBtn6">APK FILE FOR IFLORIUM</a>
-    <div id="myModal6" class="modal">
-        <div class="modal-content">
-            <span class="close close6">&times;</span>
-            <h2>APK FILE FOR IFLORIUM</h2>
-            <p>Дата: 3 июня 2024</p>
-                        <div class="dropdown">
-                <button id="myBtn6">СКАЧАТЬ ПРИЛОЖЕНИЕ</button>
-                <div id="dropdownContent6" class="dropdown-content">
-                    <a href="https://oxy.name/d/XQSh">Через Oxy Cloud</a>
-                </div>
-            </div>
-            <p>Этот APK нужен для работы IFLORIUM CLIENT 4.</p> 
-            <span style="color:white;">Почему именно так?</span>
-            <p>— Этот APK совмещает Блок Лаунчер и Minecraft версии 1.1.5 и ещё один Minecraft версии 1.16.2</p>
-            <span style="color:white;">Работают ли сервера в этом Блок Лаунчере?</span>
-            
-            <p>— Да, здесь все точно так же, как и в версии 1.1.5, но в этом Блок Лаунчере исправлены ошибки, которые были в 1.1.5. То есть, при запуске обычного официального Minecraft 1.1.5 этот IFLORIUM CLIENT V2-V4 будет содержать ошибки и кучу багов, но наш APK исправит эти баги, и их просто не будет. Короче говоря, если удалить оригинальный майнкрафт - блок лаунчер работать будет и без майнкрафта</p> 
-          <span style="color:white;">Как играть на серверах, если у вас вылетает из сервера?</span>
-            <p>— Перейдите в настройки Блок Лаунчера (значок шестеренки сверху экрана), затем найдите пункт "Безопасный режим" и наслаждайтесь игрой.</p>
-            <span style="color:lightblue;">Работает только на 1.1.5, на других версиях выше этой — миллион багов</span>
-            
-          <p style="color:white;">Работает ли этот APK на Android 10-14?</p>
-          <p>— Да, всё отлично работает</p>
-            
-            <img src="https://legra.ph/file/788b7317486eca200bdcb.jpg" alt="Изображение 1">
-            <img src="https://legra.ph/file/d9081bce5cad568931934.jpg" alt="Изображение 2">
-        </div>
-    </div>
-</div>
+                        .dropdown-content a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                            border: 1px solid #ddd;
+                            margin-top: -1px;
+                            /* Prevent double borders */
+                            background-color: #fff;
+                            text-align: center;
+                            cursor: pointer;
+                        }
 
-  
-  
-  
+                        .dropdown-content a:hover {
+                            background-color: #f1f1f1;
+                        }
+                </style>
+                </head>
 
-<div class="dropdown">
-    <a href="#" class="btn btn-creator btn-post" id="openModalBtn4">IFLORIUM CLIENT V4</a>
-    <div id="myModal4" class="modal">
-        <div class="modal-content">
-            <span class="close close4">&times;</span>
-            <h2>IFLORIUM CLIENT V4</h2>
-            <p>Дата: ... июль 2024</p>
-            <p>Тут будет описание...</p>
-            <p>Работает только на 1.1.5</p>
-            <div class="dropdown">
-                <button id="myBtn4">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
-                <div id="dropdownContent4" class="dropdown-content">
-                    <a href="https://telegra.ph/FOZZY-Client-08-31">Ссылка на пост в телеграфе</a>
-                    <a href="https://t.me/rpfozzy/453">Ссылка на пост в телеграмме</a>
-                    <a href="https://oxy.name/d/xTch">СКАЧАТЬ</a>
-                </div>
-            </div>
-            <img src="https://legra.ph/file/6b2dfc071daba3d693d62.jpg" alt="Изображение 1">
-            <img src="https://legra.ph/file/6a4857c2b7995cc86709d.jpg" alt="Изображение 2">
-            <img src="https://legra.ph/file/f0393ec7c91a7592251db.jpg" alt="Изображение 3">
-            <img src="https://legra.ph/file/c1a82be26cad78ca9b0e5.jpg" alt="Изображение 4">
-            <img src="https://legra.ph/file/78511faad097e77ea906b.jpg" alt="Изображение 5">
-            <img src="https://legra.ph/file/48b275ed5ab2809fe569d.jpg" alt="Изображение 6">
-            <img src="https://legra.ph/file/00d4e6cb58d44b1b9a0f3.jpg" alt="Изображение 7">
-            <img src="https://legra.ph/file/f22bac3d9a2f5e391639f.jpg" alt="Изображение 8">
-            <img src="https://legra.ph/file/bf42568777ebd35f22779.jpg" alt="Изображение 9">
-            <img src="https://legra.ph/file/8c73303beffbc32e84a5d.jpg" alt="Изображение 10">
-            <img src="https://legra.ph/file/8504d294aa45da94360e8.jpg" alt="Изображение 11">
-            <img src="https://legra.ph/file/e9a040cc0aeeb10c96151.jpg" alt="Изображение 12">
-            <img src="https://legra.ph/file/a57e44fde09b418ea5392.jpg" alt="Изображение 13">
-        </div>
-    </div>
-</div>
-
-<!-- IFLORIUM CLIENT V3 -->
-<div class="dropdown">
-    <a href="#" class="btn btn-creator btn-post" id="openModalBtn1">IFLORIUM CLIENT V3</a>
-    <div id="myModal1" class="modal">
-        <div class="modal-content">
-            <span class="close close1">&times;</span>
-            <h2>IFLORIUM CLIENT V3</h2>
-            <p>Дата: 17 сентября 2023</p>
-            <p>IFlorium Client - один из лучших клиентов в виде ресурс пака!</p>
-            <p>≈≈≈ Клиент разработан для 1.1.5 ≈≈≈</p>
-            <div class="dropdown">
-                <button id="myBtn1">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
-                <div id="dropdownContent1" class="dropdown-content">
-                    <a href="https://telegra.ph/IFlorium-Client-v3-09-17">Ссылка на пост в телеграфе</a>
-                    <a href="https://t.me/rpfozzy/473">Ссылка на пост в телеграмме</a>
-                    <a href="https://oxy.name/d/Amgh">СКАЧАТЬ</a>
-                </div>
-            </div>
-        <img src="https://legra.ph/file/e7ab9daf6f95dc3b97f1c.jpg" alt="Изображение 1">
-        <img src="https://legra.ph/file/13857e0cd47f8439fd870.jpg" alt="Изображение 2">
-        <img src="https://legra.ph/file/1666bc135666dbbda6651.jpg" alt="Изображение 3">
-        <img src="https://legra.ph/file/28277b0ccf936bfe07361.jpg" alt="Изображение 4">
-        <img src="https://legra.ph/file/302a399e994ac025d11dd.jpg" alt="Изображение 5">
-        <img src="https://legra.ph/file/9e266dd0c7c51c287cdab.jpg" alt="Изображение 6">
-        <img src="https://legra.ph/file/f2b34606bf4e9b437b7b3.jpg" alt="Изображение 7">
-        <img src="https://legra.ph/file/0415eb53095ac30136932.jpg" alt="Изображение 8">
-        <img src="https://legra.ph/file/3f3c5104a165269d6721b.jpg" alt="Изображение 9">
-        <img src="https://legra.ph/file/84bd2b6bf4e59d38e3b1d.jpg" alt="Изображение 10">
-        <img src="https://legra.ph/file/abdbe195996d936beff1b.jpg" alt="Изображение 11">
-        <img src="https://legra.ph/file/35ca3595006ddda7fa634.jpg" alt="Изображение 12">
-        <img src="https://legra.ph/file/5f90475d26eec27f0fc1a.jpg" alt="Изображение 13">
-        <img src="https://legra.ph/file/8eaa483ca0acab7b14cb4.jpg" alt="Изображение 14">
-        <img src="https://legra.ph/file/d12ab304281f42acf5e6c.jpg" alt="Изображение 15">
-        <img src="https://legra.ph/file/08bb8621ade7fdc5d5b80.jpg" alt="Изображение 16">
-        <img src="https://legra.ph/file/871955d13d8d2b2626787.jpg" alt="Изображение 17">
-        <img src="https://legra.ph/file/1e2e523137a11b5bf1f9e.jpg" alt="Изображение 18">
-        <img src="https://legra.ph/file/bee1ac876991d06e02ec4.jpg" alt="Изображение 19">
-        <img src="https://legra.ph/file/084f57e81a759eeb5f4a8.jpg" alt="Изображение 20">
-        <img src="https://legra.ph/file/627e8a91e3b7155579eb3.jpg" alt="Изображение 21">
-        <img src="https://legra.ph/file/19497778c518ac1d7be60.jpg" alt="Изображение 22">
-        <img src="https://legra.ph/file/8a382ae3e70ba5365d12a.jpg" alt="Изображение 23">
-        <img src="https://legra.ph/file/a9a6254d0ce1f37f26f95.jpg" alt="Изображение 24">
-        <img src="https://legra.ph/file/7df83c8e3ea1da77fe4be.jpg" alt="Изображение 25">
-            <!-- ... остальные изображения ... -->
-        </div>
-    </div>
-</div>
-
-<!-- IFLORIUM CLIENT V2 -->
-<div class="dropdown">
-    <a href="#" class="btn btn-creator btn-post" id="openModalBtn2">IFLORIUM CLIENT V2</a>
-    <div id="myModal2" class="modal">
-        <div class="modal-content">
-            <span class="close close2">&times;</span>
-            <h2>IFLORIUM CLIENT V2</h2>
-            <p>Дата: 3 сентября 2023</p>
-            <p>FOZZY Client - старое название клиента, IFlorium - новое</p>
-            <p>Работает на 1.1.5</p>
-            <div class="dropdown">
-                <button id="myBtn2">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
-                <div id="dropdownContent2" class="dropdown-content">
-                    <a href="https://telegra.ph/IFlorium-client-09-03">Ссылка на пост в телеграфе</a>
-                    <a href="https://t.me/rpfozzy/457">Ссылка на пост в телеграмме</a>
-                    <a href="https://oxy.name/d/yBdh">СКАЧАТЬ</a>
-                </div>
-            </div>
-        <img src="https://legra.ph/file/8d79f3068074c1090fdad.jpg" alt="Изображение 1">
-        <img src="https://legra.ph/file/0e0f6cc34774e74229eff.jpg" alt="Изображение 2">
-        <img src="https://legra.ph/file/d336cc4e6cd801b6f1124.jpg" alt="Изображение 3">
-        <img src="https://legra.ph/file/309b8a6b781a9822ba1e1.jpg" alt="Изображение 4">
-        <img src="https://legra.ph/file/302a399e994ac025d11dd.jpg" alt="Изображение 5">
-        <img src="https://legra.ph/file/0a1251757f9ac63f01c3f.jpg" alt="Изображение 6">
-            <!-- ... остальные изображения ... -->
-        </div>
-    </div>
-</div>
-
-<!-- FOZZY CLIENT -->
-<div class="dropdown">
-    <a href="#" class="btn btn-creator btn-post" id="openModalBtn3">FOZZY CLIENT</a>
-    <div id="myModal3" class="modal">
-        <div class="modal-content">
-            <span class="close close3">&times;</span>
-            <h2>FOZZY CLIENT</h2>
-            <p>Дата: 31 августа 2023</p>
-            <p>Клиент от самого фоззи. Клиент в виде ресурс пака .mcpack</p>
-            <p>Работает только на 1.1.5</p>
-            <div class="dropdown">
-                <button id="myBtn3">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
-                <div id="dropdownContent3" class="dropdown-content">
-                    <a href="https://telegra.ph/FOZZY-Client-08-31">Ссылка на пост в телеграфе</a>
-                    <a href="https://t.me/rpfozzy/453">Ссылка на пост в телеграмме</a>
-                    <a href="https://oxy.name/d/xTch">СКАЧАТЬ</a>
-                </div>
-            </div>
-        <img src="https://legra.ph/file/6b2dfc071daba3d693d62.jpg" alt="Изображение 1">
-        <img src="https://legra.ph/file/6a4857c2b7995cc86709d.jpg" alt="Изображение 2">
-        <img src="https://legra.ph/file/f0393ec7c91a7592251db.jpg" alt="Изображение 3">
-        <img src="https://legra.ph/file/c1a82be26cad78ca9b0e5.jpg" alt="Изображение 4">
-        <img src="https://legra.ph/file/78511faad097e77ea906b.jpg" alt="Изображение 5">
-        <img src="https://legra.ph/file/48b275ed5ab2809fe569d.jpg" alt="Изображение 6">
-        <img src="https://legra.ph/file/00d4e6cb58d44b1b9a0f3.jpg" alt="Изображение 7">
-        <img src="https://legra.ph/file/f22bac3d9a2f5e391639f.jpg" alt="Изображение 8">
-        <img src="https://legra.ph/file/bf42568777ebd35f22779.jpg" alt="Изображение 9">
-        <img src="https://legra.ph/file/8c73303beffbc32e84a5d.jpg" alt="Изображение 10">
-        <img src="https://legra.ph/file/8504d294aa45da94360e8.jpg" alt="Изображение 11">
-        <img src="https://legra.ph/file/e9a040cc0aeeb10c96151.jpg" alt="Изображение 12">
-        <img src="https://legra.ph/file/a57e44fde09b418ea5392.jpg" alt="Изображение 13">
-            <!-- ... остальные изображения ... -->
-        </div>
-    </div>
-</div>
-
-<style>
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #333;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    position: relative;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-</style>
-  <script>
-  
-// APK FILE FOR IFLORIUM
-var modal6 = document.getElementById("myModal6");
-var btn6 = document.getElementById("openModalBtn6");
-var span6 = document.getElementsByClassName("close6")[0];
-var dropdownBtn6 = document.getElementById("myBtn6");
-var dropdownContent6 = document.getElementById("dropdownContent6");
-
-btn6.onclick = function() {
-    modal6.style.display = "block";
-}
-
-span6.onclick = function() {
-    modal6.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == modal6) {
-        modal6.style.display = "none";
-    }
-}
-
-dropdownBtn6.onclick = function() {
-    if (dropdownContent6.style.display === "block") {
-        dropdownContent6.style.display = "none";
-    } else {
-        dropdownContent6.style.display = "block";
-    }
-}
-
-  
-  
-    // IFLORIUM CLIENT V4
-    var modal4 = document.getElementById("myModal4");
-    var btn4 = document.getElementById("openModalBtn4");
-    var span4 = document.getElementsByClassName("close4")[0];
-    var dropdownBtn4 = document.getElementById("myBtn4");
-    var dropdownContent4 = document.getElementById("dropdownContent4");
-
-    btn4.onclick = function() {
-        modal4.style.display = "block";
-    }
-
-    span4.onclick = function() {
-        modal4.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal4) {
-            modal4.style.display = "none";
-        }
-    }
-
-    dropdownBtn4.onclick = function() {
-        if (dropdownContent4.style.display === "block") {
-            dropdownContent4.style.display = "none";
-        } else {
-            dropdownContent4.style.display = "block";
-        }
-    }
+                <body>
 
 
-    // IFLORIUM CLIENT V3
-    var modal1 = document.getElementById("myModal1");
-    var btn1 = document.getElementById("openModalBtn1");
-    var span1 = document.getElementsByClassName("close1")[0];
-    var dropdownBtn1 = document.getElementById("myBtn1");
-    var dropdownContent1 = document.getElementById("dropdownContent1");
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-download btn-post" id="openModalBtn6">APK FILE FOR IFLORIUM</a>
+                        <div id="myModal6" class="modal">
+                            <div class="modal-content">
+                                <span class="close close6">&times;</span>
+                                <p>Дата: 3 июня 2024</p>
+                                <h2>APK FILE FOR IFLORIUM</h2>
 
-    btn1.onclick = function() {
-        modal1.style.display = "block";
-    }
+                                <div class="dropdown">
+                                    <button id="myBtn6">СКАЧАТЬ ПРИЛОЖЕНИЕ</button>
+                                    <div id="dropdownContent6" class="dropdown-content">
+                                        <a href="https://oxy.name/d/XQSh">Через Oxy Cloud</a>
+                                    </div>
+                                </div>
+                                <p style="color: white; font-style: italic;">Этот APK нужен для работы IFLORIUM CLIENT 4.</p>
+                                <span style="color:lightgreen;">Почему именно так?</span>
+                                <p style="color: white; font-style: italic;">— Этот APK совмещает Блок Лаунчер и Minecraft версии 1.1.5 и ещё один Minecraft версии 1.16.2</p>
+                                <span style="color:lightgreen;">Работают ли сервера в этом Блок Лаунчере?</span>
 
-    span1.onclick = function() {
-        modal1.style.display = "none";
-    }
+                                <p style="color: white; font-style: italic;">— Да, здесь все точно так же, как и в версии 1.1.5, но в этом Блок Лаунчере исправлены ошибки, которые были в 1.1.5. То есть, при запуске обычного официального Minecraft 1.1.5 этот IFLORIUM CLIENT V2-V4 будет содержать ошибки и кучу багов, но наш APK исправит эти баги, и их просто не будет. Короче говоря, если удалить оригинальный майнкрафт - блок лаунчер работать будет и без майнкрафта</p>
+                                <span style="color:lightgreen;">Как играть на серверах, если у вас вылетает из сервера?</span>
+                                <p style="color: white; font-style: italic;">— Перейдите в настройки Блок Лаунчера (значок шестеренки сверху экрана), затем найдите пункт "Безопасный режим" и наслаждайтесь игрой.</p>
+                                <span style="color:lightblue;"><strong>Работает только на 1.1.5, на других версиях выше этой — миллион багов</strong></span>
 
-    window.onclick = function(event) {
-        if (event.target == modal1) {
-            modal1.style.display = "none";
-        }
-    }
+                                <p style="color:red;">Работает ли этот APK на Android 10-14?</p>
+                                <p style="color: white; font-style: italic;">— Да, всё отлично работает</p>
 
-    dropdownBtn1.onclick = function() {
-        if (dropdownContent1.style.display === "block") {
-            dropdownContent1.style.display = "none";
-        } else {
-            dropdownContent1.style.display = "block";
-        }
-    }
+                                <img src="https://legra.ph/file/788b7317486eca200bdcb.jpg" alt="Изображение 1">
+                                <img src="https://legra.ph/file/d9081bce5cad568931934.jpg" alt="Изображение 2">
+                            </div>
+                        </div>
+                    </div>
 
-    // IFLORIUM CLIENT V2
-    var modal2 = document.getElementById("myModal2");
-    var btn2 = document.getElementById("openModalBtn2");
-    var span2 = document.getElementsByClassName("close2")[0];
-    var dropdownBtn2 = document.getElementById("myBtn2");
-    var dropdownContent2 = document.getElementById("dropdownContent2");
 
-    btn2.onclick = function() {
-        modal2.style.display = "block";
-    }
 
-    span2.onclick = function() {
-        modal2.style.display = "none";
-    }
 
-    window.onclick = function(event) {
-        if (event.target == modal2) {
-            modal2.style.display = "none";
-        }
-    }
 
-    dropdownBtn2.onclick = function() {
-        if (dropdownContent2.style.display === "block") {
-            dropdownContent2.style.display = "none";
-        } else {
-            dropdownContent2.style.display = "block";
-        }
-    }
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn4">IFLORIUM CLIENT V4</a>
+                        <div id="myModal4" class="modal">
+                            <div class="modal-content">
+                                <span class="close close4">&times;</span>
+                                <p>Дата: 4 июня 2024</p>
+                                <h2>IFLORIUM CLIENT V4</h2>
+                                <p style="color: white; font-style: italic;"> <strong>IFlorium Client</strong> — один из лучших клиентов в формате ресурс-пака!</p>
+                                <p style="color: white; font-style: italic;"> ♡ Клиент разработан для 1.1.5 — на других версиях баги ♡</p>
+                               <p style="color: red; font-style: italic;">Видео-Обзор на клиент — </p>
+                                <div class="dropdown">
+                                    <button id="myBtn4">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+                                    <div id="dropdownContent4" class="dropdown-content">
+                                        <a href="https://telegra.ph/IFLORIUM-CLIENT-06-04">Ссылка на пост в телеграфе</a>
+                                        <a href="Отсутствует">Ссылка на пост в телеграмме</a>
+                                        <a href="https://oxy.st/d/HoTh">СКАЧАТЬ</a>
+                                    </div>
+                                </div>
+                                <img src="https://legra.ph/file/93f01d187e34ba161bd37.jpg" alt="Изображение 1">
+                                <img src="https://legra.ph/file/633b644a51c6bdbf29ffb.jpg" alt="Изображение 2">
+                                <img src="https://legra.ph/file/f0e7bd2f9ce7be14d737b.jpg" alt="Изображение 3">
+                                <img src="https://legra.ph/file/3aa15e65c2b627aeff886.jpg" alt="Изображение 4">
+                                <img src="https://legra.ph/file/33c1688197be028f83477.jpg" alt="Изображение 5">
+                                <img src="https://legra.ph/file/a281a53254c5579d1768e.jpg" alt="Изображение 6">
+                                <img src="https://legra.ph/file/843679c559c96e86d62bf.jpg" alt="Изображение 7">
+                                <img src="https://legra.ph/file/b042505c0aee500bb8acb.jpg" alt="Изображение 8">
+                                <img src="https://legra.ph/file/1dab29f8cedc11d4a180c.jpg" alt="Изображение 9">
+                                <img src="https://legra.ph/file/f4224966b81e8808d08b5.jpg" alt="Изображение 10">
+                                <img src="https://legra.ph/file/070842bed5e0d4f089688.jpg" alt="Изображение 11">
+                            </div>
+                        </div>
+                    </div>
 
-    // FOZZY CLIENT
-    var modal3 = document.getElementById("myModal3");
-    var btn3 = document.getElementById("openModalBtn3");
-    var span3 = document.getElementsByClassName("close3")[0];
-    var dropdownBtn3 = document.getElementById("myBtn3");
-    var dropdownContent3 = document.getElementById("dropdownContent3");
+                    <!-- IFLORIUM CLIENT V3 -->
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn1">IFLORIUM CLIENT V3</a>
+                        <div id="myModal1" class="modal">
+                            <div class="modal-content">
+                                <span class="close close1">&times;</span>
+                                <p>Дата: 17 сентября 2023</p>
+                                <h2>IFLORIUM CLIENT V3</h2>
+                                <p style="color: white; font-style: italic;">IFlorium Client - один из лучших клиентов в виде ресурс пака!</p>
+                                <p style="color: white; font-style: italic;">≈≈≈ Клиент разработан для 1.1.5 ≈≈≈</p>
+                                <div class="dropdown">
+                                    <button id="myBtn1">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+                                    <div id="dropdownContent1" class="dropdown-content">
+                                        <a href="https://telegra.ph/IFlorium-Client-v3-09-17">Ссылка на пост в телеграфе</a>
+                                        <a href="https://t.me/rpfozzy/473">Ссылка на пост в телеграмме</a>
+                                        <a href="https://oxy.name/d/Amgh">СКАЧАТЬ</a>
+                                    </div>
+                                </div>
+                                <img src="https://legra.ph/file/e7ab9daf6f95dc3b97f1c.jpg" alt="Изображение 1">
+                                <img src="https://legra.ph/file/13857e0cd47f8439fd870.jpg" alt="Изображение 2">
+                                <img src="https://legra.ph/file/1666bc135666dbbda6651.jpg" alt="Изображение 3">
+                                <img src="https://legra.ph/file/28277b0ccf936bfe07361.jpg" alt="Изображение 4">
+                                <img src="https://legra.ph/file/302a399e994ac025d11dd.jpg" alt="Изображение 5">
+                                <img src="https://legra.ph/file/9e266dd0c7c51c287cdab.jpg" alt="Изображение 6">
+                                <img src="https://legra.ph/file/f2b34606bf4e9b437b7b3.jpg" alt="Изображение 7">
+                                <img src="https://legra.ph/file/0415eb53095ac30136932.jpg" alt="Изображение 8">
+                                <img src="https://legra.ph/file/3f3c5104a165269d6721b.jpg" alt="Изображение 9">
+                                <img src="https://legra.ph/file/84bd2b6bf4e59d38e3b1d.jpg" alt="Изображение 10">
+                                <img src="https://legra.ph/file/abdbe195996d936beff1b.jpg" alt="Изображение 11">
+                                <img src="https://legra.ph/file/35ca3595006ddda7fa634.jpg" alt="Изображение 12">
+                                <img src="https://legra.ph/file/5f90475d26eec27f0fc1a.jpg" alt="Изображение 13">
+                                <img src="https://legra.ph/file/8eaa483ca0acab7b14cb4.jpg" alt="Изображение 14">
+                                <img src="https://legra.ph/file/d12ab304281f42acf5e6c.jpg" alt="Изображение 15">
+                                <img src="https://legra.ph/file/08bb8621ade7fdc5d5b80.jpg" alt="Изображение 16">
+                                <img src="https://legra.ph/file/871955d13d8d2b2626787.jpg" alt="Изображение 17">
+                                <img src="https://legra.ph/file/1e2e523137a11b5bf1f9e.jpg" alt="Изображение 18">
+                                <img src="https://legra.ph/file/bee1ac876991d06e02ec4.jpg" alt="Изображение 19">
+                                <img src="https://legra.ph/file/084f57e81a759eeb5f4a8.jpg" alt="Изображение 20">
+                                <img src="https://legra.ph/file/627e8a91e3b7155579eb3.jpg" alt="Изображение 21">
+                                <img src="https://legra.ph/file/19497778c518ac1d7be60.jpg" alt="Изображение 22">
+                                <img src="https://legra.ph/file/8a382ae3e70ba5365d12a.jpg" alt="Изображение 23">
+                                <img src="https://legra.ph/file/a9a6254d0ce1f37f26f95.jpg" alt="Изображение 24">
+                                <img src="https://legra.ph/file/7df83c8e3ea1da77fe4be.jpg" alt="Изображение 25">
+                                <!-- ... остальные изображения ... -->
+                            </div>
+                        </div>
+                    </div>
 
-    btn3.onclick = function() {
-        modal3.style.display = "block";
-    }
+                    <!-- IFLORIUM CLIENT V2 -->
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn2">IFLORIUM CLIENT V2</a>
+                        <div id="myModal2" class="modal">
+                            <div class="modal-content">
+                                <span class="close close2">&times;</span>
+                                <p>Дата: 3 сентября 2023</p>
+                                <h2>IFLORIUM CLIENT V2</h2>
+                                <p style="color: white; font-style: italic;">FOZZY Client - старое название клиента, IFlorium - новое</p>
+                                <p style="color: white; font-style: italic;">Работает на 1.1.5</p>
+                                <div class="dropdown">
+                                    <button id="myBtn2">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+                                    <div id="dropdownContent2" class="dropdown-content">
+                                        <a href="https://telegra.ph/IFlorium-client-09-03">Ссылка на пост в телеграфе</a>
+                                        <a href="https://t.me/rpfozzy/457">Ссылка на пост в телеграмме</a>
+                                        <a href="https://oxy.name/d/yBdh">СКАЧАТЬ</a>
+                                    </div>
+                                </div>
+                                <img src="https://legra.ph/file/8d79f3068074c1090fdad.jpg" alt="Изображение 1">
+                                <img src="https://legra.ph/file/0e0f6cc34774e74229eff.jpg" alt="Изображение 2">
+                                <img src="https://legra.ph/file/d336cc4e6cd801b6f1124.jpg" alt="Изображение 3">
+                                <img src="https://legra.ph/file/309b8a6b781a9822ba1e1.jpg" alt="Изображение 4">
+                                <img src="https://legra.ph/file/302a399e994ac025d11dd.jpg" alt="Изображение 5">
+                                <img src="https://legra.ph/file/0a1251757f9ac63f01c3f.jpg" alt="Изображение 6">
+                                <!-- ... остальные изображения ... -->
+                            </div>
+                        </div>
+                    </div>
 
-    span3.onclick = function() {
-        modal3.style.display = "none";
-    }
+                    <!-- FOZZY CLIENT -->
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn3">FOZZY CLIENT</a>
+                        <div id="myModal3" class="modal">
+                            <div class="modal-content">
+                                <span class="close close3">&times;</span>
+                                <p>Дата: 31 августа 2023</p>
+                                <h2>FOZZY CLIENT</h2>
+                                <p style="color: white; font-style: italic;">Клиент от самого фоззи. Клиент в виде ресурс пака .mcpack</p>
+                                <p style="color: white; font-style: italic;">Работает только на 1.1.5</p>
+                                <div class="dropdown">
+                                    <button id="myBtn3">ОСТАЛЬНАЯ ИНФОРМАЦИЯ КЛИК</button>
+                                    <div id="dropdownContent3" class="dropdown-content">
+                                        <a href="https://telegra.ph/FOZZY-Client-08-31">Ссылка на пост в телеграфе</a>
+                                        <a href="https://t.me/rpfozzy/453">Ссылка на пост в телеграмме</a>
+                                        <a href="https://oxy.name/d/xTch">СКАЧАТЬ</a>
+                                    </div>
+                                </div>
+                                <img src="https://legra.ph/file/6b2dfc071daba3d693d62.jpg" alt="Изображение 1">
+                                <img src="https://legra.ph/file/6a4857c2b7995cc86709d.jpg" alt="Изображение 2">
+                                <img src="https://legra.ph/file/f0393ec7c91a7592251db.jpg" alt="Изображение 3">
+                                <img src="https://legra.ph/file/c1a82be26cad78ca9b0e5.jpg" alt="Изображение 4">
+                                <img src="https://legra.ph/file/78511faad097e77ea906b.jpg" alt="Изображение 5">
+                                <img src="https://legra.ph/file/48b275ed5ab2809fe569d.jpg" alt="Изображение 6">
+                                <img src="https://legra.ph/file/00d4e6cb58d44b1b9a0f3.jpg" alt="Изображение 7">
+                                <img src="https://legra.ph/file/f22bac3d9a2f5e391639f.jpg" alt="Изображение 8">
+                                <img src="https://legra.ph/file/bf42568777ebd35f22779.jpg" alt="Изображение 9">
+                                <img src="https://legra.ph/file/8c73303beffbc32e84a5d.jpg" alt="Изображение 10">
+                                <img src="https://legra.ph/file/8504d294aa45da94360e8.jpg" alt="Изображение 11">
+                                <img src="https://legra.ph/file/e9a040cc0aeeb10c96151.jpg" alt="Изображение 12">
+                                <img src="https://legra.ph/file/a57e44fde09b418ea5392.jpg" alt="Изображение 13">
+                                <!-- ... остальные изображения ... -->
+                            </div>
+                        </div>
+                    </div>
 
-    window.onclick = function(event) {
-        if (event.target == modal3) {
-            modal3.style.display = "none";
-        }
-    }
+                    <style>
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgb(0, 0, 0);
+                            background-color: rgba(0, 0, 0, 0.4);
+                            padding-top: 60px;
+                        }
 
-    dropdownBtn3.onclick = function() {
-        if (dropdownContent3.style.display === "block") {
-            dropdownContent3.style.display = "none";
-        } else {
-            dropdownContent3.style.display = "block";
-        }
-    }
-</script>
+                        .modal-content {
+                            background-color: #333;
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 80%;
+                            position: relative;
+                        }
+
+                        .close {
+                            color: #aaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    </style>
+                    <script>
+                        // APK FILE FOR IFLORIUM
+                        var modal6 = document.getElementById("myModal6");
+                        var btn6 = document.getElementById("openModalBtn6");
+                        var span6 = document.getElementsByClassName("close6")[0];
+                        var dropdownBtn6 = document.getElementById("myBtn6");
+                        var dropdownContent6 = document.getElementById("dropdownContent6");
+
+                        btn6.onclick = function() {
+                            modal6.style.display = "block";
+                        }
+
+                        span6.onclick = function() {
+                            modal6.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal6) {
+                                modal6.style.display = "none";
+                            }
+                        }
+
+                        dropdownBtn6.onclick = function() {
+                            if (dropdownContent6.style.display === "block") {
+                                dropdownContent6.style.display = "none";
+                            } else {
+                                dropdownContent6.style.display = "block";
+                            }
+                        }
+
+
+
+                        // IFLORIUM CLIENT V4
+                        var modal4 = document.getElementById("myModal4");
+                        var btn4 = document.getElementById("openModalBtn4");
+                        var span4 = document.getElementsByClassName("close4")[0];
+                        var dropdownBtn4 = document.getElementById("myBtn4");
+                        var dropdownContent4 = document.getElementById("dropdownContent4");
+
+                        btn4.onclick = function() {
+                            modal4.style.display = "block";
+                        }
+
+                        span4.onclick = function() {
+                            modal4.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal4) {
+                                modal4.style.display = "none";
+                            }
+                        }
+
+                        dropdownBtn4.onclick = function() {
+                            if (dropdownContent4.style.display === "block") {
+                                dropdownContent4.style.display = "none";
+                            } else {
+                                dropdownContent4.style.display = "block";
+                            }
+                        }
+
+
+                        // IFLORIUM CLIENT V3
+                        var modal1 = document.getElementById("myModal1");
+                        var btn1 = document.getElementById("openModalBtn1");
+                        var span1 = document.getElementsByClassName("close1")[0];
+                        var dropdownBtn1 = document.getElementById("myBtn1");
+                        var dropdownContent1 = document.getElementById("dropdownContent1");
+
+                        btn1.onclick = function() {
+                            modal1.style.display = "block";
+                        }
+
+                        span1.onclick = function() {
+                            modal1.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal1) {
+                                modal1.style.display = "none";
+                            }
+                        }
+
+                        dropdownBtn1.onclick = function() {
+                            if (dropdownContent1.style.display === "block") {
+                                dropdownContent1.style.display = "none";
+                            } else {
+                                dropdownContent1.style.display = "block";
+                            }
+                        }
+
+                        // IFLORIUM CLIENT V2
+                        var modal2 = document.getElementById("myModal2");
+                        var btn2 = document.getElementById("openModalBtn2");
+                        var span2 = document.getElementsByClassName("close2")[0];
+                        var dropdownBtn2 = document.getElementById("myBtn2");
+                        var dropdownContent2 = document.getElementById("dropdownContent2");
+
+                        btn2.onclick = function() {
+                            modal2.style.display = "block";
+                        }
+
+                        span2.onclick = function() {
+                            modal2.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal2) {
+                                modal2.style.display = "none";
+                            }
+                        }
+
+                        dropdownBtn2.onclick = function() {
+                            if (dropdownContent2.style.display === "block") {
+                                dropdownContent2.style.display = "none";
+                            } else {
+                                dropdownContent2.style.display = "block";
+                            }
+                        }
+
+                        // FOZZY CLIENT
+                        var modal3 = document.getElementById("myModal3");
+                        var btn3 = document.getElementById("openModalBtn3");
+                        var span3 = document.getElementsByClassName("close3")[0];
+                        var dropdownBtn3 = document.getElementById("myBtn3");
+                        var dropdownContent3 = document.getElementById("dropdownContent3");
+
+                        btn3.onclick = function() {
+                            modal3.style.display = "block";
+                        }
+
+                        span3.onclick = function() {
+                            modal3.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal3) {
+                                modal3.style.display = "none";
+                            }
+                        }
+
+                        dropdownBtn3.onclick = function() {
+                            if (dropdownContent3.style.display === "block") {
+                                dropdownContent3.style.display = "none";
+                            } else {
+                                dropdownContent3.style.display = "block";
+                            }
+                        }
+                    </script>
 
         </section>
         <section id="sports" class="category">
             <h2 class="text-center">Моды | Аддоны</h2>
 
 
-   <div class="post">
+            <div class="post">
                 <img src="https://legra.ph/file/2cdf0490fac46cb2b3f28.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП | ДОПОЛНЕНИЕ『Custom Menu』</strong></p>
-                <p>≡ Кастомное меню</p>
-                <p>Дополнение создано для версии 1.1.5</p>
-                <p>• © 🄵🄾🅉🅉🅈</p>
+                <p style="color: white; font-style: italic;">≡ Кастомное меню</p>
+                <p style="color: white; font-style: italic;">Дополнение создано для версии 1.1.5</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ ДОПОЛНЕНИЕ</a>
-            <a href="https://youtube.com/@morderix" class="btn btn-download" target="_blank">СОЗДАТЕЛЬ</a>
+                <a href="https://youtube.com/@morderix" class="btn btn-download" target="_blank">СОЗДАТЕЛЬ</a>
 
 
             </div>
@@ -1214,31 +1270,106 @@ dropdownBtn6.onclick = function() {
             <div class="post">
                 <img src="https://legra.ph/file/ebe234d9679f498e38212.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП | МОД『X-Ray + Night Vision』</strong></p>
-                <p>Ночное зрение можно будет скачать отдельно(работает только на 1.1.5)</p>
-                <p>- Взята функция ночного зрения из клиента "IFLORIUM" - мой клиент</p>
-                  <p>НОЧНОЕ ЗРЕНИЕ ИЛИ X-RAY безопасны, они в виде ресурс пака. Настоятельно советую не палится с X-RAY</p>
-                <p>• © 🄵🄾🅉🅉🅈</p>
+                <p style="color: white; font-style: italic;">Ночное зрение можно будет скачать отдельно(работает только на 1.1.5)</p>
+                <p style="color: white; font-style: italic;">- Взята функция ночного зрения из клиента "IFLORIUM" - мой клиент</p>
+                <p style="color: white; font-style: italic;">НОЧНОЕ ЗРЕНИЕ ИЛИ X-RAY безопасны, они в виде ресурс пака. Настоятельно советую не палится с X-RAY</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.name/d/soDh" class="btn btn-download" target="_blank">СКАЧАТЬ X-RAY</a>
-            <a href="https://oxy.st/d/LoDh" class="btn btn-download" target="_blank">СКАЧАТЬ НОЧНОЕ ЗРЕНИЕ ОТДЕЛЬНО ДЛЯ 1.1.5</a>
+                <a href="https://oxy.st/d/LoDh" class="btn btn-download" target="_blank">СКАЧАТЬ НОЧНОЕ ЗРЕНИЕ ОТДЕЛЬНО ДЛЯ 1.1.5</a>
             </div>
 
-          <div class="post">
+            <div class="post">
                 <img src="https://legra.ph/file/ac3b700a7bf2c899eb65d.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП | МОД</strong></p>
-                <p>Анимированный песчаник. Работает на всех версиях</p>
-                <p>• © 🄵🄾🅉🅉🅈</p>
+                <p style="color: white; font-style: italic;">Анимированный песчаник. Работает на всех версиях</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/Zdxh" class="btn btn-download" target="_blank">СКАЧАТЬ МОД</a>
-          </div>
+            </div>
 
 
-          <div class="post">
+            <div class="post">
                 <img src="https://legra.ph/file/bee4ebb06e77ff7daec9b.jpg" alt="Custom Menu">
                 <p style="color: white;"><strong>РП Resources 1.20 to 1.1.5</strong></p>
-                <p>• sizᴇ: [53.55МБ]</p>
-            <p>Все игровые ресурсы включая - звуки, блоки, предметы всё что было в 1.20 было перенесено в версию 1.1.5 (при входе в игру и при входе на сверер/мир могут быть лаги, так как весит сам ресурс пак довольно много)</p>
-                <p>• © 🄵🄾🅉🅉🅈</p>
+                <p style="color: white; font-style: italic;">• sizᴇ: [53.55МБ]</p>
+                <p style="color: white; font-style: italic;">Все игровые ресурсы включая - звуки, блоки, предметы всё что было в 1.20 было перенесено в версию 1.1.5 (при входе в игру и при входе на сверер/мир могут быть лаги, так как весит сам ресурс пак довольно много)</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/Ukwh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРСЫ ИЗ 1.20 ДЛЯ 1.1.5</a>
-          </div>
+            </div>
+
+ <div class="post">
+                <img src="https://telegra.ph/file/db116391a014def509595.jpg" alt="Custom Menu">
+                <p style="color: white;"><strong>Кукла вашего персонажа для 1.1.5</strong></p>
+                <p style="color: white; font-style: italic;">Изображение вашего персонажа находится справа сверху</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.name/d/hPch" class="btn btn-download" target="_blank">СКАЧАТЬ КУКЛУ</a>
+            </div>
+
+
+ <div class="post">
+                <img src="https://telegra.ph/file/4f3ba397dc1dbdfabe950.jpg" alt="Custom Menu">
+                <p style="color: white;"><strong>Уменьшение кружка</strong></p>
+                <p style="color: white; font-style: italic;">Изменит размер вашего кружка(нажатия)</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.st/d/Mxch" class="btn btn-download" target="_blank">СКАЧАТЬ УМЕНЬШЕНИЕ КРУЖКА</a>
+            </div>
+
+
+ <div class="post">
+                <p style="color: white;"><strong>Убрать кружок</strong></p>
+                <p style="color: white; font-style: italic;">Не будет отклика(нажатия), будет всё прозрачно</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.cloud/d/Yjff" class="btn btn-download" target="_blank">СКАЧАТЬ УДАЛЕНИЕ КРУЖКА</a>
+            </div>
+
+ <div class="post">
+   <img src="https://telegra.ph/file/aa05c795d18c620e05f71.jpg" alt="Custom Menu">
+                <p style="color: white;"><strong>Убрать кнопки в игре</strong></p>
+                <p style="color: white; font-style: italic;">Удаление всех кнопок, которые находятся на экране</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.name/d/Nxch" class="btn btn-download" target="_blank">СКАЧАТЬ МОД</a>
+            </div>
+
+ <div class="post">
+   <img src="https://telegra.ph/file/1e5087dec3ed68a879220.jpg" alt="Custom Menu">
+                <p style="color: white;"><strong>Таб</strong></p>
+                <p style="color: white; font-style: italic;">Этот мод добавляет функцию в чате, а именно таб</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.name/d/AXQg" class="btn btn-download" target="_blank">СКАЧАТЬ ТАБ ДЛЯ 1.1.5</a>
+            </div>
+
+
+ <div class="post">
+   <img src="https://telegra.ph/file/742dc6841686cca8fda4f.jpg" alt="Custom Menu">
+                <p style="color: white;"><strong>Кружок + Крест</strong></p>
+                <p style="color: white; font-style: italic;">Этот мод даёт возможность включить так и кружок, так и крест, одновременно</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.st/d/hYQg" class="btn btn-download" target="_blank">СКАЧАТЬ КРУЖОК + КРЕСТ</a>
+            </div>
+
+ <div class="post">
+                <p style="color: white;"><strong>Удаление партиклов, эффектов</strong></p>
+                <p style="color: white; font-style: italic;">Этот мод исключает визуальные эффекты, порождаемые частицами в игре [то есть убирает партиклы]</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.name/d/coRg" class="btn btn-download" target="_blank">СКАЧАТЬ МОД</a>
+            </div>
+
+
+ <div class="post">
+   <img src="https://telegra.ph/file/e7516f96cf3f914974223.jpg" alt="Custom Menu">
+                <p style="color: white;"><strong>Приватный инвентарь</strong></p>
+                <p style="color: white; font-style: italic;">Это приватный инвентарь, новый интерфейс в инвентаре</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.name/d/swbh" class="btn btn-download" target="_blank">СКАЧАТЬ ИНВЕНТАРЬ</a>
+            </div>
+
+
+ <div class="post">
+                <p style="color: white;"><strong>Удаление огня</strong></p>
+                <p style="color: white; font-style: italic;">Этот мод удаляет изображение огня</p>
+                <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p>
+                <a href="https://oxy.st/d/Gxch" class="btn btn-download" target="_blank">СКАЧАТЬ МОД НА УДАЛЕНИЕ ОГНЯ</a>
+            </div>
+
 
 
         </section>
@@ -1250,147 +1381,147 @@ dropdownBtn6.onclick = function() {
                 <p>Дата: 12 октября 2023</p>
                 <img src="https://legra.ph/file/27a948f0d1039b3248d82.jpg" alt="Изображение новости 3">
                 <p style="color:white; font-weight:bold;">КАРТА『Texture pack review map』</p>
-              <p>Работает только на версиях 1.12 - 1.20</p>
-              <p>Обзор на карту: <a href="https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf" target="_blank">https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf</a></p>
-              <a href="https://oxy.name/d/jKkh" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+                <p>Работает только на версиях 1.12 - 1.20</p>
+                <p>Обзор на карту: <a href="https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf" target="_blank">https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf</a></p>
+                <a href="https://oxy.name/d/jKkh" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
             </div>
 
-              <div class="post">
+            <div class="post">
                 <p>Дата: 10 мая 2023</p>
                 <img src="https://legra.ph/file/9d1a325ff40aec41a9895.jpg" alt="Изображение новости 4">
                 <p style="color:white; font-weight:bold;">КАРТА『ОБЗОР РЕСУРС ПАКОВ』</p>
-              <p>Работает только на версии 1.1.5</p>
-              <a href="https://oxy.name/d/CUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
-              </div>
+                <p>Работает только на версии 1.1.5</p>
+                <a href="https://oxy.name/d/CUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+            </div>
 
-          <div class="post">
-              <p>Дата: 10 мая 2023</p>
+            <div class="post">
+                <p>Дата: 10 мая 2023</p>
                 <img src="https://legra.ph/file/8abfb7a2d9634d3a85210.jpg" alt="Изображение новости 5">
                 <p style="color:white; font-weight:bold;">КАРТА『ОБЗОР РЕСУРС ПАКОВ』</p>
-              <p>Работает только на версии 1.1.5</p>
-              <a href="https://oxy.name/d/uUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
-          </div>
+                <p>Работает только на версии 1.1.5</p>
+                <a href="https://oxy.name/d/uUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+            </div>
 
-              <div class="post">
-              <p>Дата: 2 апреля 2022</p>
+            <div class="post">
+                <p>Дата: 2 апреля 2022</p>
                 <img src="https://legra.ph/file/724ab584bb07fb51dbb07.jpg" alt="Изображение новости 6">
                 <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ПВП С ДРУЗЬЯМИ</p>
-              <p>Работает только на версии 1.1.5</p>
-              <a href="https://www.mediafire.com/file/hkyw2yq6xm33nak/WORLD+PVP.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
-              </div>
+                <p>Работает только на версии 1.1.5</p>
+                <a href="https://www.mediafire.com/file/hkyw2yq6xm33nak/WORLD+PVP.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+            </div>
 
 
 
-          <div class="post">
-              <p>Дата: 29 марта 2022</p>
+            <div class="post">
+                <p>Дата: 29 марта 2022</p>
                 <img src="https://legra.ph/file/1dfd8e37b3dee198360fc.jpg" alt="Изображение новости 7">
-               <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ПРОВЕРКИ СТРОИТЕЛЬСТВА [МИНИ БЕД ВАРС]</p>
-              <p>Работает только на версии 1.1.5</p>
-              <a href="https://www.mediafire.com/file/pabj53f9gspwjxp/CONSTRUCTION+TRAINING.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
-          </div>
+                <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ПРОВЕРКИ СТРОИТЕЛЬСТВА [МИНИ БЕД ВАРС]</p>
+                <p>Работает только на версии 1.1.5</p>
+                <a href="https://www.mediafire.com/file/pabj53f9gspwjxp/CONSTRUCTION+TRAINING.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+            </div>
 
 
-          <div class="post">
-              <p>Дата: 29 марта 2022</p>
+            <div class="post">
+                <p>Дата: 29 марта 2022</p>
                 <img src="https://legra.ph/file/513fdbe98892eeb95fac5.jpg" alt="Изображение новости 6">
-               <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ВЫЖИВАНИЯ, СЕРВЕРА</p>
-              <p>Работает только на версии 1.1.5</p>
-              <a href="https://www.mediafire.com/file/fiqt8bk3d04w37q/grief+spawn.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>  
-          </div>
+                <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ВЫЖИВАНИЯ, СЕРВЕРА</p>
+                <p>Работает только на версии 1.1.5</p>
+                <a href="https://www.mediafire.com/file/fiqt8bk3d04w37q/grief+spawn.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+            </div>
         </section>
         <section id="technology" class="category">
-           <h2 class="text-center">Клиенты от версии 1.1.5 по 1.20</h2>
-          
-          <div class="post">
-                        <h2>[Utility UI] - "Пользовательский интерфейс утилиты" для Minecraft Bedrock Edition(мод меню)</h2>
+            <h2 class="text-center">Клиенты от версии 1.1.5 по 1.20</h2>
+
+            <div class="post">
+                <h2>[Utility UI] - "Пользовательский интерфейс утилиты" для Minecraft Bedrock Edition(мод меню)</h2>
                 <p>Поддерживаемые версии: 1.18 - 1.20</p>
                 <img src="https://legra.ph/file/8865823e0e9ca0f23a708.jpg" alt="Изображение новости 4">
-                 <p>Все функции/скриншоты клиента: <a href="https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04" target="_blank">https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04</a></p>
-               <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/528" target="_blank">https://t.me/rpfozzy/528</a></p>
-              <a href="https://oxy.name/d/pMFh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.18 - 1.20</a> 
-              </div>
-          
+                <p>Все функции/скриншоты клиента: <a href="https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04" target="_blank">https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04</a></p>
+                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/528" target="_blank">https://t.me/rpfozzy/528</a></p>
+                <a href="https://oxy.name/d/pMFh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.18 - 1.20</a>
+            </div>
+
             <div class="post">
                 <h2>[Better Client] - "лучший клиент" для Minecraft Bedrock Edition</h2>
                 <p>Поддерживаемые версии: 1.10 - 1.20</p>
                 <img src="https://legra.ph/file/1a8693c61dc2b08dc70f8.jpg" alt="Изображение новости 4">
-                 <p>Остальные функции: <a href="https://telegra.ph/Better-Client-01-14" target="_blank">https://telegra.ph/Better-Client-01-14</a></p>
-               <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/523" target="_blank">https://t.me/rpfozzy/523</a></p>
-              <a href="https://oxy.st/d/kZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.10 - 1.18</a> 
-              <a href="https://oxy.st/d/nZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.19 - 1.20</a> 
-              </div>
+                <p>Остальные функции: <a href="https://telegra.ph/Better-Client-01-14" target="_blank">https://telegra.ph/Better-Client-01-14</a></p>
+                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/523" target="_blank">https://t.me/rpfozzy/523</a></p>
+                <a href="https://oxy.st/d/kZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.10 - 1.18</a>
+                <a href="https://oxy.st/d/nZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.19 - 1.20</a>
+            </div>
 
-<div class="post">
+            <div class="post">
                 <h2>[BREADIX Client] - вышло обновление клиента с уникальными возможностями и прокаченной оптимизацией.</h2>
                 <p>Поддерживаемая версия: 1.1.5</p>
                 <img src="https://legra.ph/file/34c2bf63f39c7a3c0b84e.jpg" alt="Изображение новости 4">
-                 <p>Остальные функции: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p>
-               <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p>
-              <a href="https://oxy.name/d/kEAh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>  
-              </div>
+                <p>Остальные функции: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p>
+                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p>
+                <a href="https://oxy.name/d/kEAh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+            </div>
 
-<div class="post">
+            <div class="post">
                 <h2>​​[Project Light Client] - Легкий клиент [2МБ]</h2>
                 <p>Создан для 1.19 - 1.20</p>
                 <img src="https://legra.ph/file/3b351d2b6d2c3a96040a0.jpg" alt="Изображение новости 4">
-                 <p>Остальные функции: <a href="https://telegra.ph/Light-Client-119-12-24" target="_blank">https://telegra.ph/Light-Client-119-12-24</a></p>
-               <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/516" target="_blank">https://t.me/rpfozzy/516</a></p>
-              <a href="https://oxy.name/d/Hlyh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>  
-              </div>
-                      
-<div class="post">
+                <p>Остальные функции: <a href="https://telegra.ph/Light-Client-119-12-24" target="_blank">https://telegra.ph/Light-Client-119-12-24</a></p>
+                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/516" target="_blank">https://t.me/rpfozzy/516</a></p>
+                <a href="https://oxy.name/d/Hlyh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+            </div>
+
+            <div class="post">
                 <h2>​​[Astral Client] - астральный клиент. Мод функции</h2>
                 <p>Создан для 1.18 - 1.20 (в виде ресурс пака, так же работает на версиях ниже, но с багами)</p>
                 <img src="https://legra.ph/file/8ed44f5698c928ede2a36.jpg" alt="Изображение новости 4">
-                 <p>Остальные функции: <a href="https://telegra.ph/Astral-Client-11-26" target="_blank">https://telegra.ph/Astral-Client-11-26</a></p>
-               <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/499" target="_blank">https://t.me/rpfozzy/499</a></p>
-              <a href="https://oxy.st/d/AZsh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>  
-              </div>
-          
-          
-          <div class="post">
+                <p>Остальные функции: <a href="https://telegra.ph/Astral-Client-11-26" target="_blank">https://telegra.ph/Astral-Client-11-26</a></p>
+                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/499" target="_blank">https://t.me/rpfozzy/499</a></p>
+                <a href="https://oxy.st/d/AZsh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+            </div>
+
+
+            <div class="post">
                 <h2>​​[Saturn client] - клиент сатурн. Мод функции</h2>
                 <p>Создан для 1.14 - 1.20 (в виде ресурс пака)</p>
                 <img src="https://legra.ph/file/1231b2da22e3c8fbc9e85.jpg" alt="Изображение новости 4">
-                 <p>Остальные функции: <a href="https://telegra.ph/Saturn-Client-11-12" target="_blank">https://telegra.ph/Saturn-Client-11-12</a></p>
-               <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/492" target="_blank">https://t.me/rpfozzy/492</a></p>
-              <a href="https://oxy.st/d/uCqh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>  
-              </div>
-          
+                <p>Остальные функции: <a href="https://telegra.ph/Saturn-Client-11-12" target="_blank">https://telegra.ph/Saturn-Client-11-12</a></p>
+                <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/492" target="_blank">https://t.me/rpfozzy/492</a></p>
+                <a href="https://oxy.st/d/uCqh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+            </div>
+
 
         </section>
         <section id="resource-packs" class="category">
             <h2 class="text-center">Ресурс-Паки</h2>
-          <div class="post">
+            <div class="post">
                 <img src="https://legra.ph/file/ec8077ef59fe62ba51da9.jpg" alt="Custom Menu">
                 <p style="color:white; font-weight:bold;"><strong>RP 16x16</strong></p>
                 <p>• цʙᴇᴛ: Red (OnlyFans 18+🥵)</p>
                 <p>• sizᴇ: [18.71МБ]</p>
-            <p>• информация о ресурс паке – <a href="https://telegra.ph/ICE-16x---modify-Clayni0-03-03" target="_blank">https://telegra.ph/ICE-16x---modify-Clayni0-03-03</a></p>
+                <p>• информация о ресурс паке – <a href="https://telegra.ph/ICE-16x---modify-Clayni0-03-03" target="_blank">https://telegra.ph/ICE-16x---modify-Clayni0-03-03</a></p>
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
                 <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ В ТГ</a>
-            <a href="https://youtu.be/2rFZsaK6LwA?si=zQu3M4TPVR_7xdJT" class="btn btn-creator" target="_blank">ВИДЕО ОБЗОР</a>
+                <a href="https://youtu.be/2rFZsaK6LwA?si=zQu3M4TPVR_7xdJT" class="btn btn-creator" target="_blank">ВИДЕО ОБЗОР</a>
 
             </div>
-                        <div class="post">
+            <div class="post">
                 <img src="https://legra.ph/file/4217a2d3f4455cf1ebb09.jpg" alt="Custom Menu">
                 <p style="color:white; font-weight:bold;"><strong>РП 32x32</strong></p>
                 <p>• цʙᴇᴛ: Blue (Toothless, Беззубик)</p>
                 <p>• sizᴇ: [8.15МБ]</p>
-            <p>• нᴇбᴏ – <a href="https://telegra.ph/blue-toothless-32x-02-25" target="_blank">https://telegra.ph/blue-toothless-32x-02-25</a></p>
+                <p>• нᴇбᴏ – <a href="https://telegra.ph/blue-toothless-32x-02-25" target="_blank">https://telegra.ph/blue-toothless-32x-02-25</a></p>
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/BVIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
-                        </div>
+            </div>
 
 
 
             <div class="post">
-             <img src="https://legra.ph/file/7c5257834775d0ff6238e.jpg" alt="Custom Menu">
-               <p style="color:white; font-weight:bold;"><strong>РП 128x128</strong></p>
+                <img src="https://legra.ph/file/7c5257834775d0ff6238e.jpg" alt="Custom Menu">
+                <p style="color:white; font-weight:bold;"><strong>РП 128x128</strong></p>
                 <p>• цʙᴇᴛ: Green</p>
                 <p>• sizᴇ: [11.24МБ]</p>
-            <p>• нᴇбᴏ – <a href="https://telegra.ph/green-16x16-02-18" target="_blank">https://telegra.ph/green-16x16-02-18</a></p>
+                <p>• нᴇбᴏ – <a href="https://telegra.ph/green-16x16-02-18" target="_blank">https://telegra.ph/green-16x16-02-18</a></p>
                 <p>• © 🄵🄾🅉🅉🅈</p>
                 <a href="https://oxy.st/d/ucIh" class="btn btn-download" target="_blank">СКАЧАТЬ РП</a>
 
@@ -1402,47 +1533,50 @@ dropdownBtn6.onclick = function() {
             <p><a href="http://t.me/rpfozzy" target="_blank"><span style="color: red;">THEFOZZY</span></a> | 2 0 2 2 — 2 0 2 4</p>
         </div>
     </footer>
- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Добавляем класс анимации при загрузке страницы
-        const elements = document.querySelectorAll('a, ul, li, img, input, textarea, .btn');
-        elements.forEach(element => {
-            element.classList.add('slide-in');
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Добавляем класс анимации при загрузке страницы
+            const elements = document.querySelectorAll('a, ul, li, img, input, textarea, .btn');
+            elements.forEach(element => {
+                element.classList.add('slide-in');
+            });
         });
-    });
 
-    function showHome() {
-        setActiveCategory('home');
-        setActiveNav('nav-home');
-    }
+        function showHome() {
+            setActiveCategory('home');
+            setActiveNav('nav-home');
+        }
 
-    function showCategory(categoryId) {
-        setActiveCategory(categoryId);
-        setActiveNav('nav-' + categoryId);
-    }
+        function showCategory(categoryId) {
+            setActiveCategory(categoryId);
+            setActiveNav('nav-' + categoryId);
+        }
 
-    function setActiveCategory(categoryId) {
-        var categories = document.querySelectorAll('.category, .home');
-        categories.forEach(function(category) {
-            category.classList.remove('active', 'slide-in');
-            category.classList.add('slide-out');
-            category.addEventListener('animationend', function() {
-                category.classList.remove('slide-out');
-            }, { once: true });
-        });
-        var activeCategory = document.getElementById(categoryId);
-        activeCategory.classList.remove('slide-out');
-        activeCategory.classList.add('active', 'slide-in');
-    }
+        function setActiveCategory(categoryId) {
+            var categories = document.querySelectorAll('.category, .home');
+            categories.forEach(function(category) {
+                category.classList.remove('active', 'slide-in');
+                category.classList.add('slide-out');
+                category.addEventListener('animationend', function() {
+                    category.classList.remove('slide-out');
+                }, {
+                    once: true
+                });
+            });
+            var activeCategory = document.getElementById(categoryId);
+            activeCategory.classList.remove('slide-out');
+            activeCategory.classList.add('active', 'slide-in');
+        }
 
-    function setActiveNav(navId) {
-        var navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(function(navLink) {
-            navLink.classList.remove('active');
-        });
-        var activeNavLink = document.getElementById(navId);
-        activeNavLink.classList.add('active');
-    }
-      </script>
+        function setActiveNav(navId) {
+            var navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(function(navLink) {
+                navLink.classList.remove('active');
+            });
+            var activeNavLink = document.getElementById(navId);
+            activeNavLink.classList.add('active');
+        }
+    </script>
 </body>
+
 </html>
