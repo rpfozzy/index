@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 
-    <!DOCTYPE html>
+   
+      <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -90,6 +91,11 @@
     </script>
 
     <style>
+    button, img {
+    outline: none;
+}
+    
+    
         /* Левая панель */
         .panel-container-left {
             position: fixed;
@@ -99,7 +105,8 @@
         }
 
         .panel-button {
-            background-color: #28a745;
+            outline: none;
+            background-color: rgba(40, 167, 69, 0.5);
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -113,6 +120,7 @@
         }
 
         .panel-button img {
+            outline: none;
             height: 20px;
             width: 20px;
         }
@@ -126,6 +134,7 @@
         }
 
         .close-button {
+            outline: none;
             position: absolute;
             top: 10px;
             right: 10px;
@@ -143,11 +152,22 @@
         }
 
         .close-button:hover {
+            outline: none;
             background-color: #d32f2f;
         }
+.panel-button {
+    box-shadow: 0 0 10px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+
+       
+
+      
+        
 
         /* Правая панель */
         .search-container {
+            outline: none;
             position: fixed;
             bottom: 50px;
             right: 20px;
@@ -155,7 +175,8 @@
         }
 
         .search-button {
-            background-color: #007BFF;
+            outline: none;
+            background-color: rgba(0, 123, 255, 0.5);
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -168,10 +189,12 @@
         }
 
         .search-button:hover {
+            outline: none;
             background-color: #0056b3;
         }
 
         .search-button img {
+            outline: none;
             height: 20px;
             width: 20px;
         }
@@ -204,6 +227,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
         }
 
         .search-input button[type="button"] {
+            outline: none;
             background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
             border: none;
             border-radius: 5px;
@@ -217,6 +241,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
         }
 
         .search-input button[type="button"]:hover {
+            outline: none;
             background-color: #0056b3;
         }
 
@@ -269,6 +294,10 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
             animation: pulse 0.2s infinite;
             border-radius: 10px;
         }
+        .search-button {
+            outline: none;
+    box-shadow: 0 0 10px #0000ff, 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff;
+}
     </style>
     </head>
 
@@ -283,7 +312,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 
         <div class="modal" id="modal">
             <div class="modal-content">
-                <button class="close-button" id="close-button">&times;</button>
+               
                 <iframe src="https://rpfozzy.github.io/Totem/" id="modal-iframe"></iframe>
             </div>
         </div>
@@ -304,31 +333,27 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
         </div>
 
         <script>
-            // Логика для левой панели
-            const panelButton = document.getElementById('panel-button');
-            const modal = document.getElementById('modal');
-            const modalIframe = document.getElementById('modal-iframe');
+           // Логика для левой панели
+const panelButton = document.getElementById('panel-button');
+const modal = document.getElementById('modal');
+const modalIframe = document.getElementById('modal-iframe');
 
-            let isModalOpen = false; // Переменная для отслеживания состояния модального окна
+let isModalOpen = false; // Переменная для отслеживания состояния модального окна
 
-            panelButton.addEventListener('click', () => {
-                if (isModalOpen) {
-                    modal.style.display = 'none'; // Закрыть модальное окно
-                    isModalOpen = false; // Установить состояние модального окна на закрыто
-                } else {
-                    modal.style.display = 'flex';
-                    modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
-                    isModalOpen = true; // Установить состояние модального окна на открыто
-                }
-            });
+panelButton.addEventListener('click', () => {
+    if (isModalOpen) {
+        modal.style.display = 'none'; // Закрыть модальное окно
+        isModalOpen = false; // Установить состояние модального окна на закрыто
+        document.body.classList.remove('neon-background'); // Убрать неоновый фон
+    } else {
+        modal.style.display = 'flex';
+        modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
+        isModalOpen = true; // Установить состояние модального окна на открыто
+        document.body.classList.add('neon-background'); // Добавить неоновый фон
+    }
+});
 
-            // Определение элемента closeButton
-            const closeButton = document.getElementById('close-button');
-
-            // Логика закрытия модального окна при клике на кнопку закрытия
-            closeButton.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
+           
 
             // Логика для правой панели (поиск)
             const searchButton = document.getElementById('search-button');
@@ -402,6 +427,9 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 <title>RPFOZZY НОВОСТИ</title>
 
  <style>
+ button, img, nav {
+    outline: none;
+}
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -465,7 +493,8 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
-        }
+            box-shadow: 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff;
+}
 
         .post h2 {
             color: #333;
@@ -975,23 +1004,27 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
         }
 
         nav {
+            outline: none;
             background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
             color: #fff;
             padding: 10px 0;
         }
 
         nav ul {
+            outline: none;
             list-style: none;
             padding: 0;
             text-align: center;
         }
 
         nav ul li {
+            outline: none;
             display: inline;
             margin: 0 10px;
         }
 
         nav ul li a {
+            outline: none;
             color: #fff;
             text-decoration: none;
             cursor: pointer;
@@ -1005,12 +1038,14 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
         }
 
         .container {
+            outline: none;
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
 
         .post {
+            outline: none;
             background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
             margin: 20px 0;
             padding: 20px;
@@ -1387,11 +1422,13 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
                         }
 
                         .dropdown {
+                            outline: none;
                             position: relative;
                             display: inline-block;
                         }
 
                         .dropdown-content {
+                            outline: none;
                             display: none;
                             position: absolute;
                             background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
@@ -1401,6 +1438,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
                         }
 
                         .dropdown-content a {
+                            outline: none;
                             color: black;
                             padding: 12px 16px;
                             text-decoration: none;
@@ -1414,6 +1452,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
                         }
 
                         .dropdown-content a:hover {
+                            outline: none;
                             background-color: #f1f1f1;
                         }
                 </style>
@@ -1423,7 +1462,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 
 
                     <div class="dropdown">
-                        <a href="#" class="btn btn-download btn-post" id="openModalBtn6">APK FILE FOR IFLORIUM</a>
+                        <a href="#" class="btn btn-download btn-post" id="openModalBtn6"><b><i>APK FILE FOR IFLORIUM</i></b></a>
                         <div id="myModal6" class="modal">
                             <div class="modal-content">
                                 <span class="close close6">&times;</span>
@@ -1460,7 +1499,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 
 
                     <div class="dropdown">
-                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn4">IFLORIUM CLIENT V4</a>
+                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn4"><b><i>IFLORIUM CLIENT V4</i></b></a>
                         <div id="myModal4" class="modal">
                             <div class="modal-content">
                                 <span class="close close4">&times;</span>
@@ -1494,7 +1533,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 
                     <!-- IFLORIUM CLIENT V3 -->
                     <div class="dropdown">
-                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn1">IFLORIUM CLIENT V3</a>
+                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn1"><b><i>IFLORIUM CLIENT V3</i></b></a>
                         <div id="myModal1" class="modal">
                             <div class="modal-content">
                                 <span class="close close1">&times;</span>
@@ -1542,7 +1581,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 
                     <!-- IFLORIUM CLIENT V2 -->
                     <div class="dropdown">
-                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn2">IFLORIUM CLIENT V2</a>
+<a href="#" class="btn btn-creator btn-post" id="openModalBtn2"><b><i>IFLORIUM CLIENT V2</i></b></a>
                         <div id="myModal2" class="modal">
                             <div class="modal-content">
                                 <span class="close close2">&times;</span>
@@ -1571,7 +1610,7 @@ background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непро
 
                     <!-- FOZZY CLIENT -->
                     <div class="dropdown">
-                        <a href="#" class="btn btn-creator btn-post" id="openModalBtn3">FOZZY CLIENT</a>
+<a href="#" class="btn btn-creator btn-post" id="openModalBtn3"><b><i>FOZZY CLIENT</i></b></a>
                         <div id="myModal3" class="modal">
                             <div class="modal-content">
                                 <span class="close close3">&times;</span>
