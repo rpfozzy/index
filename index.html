@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <style>
-        #fps-counter {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 15px;
-            color: #0f0;
-            font-size: 18px;
-            font-weight: bold;
-            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0; /* Текст с тенью */
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #0f0; /* Зеленый контур */
-            border-radius: 8px;
-            opacity: 0;
-            filter: blur(10px); /* Начальный эффект размытия */
-            transition: opacity 1s ease, filter 1s ease; /* Постепенное появление и размытие */
-        }
+       #fps-counter {
+    position: absolute;
+    top: 85%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    color: #0f0;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #0f0;
+    border-radius: 8px;
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 1s ease, filter 1s ease;
+}
 
         #fps-counter.active {
             opacity: 1;
