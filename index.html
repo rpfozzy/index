@@ -1,4 +1,144 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        #fps-counter {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 15px;
+            color: #0f0;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0; /* Текст с тенью */
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #0f0; /* Зеленый контур */
+            border-radius: 8px;
+            opacity: 0;
+            filter: blur(10px); /* Начальный эффект размытия */
+            transition: opacity 1s ease, filter 1s ease; /* Постепенное появление и размытие */
+        }
+
+        #fps-counter.active {
+            opacity: 1;
+            filter: blur(0); /* Удаление размытия */
+        }
+
+        #activate-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background:  url('https://cdn-icons-png.flaticon.com/512/6545/6545915.png') no-repeat center center;
+            background-size: 100%;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            touch-action: none; /* Отключаем стандартное поведение касаний */
+            box-shadow: 0 0 5px 3px rgba(192, 192, 192, 0.5);
+        }
+        
+        #activate-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div id="fps-counter">FPS: 0</div>
+    <img id="activate-button" src="https://cdn-icons-png.flaticon.com/512/6545/6545915.png" alt="Activate Button" width="50" height="50">
+
+    <script>
+        let fpsCounter = document.getElementById('fps-counter');
+        let activateButton = document.getElementById('activate-button');
+        let lastFrameTime = performance.now();
+        let frameCount = 0;
+        let fps = 0;
+        let isFPSActive = false;
+        let animationFrameId;
+        let currentFPS = 0;
+
+        function updateFPS() {
+            let now = performance.now();
+            frameCount++;
+
+            if (now >= lastFrameTime + 1000) {
+                fps = (frameCount * 1000) / (now - lastFrameTime);
+                lastFrameTime = now;
+                frameCount = 0;
+            }
+
+            // Плавное обновление FPS
+            currentFPS += (fps - currentFPS) * 0.05;
+            fpsCounter.textContent = `FPS: ${currentFPS.toFixed(1)}`;
+
+            if (isFPSActive) {
+                animationFrameId = requestAnimationFrame(updateFPS);
+            }
+        }
+
+        activateButton.addEventListener('click', () => {
+            isFPSActive = !isFPSActive;
+            if (isFPSActive) {
+                fpsCounter.classList.add('active'); // Показываем счетчик с анимацией
+                lastFrameTime = performance.now(); // Сбрасываем таймер
+                frameCount = 0;
+                currentFPS = 0; // Сбрасываем текущее значение FPS
+                updateFPS(); // Запускаем обновление FPS
+            } else {
+                fpsCounter.classList.remove('active'); // Скрываем счетчик с анимацией
+                cancelAnimationFrame(animationFrameId); // Останавливаем обновление FPS
+            }
+        });
+
+        let isButtonPressed = false;
+        let initialX;
+        let initialY;
+
+        activateButton.addEventListener('mousedown', (event) => {
+            event.preventDefault(); // Предотвращаем выделение текста
+            isButtonPressed = true;
+            initialX = event.clientX - activateButton.getBoundingClientRect().left;
+            initialY = event.clientY - activateButton.getBoundingClientRect().top;
+        });
+
+        activateButton.addEventListener('mousemove', (event) => {
+            if (isButtonPressed) {
+                const newX = event.clientX - initialX;
+                const newY = event.clientY - initialY;
+                activateButton.style.left = `${newX}px`;
+                activateButton.style.top = `${newY}px`;
+            }
+        });
+
+        activateButton.addEventListener('touchmove', (event) => {
+            if (isButtonPressed) {
+                const newX = event.touches[0].clientX - initialX;
+                const newY = event.touches[0].clientY - initialY;
+                activateButton.style.left = `${newX}px`;
+                activateButton.style.top = `${newY}px`;
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isButtonPressed = false;
+        });
+
+        window.addEventListener('touchend', () => {
+            isButtonPressed = false;
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +149,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <body onload="showHome()">
   <style>
-            body {
+            body {        
                 margin: 0;
                 padding: 0;
                 background-color: #fff;
@@ -342,6 +482,7 @@ box-shadow: 0 0 3px #3498db, 0 0 3px #3498db, 0 0 7px #3498db, 0 0 17px #3498db;
         margin: auto;
         overflow: hidden;
     }
+
 
     .post {
         outline: none;
@@ -1213,96 +1354,96 @@ box-shadow:
     <section id="entertainment" class="category">
       <h2 class="text-center">Карты</h2>
       <div class="post">
-        <p>Дата: 12 октября 2023</p><img src="https://legra.ph/file/27a948f0d1039b3248d82.jpg" alt="Изображение новости 3">
+        <img src="https://legra.ph/file/27a948f0d1039b3248d82.jpg" alt="Изображение новости 3">
         <p style="color:white; font-weight:bold;">КАРТА『Texture pack review map』</p>
-        <p>Работает только на версиях 1.12 - 1.20</p>
-        <p>Обзор на карту: <a href="https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf" target="_blank">https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf</a></p><a href="https://oxy.name/d/jKkh" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+        <p style="color: white; font-style: italic;">Работает только на версиях 1.12 - 1.20</p>
+        <p style="color: white; font-style: italic;">Обзор на карту: <a href="https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf" target="_blank">https://youtu.be/w4cDxu5gbkQ?si=G_HoTAi1z9Wefvyf</a></p><a href="https://oxy.name/d/jKkh" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
       </div>
       <div class="post">
-        <p>Дата: 10 мая 2023</p><img src="https://legra.ph/file/9d1a325ff40aec41a9895.jpg" alt="Изображение новости 4">
+        <img src="https://legra.ph/file/9d1a325ff40aec41a9895.jpg" alt="Изображение новости 4">
         <p style="color:white; font-weight:bold;">КАРТА『ОБЗОР РЕСУРС ПАКОВ』</p>
-        <p>Работает только на версии 1.1.5</p><a href="https://oxy.name/d/CUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+        <p style="color: white; font-style: italic;">Работает только на версии 1.1.5</p><a href="https://oxy.name/d/CUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
       </div>
       <div class="post">
-        <p>Дата: 10 мая 2023</p><img src="https://legra.ph/file/8abfb7a2d9634d3a85210.jpg" alt="Изображение новости 5">
+        <img src="https://legra.ph/file/8abfb7a2d9634d3a85210.jpg" alt="Изображение новости 5">
         <p style="color:white; font-weight:bold;">КАРТА『ОБЗОР РЕСУРС ПАКОВ』</p>
-        <p>Работает только на версии 1.1.5</p><a href="https://oxy.name/d/uUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+        <p style="color: white; font-style: italic;">Работает только на версии 1.1.5</p><a href="https://oxy.name/d/uUvf" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
       </div>
       <div class="post">
-        <p>Дата: 2 апреля 2022</p><img src="https://legra.ph/file/724ab584bb07fb51dbb07.jpg" alt="Изображение новости 6">
+        <img src="https://legra.ph/file/724ab584bb07fb51dbb07.jpg" alt="Изображение новости 6">
         <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ПВП С ДРУЗЬЯМИ</p>
-        <p>Работает только на версии 1.1.5</p><a href="https://www.mediafire.com/file/hkyw2yq6xm33nak/WORLD+PVP.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+        <p style="color: white; font-style: italic;">Работает только на версии 1.1.5</p><a href="https://www.mediafire.com/file/hkyw2yq6xm33nak/WORLD+PVP.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
       </div>
       <div class="post">
-        <p>Дата: 29 марта 2022</p><img src="https://legra.ph/file/1dfd8e37b3dee198360fc.jpg" alt="Изображение новости 7">
+        <img src="https://legra.ph/file/1dfd8e37b3dee198360fc.jpg" alt="Изображение новости 7">
         <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ПРОВЕРКИ СТРОИТЕЛЬСТВА [МИНИ БЕД ВАРС]</p>
-        <p>Работает только на версии 1.1.5</p><a href="https://www.mediafire.com/file/pabj53f9gspwjxp/CONSTRUCTION+TRAINING.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+        <p style="color: white; font-style: italic;">Работает только на версии 1.1.5</p><a href="https://www.mediafire.com/file/pabj53f9gspwjxp/CONSTRUCTION+TRAINING.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
       </div>
       <div class="post">
-        <p>Дата: 29 марта 2022</p><img src="https://legra.ph/file/513fdbe98892eeb95fac5.jpg" alt="Изображение новости 6">
+        <img src="https://legra.ph/file/513fdbe98892eeb95fac5.jpg" alt="Изображение новости 6">
         <p style="color:white; font-weight:bold;">КАРТА ДЛЯ ВЫЖИВАНИЯ, СЕРВЕРА</p>
-        <p>Работает только на версии 1.1.5</p><a href="https://www.mediafire.com/file/fiqt8bk3d04w37q/grief+spawn.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
+        <p style="color: white; font-style: italic;">Работает только на версии 1.1.5</p><a href="https://www.mediafire.com/file/fiqt8bk3d04w37q/grief+spawn.mcworld/file" class="btn btn-download" target="_blank">СКАЧАТЬ КАРТУ</a>
       </div>
     </section>
     <section id="technology" class="category">
       <h2 class="text-center">Клиенты от версии 1.1.5 по 1.20</h2>
       <div class="post">
         <h2>[Utility UI] - "Пользовательский интерфейс утилиты" для Minecraft Bedrock Edition(мод меню)</h2>
-        <p>Поддерживаемые версии: 1.18 - 1.20</p><img src="https://legra.ph/file/8865823e0e9ca0f23a708.jpg" alt="Изображение новости 4">
-        <p>Все функции/скриншоты клиента: <a href="https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04" target="_blank">https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/528" target="_blank">https://t.me/rpfozzy/528</a></p><a href="https://oxy.name/d/pMFh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.18 - 1.20</a>
+        <p style="color: white; font-style: italic;">Поддерживаемые версии: 1.18 - 1.20</p><img src="https://legra.ph/file/8865823e0e9ca0f23a708.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Все функции/скриншоты клиента: <a href="https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04" target="_blank">https://telegra.ph/Tekstury-Udobnyj-i-poleznyj-interfejs-02-04</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/528" target="_blank">https://t.me/rpfozzy/528</a></p><a href="https://oxy.name/d/pMFh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.18 - 1.20</a>
       </div>
       <div class="post">
         <h2>[Better Client] - "лучший клиент" для Minecraft Bedrock Edition</h2>
-        <p>Поддерживаемые версии: 1.10 - 1.20</p><img src="https://legra.ph/file/1a8693c61dc2b08dc70f8.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Better-Client-01-14" target="_blank">https://telegra.ph/Better-Client-01-14</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/523" target="_blank">https://t.me/rpfozzy/523</a></p><a href="https://oxy.st/d/kZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.10 - 1.18</a> <a href="https://oxy.st/d/nZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.19 - 1.20</a>
+        <p style="color: white; font-style: italic;">Поддерживаемые версии: 1.10 - 1.20</p><img src="https://legra.ph/file/1a8693c61dc2b08dc70f8.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Better-Client-01-14" target="_blank">https://telegra.ph/Better-Client-01-14</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/523" target="_blank">https://t.me/rpfozzy/523</a></p><a href="https://oxy.st/d/kZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.10 - 1.18</a> <a href="https://oxy.st/d/nZBh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ ДЛЯ 1.19 - 1.20</a>
       </div>
       <div class="post">
         <h2>[BREADIX Client] - вышло обновление клиента с уникальными возможностями и прокаченной оптимизацией.</h2>
-        <p>Поддерживаемая версия: 1.1.5</p><img src="https://legra.ph/file/34c2bf63f39c7a3c0b84e.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p><a href="https://oxy.name/d/kEAh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Поддерживаемая версия: 1.1.5</p><img src="https://legra.ph/file/34c2bf63f39c7a3c0b84e.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/521" target="_blank">https://t.me/rpfozzy/521</a></p><a href="https://oxy.name/d/kEAh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
       <div class="post">
         <h2>​​[Project Light Client] - Легкий клиент [2МБ]</h2>
-        <p>Создан для 1.19 - 1.20</p><img src="https://legra.ph/file/3b351d2b6d2c3a96040a0.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Light-Client-119-12-24" target="_blank">https://telegra.ph/Light-Client-119-12-24</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/516" target="_blank">https://t.me/rpfozzy/516</a></p><a href="https://oxy.name/d/Hlyh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Создан для 1.19 - 1.20</p><img src="https://legra.ph/file/3b351d2b6d2c3a96040a0.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Light-Client-119-12-24" target="_blank">https://telegra.ph/Light-Client-119-12-24</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/516" target="_blank">https://t.me/rpfozzy/516</a></p><a href="https://oxy.name/d/Hlyh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
       <div class="post">
         <h2>​​[Astral Client] - астральный клиент. Мод функции</h2>
-        <p>Создан для 1.18 - 1.20 (в виде ресурс пака, так же работает на версиях ниже, но с багами)</p><img src="https://legra.ph/file/8ed44f5698c928ede2a36.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Astral-Client-11-26" target="_blank">https://telegra.ph/Astral-Client-11-26</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/499" target="_blank">https://t.me/rpfozzy/499</a></p><a href="https://oxy.st/d/AZsh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Создан для 1.18 - 1.20 (в виде ресурс пака, так же работает на версиях ниже, но с багами)</p><img src="https://legra.ph/file/8ed44f5698c928ede2a36.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Astral-Client-11-26" target="_blank">https://telegra.ph/Astral-Client-11-26</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/499" target="_blank">https://t.me/rpfozzy/499</a></p><a href="https://oxy.st/d/AZsh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
       <div class="post">
         <h2>​​[Saturn client] - клиент сатурн. Мод функции</h2>
-        <p>Создан для 1.14 - 1.20 (в виде ресурс пака)</p><img src="https://legra.ph/file/1231b2da22e3c8fbc9e85.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Saturn-Client-11-12" target="_blank">https://telegra.ph/Saturn-Client-11-12</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/492" target="_blank">https://t.me/rpfozzy/492</a></p><a href="https://oxy.st/d/uCqh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Создан для 1.14 - 1.20 (в виде ресурс пака)</p><img src="https://legra.ph/file/1231b2da22e3c8fbc9e85.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Saturn-Client-11-12" target="_blank">https://telegra.ph/Saturn-Client-11-12</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/492" target="_blank">https://t.me/rpfozzy/492</a></p><a href="https://oxy.st/d/uCqh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
     
     
      <div class="post">
         <h2>​​[Bedezu client] - клиент бедезу. Клиент в виде ресурс пака</h2>
-        <p>Создан для 1.14 - 1.20 [клиент может быть с багами на версии 1.14]</p><img src="https://telegra.ph/file/e226879bd3d20cb8d6cbe.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Bedezu-Client-09-13" target="_blank">https://telegra.ph/Bedezu-Client-09-13</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/471" target="_blank">https://t.me/rpfozzy/471</a></p><a href="https://oxy.name/d/prfh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Создан для 1.14 - 1.20 [клиент может быть с багами на версии 1.14]</p><img src="https://telegra.ph/file/e226879bd3d20cb8d6cbe.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Bedezu-Client-09-13" target="_blank">https://telegra.ph/Bedezu-Client-09-13</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/471" target="_blank">https://t.me/rpfozzy/471</a></p><a href="https://oxy.name/d/prfh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
       
       <div class="post">
         <h2>​​[Hydra client] - клиент гидра. Клиент в виде ресурс пака</h2>
-        <p>Создан для 1.14 - 1.20</p><img src="https://telegra.ph/file/c19085392a52e010a5929.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Gidra-klient-09-11" target="_blank">https://telegra.ph/Gidra-klient-09-11</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/468" target="_blank">https://t.me/rpfozzy/468</a></p><a href="https://oxy.name/d/hWeh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Создан для 1.14 - 1.20</p><img src="https://telegra.ph/file/c19085392a52e010a5929.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Gidra-klient-09-11" target="_blank">https://telegra.ph/Gidra-klient-09-11</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/468" target="_blank">https://t.me/rpfozzy/468</a></p><a href="https://oxy.name/d/hWeh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
       
        <div class="post">
         <h2>​​[Luconia client] - клиент лукония. Мало кому известный клиент, похожий чем-то на чит, но тут всё легально</h2>
-        <p>Создан для 1.18 - 1.20</p><img src="https://telegra.ph/file/cf8fe1e6bd547ebd719bd.jpg" alt="Изображение новости 4">
-        <p>Остальные функции: <a href="https://telegra.ph/Luconia-Client-09-07" target="_blank">https://telegra.ph/Luconia-Client-09-07</a></p>
-        <p>Пост в телеграмме: <a href="https://t.me/rpfozzy/462" target="_blank">https://t.me/rpfozzy/462</a></p><a href="https://oxy.st/d/Ojeh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
+        <p style="color: white; font-style: italic;">Создан для 1.18 - 1.20</p><img src="https://telegra.ph/file/cf8fe1e6bd547ebd719bd.jpg" alt="Изображение новости 4">
+        <p style="color: white; font-style: italic;">Остальные функции: <a href="https://telegra.ph/Luconia-Client-09-07" target="_blank">https://telegra.ph/Luconia-Client-09-07</a></p>
+        <p style="color: white; font-style: italic;">Пост в телеграмме: <a href="https://t.me/rpfozzy/462" target="_blank">https://t.me/rpfozzy/462</a></p><a href="https://oxy.st/d/Ojeh" class="btn btn-download" target="_blank">СКАЧАТЬ КЛИЕНТ</a>
       </div>
       
     </section>
@@ -1312,27 +1453,52 @@ box-shadow:
       <div class="post">
         <img src="https://legra.ph/file/ec8077ef59fe62ba51da9.jpg" alt="Custom Menu">
         <p style="color:white; font-weight:bold;"><strong>RP 16x16</strong></p>
-        <p>• цʙᴇᴛ: Red (OnlyFans 18+🥵)</p>
-        <p>• sizᴇ: [18.71МБ]</p>
-        <p>• информация о ресурс паке – <a href="https://telegra.ph/ICE-16x---modify-Clayni0-03-03" target="_blank">https://telegra.ph/ICE-16x---modify-Clayni0-03-03</a></p>
-        <p>• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a> <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ В ТГ</a> <a href="https://youtu.be/2rFZsaK6LwA?si=zQu3M4TPVR_7xdJT" class="btn btn-creator" target="_blank">ВИДЕО ОБЗОР</a>
+        <p style="color: white; font-style: italic;">• цʙᴇᴛ: Red (OnlyFans 18+🥵)</p>
+        <p style="color: white; font-style: italic;">• sizᴇ: [18.71МБ]</p>
+        <p style="color: white; font-style: italic;">• информация о ресурс паке – <a href="https://telegra.ph/ICE-16x---modify-Clayni0-03-03" target="_blank">https://telegra.ph/ICE-16x---modify-Clayni0-03-03</a></p>
+        <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/dTIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a> <a href="https://t.me/+VHdxmb2NXPwyMzUy" class="btn btn-creator" target="_blank">СОЗДАТЕЛЬ В ТГ</a> <a href="https://youtu.be/2rFZsaK6LwA?si=zQu3M4TPVR_7xdJT" class="btn btn-creator" target="_blank">ВИДЕО ОБЗОР</a>
       </div>
       <div class="post">
         <img src="https://legra.ph/file/4217a2d3f4455cf1ebb09.jpg" alt="Custom Menu">
         <p style="color:white; font-weight:bold;"><strong>РП 32x32</strong></p>
-        <p>• цʙᴇᴛ: Blue (Toothless, Беззубик)</p>
-        <p>• sizᴇ: [8.15МБ]</p>
-        <p>• нᴇбᴏ – <a href="https://telegra.ph/blue-toothless-32x-02-25" target="_blank">https://telegra.ph/blue-toothless-32x-02-25</a></p>
-        <p>• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/BVIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
+        <p style="color: white; font-style: italic;">• цʙᴇᴛ: Blue (Toothless, Беззубик)</p>
+        <p style="color: white; font-style: italic;">• sizᴇ: [8.15МБ]</p>
+        <p style="color: white; font-style: italic;">• нᴇбᴏ – <a href="https://telegra.ph/blue-toothless-32x-02-25" target="_blank">https://telegra.ph/blue-toothless-32x-02-25</a></p>
+        <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/BVIh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
       </div>
+      
       <div class="post">
         <img src="https://legra.ph/file/7c5257834775d0ff6238e.jpg" alt="Custom Menu">
         <p style="color:white; font-weight:bold;"><strong>РП 128x128</strong></p>
-        <p>• цʙᴇᴛ: Green</p>
-        <p>• sizᴇ: [11.24МБ]</p>
-        <p>• нᴇбᴏ – <a href="https://telegra.ph/green-16x16-02-18" target="_blank">https://telegra.ph/green-16x16-02-18</a></p>
-        <p>• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/ucIh" class="btn btn-download" target="_blank">СКАЧАТЬ РП</a>
+        <p style="color: white; font-style: italic;">• цʙᴇᴛ: Green</p>
+        <p style="color: white; font-style: italic;">• sizᴇ: [11.24МБ]</p>
+        <p style="color: white; font-style: italic;">• нᴇбᴏ – <a href="https://telegra.ph/green-16x16-02-18" target="_blank">https://telegra.ph/green-16x16-02-18</a></p>
+        <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/ucIh" class="btn btn-download" target="_blank">СКАЧАТЬ РП</a>
       </div>
+      
+       <div class="post">
+        <p style="color:white; font-weight:bold;"><strong>❗️❗️ОБНОВЛЕНИЕ❗️❗️</strong></p>
+<p style="color: white; font-style: italic;">≡ Вносим минимальное обновление в наши ресурс паки. В последующих паках <span style="color: red;">(в тех, которые выше)</span> будет меняться цвет текста, такие как "играть, магазин, миры, сервера и т.д" под цвет соответствующего пака</p>
+      </div>
+      
+        <div class="post">
+        <img src="https://telegra.ph/file/578aef4091cbbc7b416c4.jpg" alt="Custom Menu">
+        <p style="color:white; font-weight:bold;"><strong>РП 128x128</strong></p>
+        <p style="color: white; font-style: italic;">• цʙᴇᴛ: Orange (nuggets)</p>
+        <p style="color: white; font-style: italic;">• sizᴇ: [5.48МБ]</p>
+        <p style="color: white; font-style: italic;">• нᴇбᴏ – <a href="https://telegra.ph/Nuggets-128x128-02-04" target="_blank">https://telegra.ph/Nuggets-128x128-02-04</a></p>
+        <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.name/d/xdGh" class="btn btn-download" target="_blank">СКАЧАТЬ РП</a>
+      </div>
+      
+       <div class="post">
+        <img src="https://telegra.ph/file/f4ddfc15120bee9d7cf29.jpg" alt="Custom Menu">
+        <p style="color:white; font-weight:bold;"><strong>РП 128x128</strong></p>
+        <p style="color: white; font-style: italic;">• цʙᴇᴛ: Red-Black</p>
+        <p style="color: white; font-style: italic;">• sizᴇ: [6.70МБ]</p>
+        <p style="color: white; font-style: italic;">• нᴇбᴏ – <a href="https://telegra.ph/Red-Black-01-21" target="_blank">https://telegra.ph/Red-Black-01-21</a></p>
+        <p style="color: lightgreen; font-style: italic;">• © 🄵🄾🅉🅉🅈</p><a href="https://oxy.st/d/yvDh" class="btn btn-download" target="_blank">СКАЧАТЬ РП</a>
+      </div>
+      
     </section>
   </div>
   <footer>
