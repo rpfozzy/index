@@ -418,6 +418,31 @@ box-shadow: 0 0 5px rgba(0, 255, 255, 1), 0 0 5px rgba(0, 255, 255, 1), 0 0 10px
   
   
 <style>
+/* CSS */
+.favorite-btn {
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 999; /* Поднимаем звездочку над остальными элементами */
+  color: gold; /* Цвет звездочки */
+  opacity: 1; /* Прозрачность */
+  text-shadow: 0 0 10px gold;
+}
+
+.favorite-btn.active {
+    position: absolute;
+    color: red;
+    top: -20px;
+  right: 0px;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 999; /
+  opacity: 1; /* Прозрачность */
+    text-shadow: 0 0 10px red;
+    }
+
     body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
@@ -486,6 +511,7 @@ box-shadow: 0 0 3px #3498db, 0 0 3px #3498db, 0 0 7px #3498db, 0 0 17px #3498db;
 
 
     .post {
+        position: relative;
         outline: none;
         background-color: rgba(0, 0, 0, 0.4);
         margin: 20px 0;
@@ -660,7 +686,7 @@ box-shadow: 0 0 5px rgba(255, 0, 255, 1), 0 0 5px rgba(255, 0, 255, 1), 0 0 10px
     .dropdown {
         position: relative;
         display: inline-block;
-    }
+    } 
 
     .dropdown-content {
         display: none;
@@ -949,10 +975,13 @@ box-shadow:
         <a onclick="showCategory('entertainment')" id="nav-entertainment"><strong>Карты</strong></a>
       </li>
       <li>
-        <a onclick="showCategory('technology')" id="nav-technology"><strong>Клиенты для всех версий</strong></a>
+        <a onclick="showCategory('technology')" id="nav-technology"><strong>Клиенты</strong></a>
       </li>
       <li>
         <a onclick="showCategory('resource-packs')" id="nav-resource-packs"><strong>Ресурс-Паки</strong></a>
+        </li>
+        <li>
+                <a onclick="showCategory('favorites')" id="nav-favorites"><strong>Избранные</strong></a>
       </li>
     </ul>
   </nav>
@@ -1501,6 +1530,16 @@ box-shadow:
       </div>
       
     </section>
+    
+    
+    <section id="favorites" class="category">
+  <h2 class="text-center">Избранные</h2>
+  <!-- Сюда будут добавлены избранные посты -->
+</div>
+</section>
+    
+    
+    
   </div>
   <footer>
     <div class="container">
@@ -1508,6 +1547,46 @@ box-shadow:
     </div>
   </footer>
   <script>
+document.querySelectorAll('.post').forEach(post => {
+  // Проверяем, есть ли уже звездочка в посте
+  if (!post.querySelector('.favorite-btn')) {
+    // Если звездочка отсутствует, добавляем ее
+    const favoriteBtn = document.createElement('div');
+    favoriteBtn.classList.add('favorite-btn');
+    favoriteBtn.textContent = '☆';
+    post.appendChild(favoriteBtn);
+  }
+  
+  // Добавляем обработчик события для звездочки
+  const favoriteBtn = post.querySelector('.favorite-btn');
+  favoriteBtn.addEventListener('click', function() {
+    if (favoriteBtn.classList.contains('active')) {
+      favoriteBtn.classList.remove('active');
+      // Удалить пост из избранных
+      const favorites = document.getElementById('favorites');
+      const favoritePost = favorites.querySelector(`[data-post-id="${post.getAttribute('data-post-id')}"]`);
+      if (favoritePost) {
+        favorites.removeChild(favoritePost);
+      }
+    } else {
+      favoriteBtn.classList.add('active');
+      // Добавить пост в избранные
+      const postCopy = post.cloneNode(true);
+      postCopy.querySelector('.favorite-btn').classList.add('active');
+      postCopy.querySelector('.favorite-btn').addEventListener('click', function() {
+        this.classList.remove('active');
+        favorites.removeChild(postCopy);
+        // Также обновим оригинальный пост
+        post.querySelector('.favorite-btn').classList.remove('active');
+      });
+      document.getElementById('favorites').appendChild(postCopy);
+    }
+  });
+});
+  
+  
+  
+  
         document.addEventListener("DOMContentLoaded", function() {
             // Добавляем класс анимации при загрузке страницы
             const elements = document.querySelectorAll('a, ul, li, img, input, textarea, .btn');
