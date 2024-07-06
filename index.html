@@ -21,6 +21,7 @@
     opacity: 0;
     filter: blur(10px);
     transition: opacity 1s ease, filter 1s ease;
+      z-index: 2000; /* z-index выше, чем у модального окна */
 }
 
         #fps-counter.active {
@@ -42,6 +43,7 @@
             cursor: pointer;
             touch-action: none; /* Отключаем стандартное поведение касаний */
             box-shadow: 0 0 5px 3px rgba(192, 192, 192, 0.5);
+                  z-index: 2000; /* z-index выше, чем у модального окна */
         }
 
         #activate-button:hover {
@@ -569,6 +571,7 @@ box-shadow: 0 0 3px #3498db, 0 0 3px #3498db, 0 0 7px #3498db, 0 0 17px #3498db;
             width: 300px;
             /* Увеличиваем ширину кнопки */
             box-shadow: 0 0 3px #e74c3c, 0 0 3px #e74c3c, 0 0 7px #e74c3c, 0 0 17px #e74c3c;
+            animation: pulse 2s infinite;
         }
 
     .btn-creator {
@@ -664,6 +667,9 @@ box-shadow: 0 0 5px rgba(255, 0, 255, 1), 0 0 5px rgba(255, 0, 255, 1), 0 0 10px
         border-radius: 15px;
         animation: fade-in 0.3s ease-in-out;
     }
+
+
+
 
     .close {
         color: #aaa;
@@ -850,7 +856,11 @@ box-shadow:
                         .btn:active
                         outline: none;
                         box-shadow: none;
+                        }
+                   
+  
   </style>
+  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5651386141813934"
      crossorigin="anonymous"></script>
 </head>
@@ -871,6 +881,7 @@ box-shadow:
     <button class="panel-button" id="panel-button"><img src="https://img.icons8.com/?size=160&amp;id=FoTRkp18eB9r&amp;format=png" alt="Site"></button>
   </div>
   <div class="modal" id="modal">
+     <span class="close close9">×</span>
     <div class="modal-content">
       <iframe src="https://rpfozzy.github.io/Totem/" id="modal-iframe" name="modal-iframe"></iframe>
     </div>
@@ -884,26 +895,62 @@ box-shadow:
     </div>
     <ul class="search-results" id="search-results"></ul>
   </div>
+  
+  <style>
+.modal {
+  z-index: 1000; /* Убедитесь, что модальное окно имеет z-index */
+}
+
+.close9 {
+  position: absolute;
+  top: 135px;
+  right: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 1010; /* z-index выше, чем у модального окна */
+}
+.modal-iframe {
+    width: 80% !important;
+    height: 80% !important;
+}
+  </style>
+  
   <script>
-           // Логика для левой панели
-  const panelButton = document.getElementById('panel-button');
-  const modal = document.getElementById('modal');
-  const modalIframe = document.getElementById('modal-iframe');
+         // Логика для левой панели
+const panelButton = document.getElementById('panel-button');
+const modal = document.getElementById('modal');
+const modalIframe = document.getElementById('modal-iframe');
+  var span8 = document.getElementsByClassName("close9")[0];
+let isModalOpen = false; // Переменная для отслеживания состояния модального окна
 
-  let isModalOpen = false; // Переменная для отслеживания состояния модального окна
+panelButton.addEventListener('click', () => {
+  if (isModalOpen) {
+    closeModal();
+  } else {
+    openModal();
+  }
+});
 
-  panelButton.addEventListener('click', () => {
-    if (isModalOpen) {
-        modal.style.display = 'none'; // Закрыть модальное окно
-        isModalOpen = false; // Установить состояние модального окна на закрыто
-        document.body.classList.remove('neon-background'); // Убрать неоновый фон
-    } else {
-        modal.style.display = 'flex';
-        modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
-        isModalOpen = true; // Установить состояние модального окна на открыто
-        document.body.classList.add('neon-background'); // Добавить неоновый фон
-    }
-  });
+modal.addEventListener('click', closeModal);
+
+modalIframe.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+
+function openModal() {
+  modal.style.display = 'flex';
+  modalIframe.src = 'https://rpfozzy.github.io/Totem/'; // Замените на URL сайта, который вы хотите отображать
+  isModalOpen = true; // Установить состояние модального окна на открыто
+  document.body.classList.add('neon-background'); // Добавить неоновый фон
+}
+
+function closeModal() {
+  modal.style.display = 'none'; // Закрыть модальное окно
+  isModalOpen = false; // Установить состояние модального окна на закрыто
+  document.body.classList.remove('neon-background'); // Убрать неоновый фон
+}
 
 
 
@@ -984,9 +1031,13 @@ box-shadow:
       <li>
         <a onclick="showCategory('resource-packs')" id="nav-resource-packs"><strong>Ресурс-Паки</strong></a>
         </li>
+        
         <li>
                 <a onclick="showCategory('favorites')" id="nav-favorites"><strong>Избранные</strong></a>
       </li>
+      <li>
+        <a onclick="showCategory('rp-from-subscribers')" id="nav-rp-from-subscribers"><strong>Ресурс-Паки от подписчиков</strong></a>
+        </li>
     </ul>
   </nav>
   <div class="container">
@@ -1017,46 +1068,428 @@ box-shadow:
           <a href="https://t.me/tominecraft" class="btn btn-creator" target="_blank">TOMINECRAFT (by Clayni0)</a>
           <div class="dropdown">
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"><a href="#" class="btn btn-creator btn-creator" id="openModalBtn5">СВЯЗЬ С ФОЗЗИ</a>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<a href="#" class="btn btn-creator btn-creator" id="openModalBtn5">СВЯЗЬ С ФОЗЗИ</a>
+<div class="button-block">
+<a href="#" class="btn btn-creator" id="openModalBtn7">ОТПРАВИТЬ СВОЙ РЕСУРС ПАК</a>
+</div>
+
+<div id="myModal7" class="modal">
+  <div class="modal-content">
+    <span class="close close7">×</span>
+    <h2>Отправьте свой ресурс пак и он попадёт к нам на сайт</h2>
+    <form id="resourcePackForm">
+      <div class="input-group">
+        <label for="username">Ваш ник:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      
+      <div class="input-group">
+        <label for="description">Описание ресурс пака:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+      
+      <div class="file-input-group">
+        <label for="resourceFile" class="file-label">
+          <i class="fas fa-file-archive"></i>
+          <span>Выбрать файл .mcpack / .zip</span>
+        </label>
+        <input type="file" id="resourceFile" name="resourceFile" accept=".mcpack,.zip" required>
+        <span class="file-name" id="resourceFileName"></span>
+      </div>
+      
+      <div class="file-input-group">
+        <label for="photo" class="file-label">
+          <i class="fas fa-image"></i>
+          <span>Выбрать фото</span>
+        </label>
+        <input type="file" id="photo" name="photo" accept="image/*">
+        <span class="file-name" id="photoFileName"></span>
+      </div>
+              <p>Отправка: <span id="progress">0%</span></p>
+      <div class="file-input-group">
+        <input type="file" id="video" name="video" accept="video/*">
+        <span class="file-name" id="videoFileName"></span>
+      </div>
+      
+      <button type="submit">Отправить</button>
+      <div id="progressContainer" style="display: none;">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #e0e5ec;
+}
+
+.modal {
+  display: none;
+
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #e74c3c;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 1px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px; /* уменьшено с 12px */
+  border: none;
+  border-radius: 10px;
+  background-color: #e0e5ec;
+  box-shadow: 3px 3px 5px #ffffff, -3px -3px 5px #ffffff;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: inset 3px 3px 5px #ffffff, inset -3px -3px 5px #ffffff;
+}
+
+.file-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  background-color: #e0e5ec;
+  box-shadow: 5px 5px 10px #ffffff, -5px -5px 10px #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-label:hover {
+  box-shadow: 3px 3px 5px #ffffff, -3px -3px 5px #ffffff;
+}
+
+.file-label i {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #3498db;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #7f8c8d;
+}
+
+button[type="submit"] {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px 10px #e74c3c, -5px -5px 10px #e74c3c;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+button[type="submit"]:hover {
+  background-color: #c0392b;
+  box-shadow: 3px 3px 5px #b8b9be, -3px -3px 5px #ffffff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-creator {
+  animation: pulse 2s infinite;
+}
+</style>
+
+<script>
+// ОТПРАВИТЬ СВОЙ РЕСУРС ПАК
+var modal7 = document.getElementById("myModal7");
+var btn7 = document.getElementById("openModalBtn7");
+var span7 = document.getElementsByClassName("close7")[0];
+
+btn7.onclick = function() {
+    modal7.style.display = "block";
+}
+
+span7.onclick = function() {
+    modal7.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal7) {
+        modal7.style.display = "none";
+    }
+}
+
+// File input handling
+function handleFileSelect(event, fileNameId) {
+    const fileName = event.target.files[0].name;
+    document.getElementById(fileNameId).textContent = fileName;
+}
+
+document.getElementById("resourceFile").addEventListener("change", (event) => handleFileSelect(event, "resourceFileName"));
+document.getElementById("photo").addEventListener("change", (event) => handleFileSelect(event, "photoFileName"));
+document.getElementById("video").addEventListener("change", (event) => handleFileSelect(event, "videoFileName"));
+
+function updateProgress(progress) {
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progress');
+  
+  // Animate the progress bar
+  progressBar.style.width = `${progress}%`;
+  
+  // Update the text smoothly
+  let currentProgress = parseInt(progressText.textContent);
+  const step = (progress - currentProgress) / 50; // 50 steps for smooth animation
+  
+  function animateText() {
+    currentProgress += step;
+    if ((step > 0 && currentProgress < progress) || (step < 0 && currentProgress > progress)) {
+      progressText.textContent = `${Math.round(currentProgress)}%`;
+      requestAnimationFrame(animateText);
+    } else {
+      progressText.textContent = `${progress}%`;
+    }
+  }
+  
+  requestAnimationFrame(animateText);
+  
+  // Add pulsating effect when progress is complete
+  if (progress === 100) {
+    progressBar.classList.add('pulsate');
+  } else {
+    progressBar.classList.remove('pulsate');
+  }
+}
+
+document.getElementById("resourcePackForm").onsubmit = async function(event) {
+  event.preventDefault();
+  
+  document.getElementById("progressContainer").style.display = "block";
+  
+  var formData = new FormData(this);
+  var botToken = "6884297621:AAGduHkNhhs08N--1B1rsh4rsMycmjocuXo";
+  var chatId = "1653222949";
+
+  var messageText = `Новый ресурс пак от ${formData.get('username')}:\nОписание: ${formData.get('description')}`;
+
+  updateProgress(10);
+  
+  // Отправка текста
+  await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: messageText
+    })
+  });
+
+  updateProgress(40);
+  
+  var resourceFile = formData.get("resourceFile");
+  var photo = formData.get("photo");
+
+  if (resourceFile) {
+    var resourceFileData = new FormData();
+    resourceFileData.append("chat_id", chatId);
+    resourceFileData.append("document", resourceFile);
+
+    await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+      method: "POST",
+      body: resourceFileData
+    });
+  }
+
+  updateProgress(70);
+
+  if (photo) {
+    var photoData = new FormData();
+    photoData.append("chat_id", chatId);
+    photoData.append("photo", photo);
+    photoData.append("caption", `Фото от ${formData.get('username')}`);
+
+    await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+      method: "POST",
+      body: photoData
+    });
+  }
+
+  updateProgress(100);
+
+  setTimeout(() => {
+    document.getElementById("progressContainer").style.display = "none";
+    modal7.style.display = "none";
+    alert("Ваш ресурс пак успешно отправлен!");
+  }, 2000);
+}
+</script>
+
             <div id="myModal5" class="modal">
-              <div class="modal-content">
-                <span class="close close5">×</span>
-                <h2>Связь с создателем RPFOZZY</h2>
-                <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Telgram: @Th2FoZzY</p>
-                <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Место жительства: Украина, Киевская область</p>
-                <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">GMAIL: rpfozzy@gmail.com</p>
-                <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">YouTube: @rpfozzy</p>
-                <div class="dropdown"></div>
-              </div>
+    <div id="contactModalContent">
+        <span class="close close5">×</span>
+        <h2>Связь с создателем RPFOZZY</h2>
+        <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Telegram: @Th2FoZzY</p>
+        <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">Место жительства: Украина, Киевская область</p>
+        <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">GMAIL: rpfozzy@gmail.com</p>
+        <p style="color: rgb(255, 255, 255); background-color: rgb(100, 150, 200); border-radius: 10px; padding: 10px;">YouTube: @rpfozzy</p>
+        <div class="dropdown"></div>
+    </div>
+    <style>
+    #myModal5 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#contactModalContent {
+    box-shadow: 0 0 5px rgba(255, 0, 255, 1), 0 0 5px rgba(255, 0, 255, 1), 0 0 10px rgba(255, 0, 255, 1), 0 0 20px rgba(255, 0, 255, 1);
+        background-color: #000;
+        color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 15px;
+        animation: fade-in 0.3s ease-in-out;
+        
+
+        transform: translate(-0%, 30%);
+        position: center;
+        top: 40%;
+  left: 45%;
+  }
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+    </style>
               <script>
-                                    // СВЯЗЬ С ФОЗЗИ
-                                    var modal5 = document.getElementById("myModal5");
-                                    var btn5 = document.getElementById("openModalBtn5");
-                                    var span5 = document.getElementsByClassName("close5")[0];
-                                    var dropdownBtn5 = document.getElementById("myBtn5");
-                                    var dropdownContent5 = document.getElementById("dropdownContent5");
+                                   // СВЯЗЬ С ФОЗЗИ
+var modal5 = document.getElementById("myModal5");
+var btn5 = document.getElementById("openModalBtn5");
+var span5 = document.getElementsByClassName("close5")[0];
+var dropdownBtn5 = document.getElementById("myBtn5");
+var dropdownContent5 = document.getElementById("dropdownContent5");
 
-                                    btn5.onclick = function() {
-                                        modal5.style.display = "block";
-                                    }
+btn5.onclick = function() {
+    modal5.style.display = "block";
+}
 
-                                    span5.onclick = function() {
-                                        modal5.style.display = "none";
-                                    }
+span5.onclick = function() {
+    modal5.style.display = "none";
+}
 
-                                    window.onclick = function(event) {
-                                        if (event.target == modal5) {
-                                            modal5.style.display = "none";
-                                        }
-                                    }
+window.onclick = function(event) {
+    if (event.target == modal5) {
+        modal5.style.display = "none";
+    }
+}
 
-                                    dropdownBtn5.onclick = function() {
-                                        if (dropdownContent5.style.display === "block") {
-                                            dropdownContent5.style.display = "none";
-                                        } else {
-                                            dropdownContent5.style.display = "block";
-                                        }
-                                    }
+dropdownBtn5.onclick = function() {
+    if (dropdownContent5.style.display === "block") {
+        dropdownContent5.style.display = "none";
+    } else {
+        dropdownContent5.style.display = "block";
+    }
+}
               </script>
             </div>
           </div>
@@ -1545,7 +1978,22 @@ box-shadow:
 
     </section>
 
-
+<section id="rp-from-subscribers" class="category">
+      <h2 class="text-center">Ресурс-Паки от подписчиков</h2>
+       <div class="post">
+<h2 style="color: red;">ЧТОБЫ ЗДЕСЬ ПОЯВИЛСЯ РЕСУРС-ПАК, ПЕРЕЙДИТЕ В ГЛАВНУЮ КАТЕГОРИЮ И ПРОЛИСТАЙТЕ В САМЫЙ НИЗ</h2>
+       </div>
+       
+     
+      <div class="post">
+    <img src="https://telegra.ph/file/b2098fa248ff19f4d5c6e.jpg" alt="https://telegra.ph/file/b2098fa248ff19f4d5c6e.jpg">
+    <p style="color:white; font-weight:bold;"><strong>ТУТ БУДУТ РЕСУРС ПАКИ ОТ ПОДПИСЧИКОВ</strong></p>
+    <p style="color: white; font-style: italic;">• цʙᴇᴛ: никакой</p>
+    <p style="color: white; font-style: italic;">• sizᴇ: [размер никакой]</p>
+    <p style="color: white; font-style: italic;">• информация о ресурс паке – <a href="без ссылки" target="_blank">без ссылки</a></p>
+    <p style="color: lightgreen; font-style: italic;">• © ТУТ БУДЕТ НИК СОЗДАТЕЛЯ</p><a href="Без ссылки" class="btn btn-download" target="_blank">НЕТУ ССЫЛКИ ДЛЯ СКАЧИВАНИЯ</a>
+</div>
+</section>
     <section id="favorites" class="category">
   <h2 class="text-center">Избранные</h2>
   <!-- Сюда будут добавлены избранные посты -->
