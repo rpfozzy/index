@@ -1,0 +1,703 @@
+
+            body {        
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+
+            .loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+            }
+
+            .loader {
+                width: 200px;
+                height: 200px;
+                background-image: url('https://legra.ph/file/4cef98fe8dd2a8b7a5b43.jpg');
+                background-size: cover;
+                animation: spin 4s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotateY(0deg);
+                }
+
+                100% {
+                    transform: rotateY(360deg);
+                }
+            }
+
+            .content {
+                opacity: 0;
+                display: none;
+                transition: opacity 0.5s ease;
+            }
+
+            .loaded .loader-wrapper {
+                opacity: 0;
+            }
+
+            .loaded .content {
+                display: block;
+                opacity: 1;
+            }
+ 
+
+    button, img {
+    outline: none;
+  }
+
+
+        /* Левая панель */
+        .panel-container-left {
+            position: fixed;
+            bottom: 50px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .panel-button {
+            outline: none;
+            background-color: rgba(40, 167, 69, 0.5);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+
+        }
+
+        .panel-button img {
+            outline: none;
+            height: 20px;
+            width: 20px;
+        }
+
+
+
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-button {
+            outline: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 30px;
+            width: 30px;
+            color: #fff;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-button:hover {
+            outline: none;
+            background-color: #d32f2f;
+        }
+  .panel-button {
+box-shadow: 0 0 5px rgba(0, 255, 127, 1), 0 0 5px rgba(0, 255, 127, 1), 0 0 10px rgba(0, 255, 127, 1), 0 0 20px rgba(0, 255, 127, 1);
+  }
+
+
+
+
+
+
+
+        /* Правая панель */
+        .search-container {
+            outline: none;
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .search-button {
+            outline: none;
+            background-color: rgba(0, 123, 255, 0.5);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            outline: none;
+            background-color: #0056b3;
+        }
+
+        .search-button img {
+            outline: none;
+            height: 20px;
+            width: 20px;
+        }
+
+        .search-input {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+  background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 220px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input.show {
+            display: block;
+        }
+
+        .search-input input[type="text"] {
+            width: 100%;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .search-input button[type="button"] {
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 30px;
+            width: 70px;
+            padding: 5px;
+            margin-right: 10px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-input button[type="button"]:hover {
+            outline: none;
+            background-color: #0056b3;
+        }
+
+        .search-results {
+            position: absolute;
+            bottom: 120px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Черный цвет с 50% непрозрачностью */
+            color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results.show {
+            display: block;
+        }
+
+        .search-results li {
+            list-style: none;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-results li:hover {
+            background-color: #f0f0f0;
+        }
+
+        @keyframes pulse {
+            0% {
+                background-color: lightblue;
+            }
+
+            50% {
+                background-color: blue;
+            }
+
+            100% {
+                background-color: lightblue;
+            }
+        }
+
+        .highlight-pulse {
+            animation: pulse 0.2s infinite;
+            border-radius: 10px;
+        }
+        .search-button {
+            outline: none;
+box-shadow: 0 0 5px rgba(0, 255, 255, 1), 0 0 5px rgba(0, 255, 255, 1), 0 0 10px rgba(0, 255, 255, 1), 0 0 20px rgba(0, 255, 255, 1);
+
+  }
+  
+
+
+
+/* CSS */
+.favorite-btn {
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 999; /* Поднимаем звездочку над остальными элементами */
+  color: gold; /* Цвет звездочки */
+  opacity: 1; /* Прозрачность */
+  text-shadow: 0 0 10px gold;
+}
+
+.favorite-btn.active {
+    position: absolute;
+    color: red;
+    top: -20px;
+  right: 0px;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 999; /
+  opacity: 1; /* Прозрачность */
+    text-shadow: 0 0 10px red;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://telegra.ph/file/003685c6be5bec4708560.jpg'); /* Первое изображение */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        z-index: -1;
+    }
+
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    nav {
+        outline: none;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #fff;
+box-shadow: 0 0 2px rgba(255, 255, 0, 1), 0 0 5px rgba(255, 255, 0, 1), 0 0 12px rgba(255, 255, 0, 1), 0 0 12px rgba(255, 255, 0, 1);
+        padding: 10px 0;
+    }
+
+    nav ul {
+        outline: none;
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    nav ul li {
+        outline: none;
+        display: inline;
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        outline: none;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        transition: background-color 0.2s, border-radius 0.1s;
+    }
+
+    nav ul li a.active {
+box-shadow: 0 0 3px #3498db, 0 0 3px #3498db, 0 0 7px #3498db, 0 0 17px #3498db;
+
+        outline: none;
+        background: #3498db;
+        border-radius: 50px;
+    }
+
+    .container {
+        outline: none;
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+
+    .post {
+        position: relative;
+        outline: none;
+        background-color: rgba(0, 0, 0, 0.4);
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff, 0 0 10px #ffffff;
+    }
+
+    .post h2 {
+        color: #333;
+    }
+
+    .post p {
+        color: #666;
+    }
+
+    .post img {
+        box-shadow: 0 0 10px #ffffff, 0 0 3px #ffffff, 0 0 3px #ffffff, 0 0 3px #ffffff;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        width: 250px;
+        padding: 10px 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 15px;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px) scale(1.05);
+    }
+
+    .btn:active {
+        box-shadow: 0 5px #666;
+    }
+
+    .btn-download {
+            background-color: #e74c3c;
+            /* Красная кнопка */
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+            box-shadow: 0 0 3px #e74c3c, 0 0 3px #e74c3c, 0 0 7px #e74c3c, 0 0 17px #e74c3c;
+            animation: pulse 2s infinite;
+        }
+
+    .btn-creator {
+            width: 300px;
+            /* Увеличиваем ширину кнопки */
+            background-color: #3498db;
+/* Синяя кнопка */
+box-shadow: 0 0 3px #3498db, 0 0 3px #3498db, 0 0 7px #3498db, 0 0 17px #3498db;
+}
+
+    .btn-post {
+        display: block;
+        width: 250px;
+        margin: 20px 35px;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    footer {
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: auto;
+box-shadow: 0 0 2px rgba(255, 255, 0, 1), 0 0 5px rgba(255, 255, 0, 1), 0 0 12px rgba(255, 255, 0, 1), 0 0 12px rgba(255, 255, 0, 1);
+    }
+
+    footer a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .category, .home, .contacts {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+    }
+
+    .category.active, .home.active, .contacts.active {
+        opacity: 1;
+        height: auto;
+    }
+
+    .home img {
+        width: 50%;
+        max-width: 600px;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+    }
+
+    .home h2, .category h2 {
+        color: #fff;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    #openModalBtn, #myBtn {
+        animation: fade-in 0.5s ease-in-out;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        animation: fade-in 0.3s ease-in-out;
+    }
+
+    .modal-content {
+box-shadow: 0 0 5px rgba(255, 0, 255, 1), 0 0 5px rgba(255, 0, 255, 1), 0 0 10px rgba(255, 0, 255, 1), 0 0 20px rgba(255, 0, 255, 1);
+        background-color: #000;
+        color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 15px;
+        animation: fade-in 0.3s ease-in-out;
+    }
+
+
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover, .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-content img {
+        width: 100%;
+        display: block;
+        margin: 10px auto;
+        border-radius: 15px;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    } 
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.4);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        width: 100%;
+        display: block;
+        margin: 10px auto;
+        border-radius: 15px;
+box-shadow: 
+    0 0 3px #3498db, 0 0 3px #3498db, 0 0 7px #3498db, 0 0 17px #3498db,      /* Красный */
+    0 0 5px rgba(255, 127, 0, 1),    /* Оранжевый */
+    0 0 10px rgba(255, 255, 0, 1),   /* Жёлтый */
+    0 0 15px rgba(0, 255, 0, 1),     /* Зелёный */
+    0 0 20px rgba(0, 255, 255, 1),   /* Голубой */
+    0 0 25px rgba(0, 0, 255, 1),     /* Синий */
+    0 0 5px rgba(255, 0, 255, 1), 0 0 5px rgba(255, 0, 255, 1), 0 0 10px rgba(255, 0, 255, 1), 0 0 20px rgba(255, 0, 255, 1);  /* Фиолетовый */
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border: 1px solid #ddd;
+        margin-top: -1px;
+        background-color: #fff;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+                    .text-center {
+                        text-align: center;
+
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgb(0, 0, 0);
+                            background-color: rgba(0, 0, 0, 0.4);
+                        }
+
+                        .modal-content {
+                            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 80%;
+                        }
+
+                        .close {
+                            color: #aaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+
+                        .modal-content img {
+                            width: 100%;
+                            display: block;
+                            margin: 10px auto;
+                            border-radius: 15px;
+                        }
+
+                        .dropdown {
+                            outline: none;
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .dropdown-content {
+                            outline: none;
+                            display: none;
+                            position: absolute;
+                            background-color: rgba(0, 0, 0, 0.4); /* Черный цвет с 80% непрозрачностью */
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index: 1;
+                        }
+
+                        .dropdown-content a {
+                            outline: none;
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                            border: 1px solid #ddd;
+                            margin-top: -1px;
+                            /* Prevent double borders */
+                            background-color: #fff;
+                            text-align: center;
+                            cursor: pointer;
+                        }
+
+                        .dropdown-content a:hover {
+                            outline: none;
+                            background-color: #f1f1f1;
+                        }
+  
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgb(0, 0, 0);
+                            background-color: rgba(0, 0, 0, 0.4);
+                            padding-top: 60px;
+                        }
+
+                        .modal-content {
+                            background-color: rgba(0, 0, 0, 0.9); /* Черный цвет с 80% непрозрачностью */
+                            margin: 15% auto;
+                            padding: 20px;
+                            border: 1px solid #888;
+                            width: 80%;
+                            position: relative;
+                        }
+
+                        .close {
+                            color: #aaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                        }
+
+                        .close:hover,
+                        .close:focus {
+                            color: black;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                        .btn:focus,
+                        .btn:active
+                        outline: none;
+                        box-shadow: none;
+                        }
+                   
+  
+  

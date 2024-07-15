@@ -1,0 +1,149 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #e0e5ec;
+}
+
+.modal {
+  display: none;
+
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #e74c3c;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 1px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px; /* уменьшено с 12px */
+  border: none;
+  border-radius: 10px;
+  background-color: #e0e5ec;
+  box-shadow: 3px 3px 5px #ffffff, -3px -3px 5px #ffffff;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: inset 3px 3px 5px #ffffff, inset -3px -3px 5px #ffffff;
+}
+
+.file-input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  background-color: #e0e5ec;
+  box-shadow: 5px 5px 10px #ffffff, -5px -5px 10px #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-label:hover {
+  box-shadow: 3px 3px 5px #ffffff, -3px -3px 5px #ffffff;
+}
+
+.file-label i {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #3498db;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #7f8c8d;
+}
+
+button[type="submit"] {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px 10px #e74c3c, -5px -5px 10px #e74c3c;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+button[type="submit"]:hover {
+  background-color: #c0392b;
+  box-shadow: 3px 3px 5px #b8b9be, -3px -3px 5px #ffffff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-creator {
+  animation: pulse 2s infinite;
+}
