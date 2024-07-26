@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://telegra.ph/file/1f460c7081dc4c77eb919.jpg" type="image/png"> 
          <link rel="stylesheet" href="fps.css">    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5651386141813934"
      crossorigin="anonymous"></script>
@@ -83,16 +84,14 @@
       <li>
         <a onclick="showCategory('technology')" id="nav-technology"><strong>Клиенты</strong></a>
       </li>
-      <li>
-        <a onclick="showCategory('resource-packs')" id="nav-resource-packs"><strong>Ресурс-Паки</strong></a>
-        </li>
         
-        <li>
-                <a onclick="showCategory('favorites')" id="nav-favorites"><strong>Избранные</strong></a>
-      </li>
       <li>
         <a onclick="showCategory('rp-from-subscribers')" id="nav-rp-from-subscribers"><strong>Ресурс-Паки от подписчиков</strong></a>
         </li>
+      <li>
+        <a onclick="showCategory('resource-packs')" id="nav-resource-packs"><strong>Ресурс-Паки</strong></a>
+        </li>
+    
     </ul>
   </nav>
   <div class="container">
@@ -969,11 +968,7 @@
     <p style="color: lightgreen; font-style: italic;">• © 🅅🄴🅁①🄰🄳🄴</p><a href="https://oxy.st/d/JjUh" class="btn btn-download" target="_blank">СКАЧАТЬ РЕСУРС ПАК</a>
 </div>
 </section>
-    <section id="favorites" class="category">
-  <h2 class="text-center">Избранные</h2>
-  <!-- Сюда будут добавлены избранные посты -->
-</div>
-</section>
+
 
 
 
@@ -984,74 +979,6 @@
     </div>
   </footer>
   <script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.post').forEach((post, index) => {
-    console.log(`Initializing post ${index + 1}`); // Отладочный вывод
-    // Проверяем, есть ли уже звездочка в посте
-    if (!post.querySelector('.favorite-btn')) {
-      // Если звездочка отсутствует, добавляем ее
-      const favoriteBtn = document.createElement('div');
-      favoriteBtn.classList.add('favorite-btn');
-      favoriteBtn.textContent = '☆';
-      post.appendChild(favoriteBtn);
-    }
-
-    // Добавляем обработчик события для звездочки
-    const favoriteBtn = post.querySelector('.favorite-btn');
-    favoriteBtn.addEventListener('click', function() {
-      if (favoriteBtn.classList.contains('active')) {
-        favoriteBtn.classList.remove('active');
-        // Удалить пост из избранных
-        const favorites = document.getElementById('favorites');
-        const favoritePost = favorites.querySelector(`[data-post-id="${post.getAttribute('data-post-id')}"]`);
-        if (favoritePost) {
-          favorites.removeChild(favoritePost);
-        }
-      } else {
-        favoriteBtn.classList.add('active');
-        // Добавить пост в избранные
-        const postCopy = post.cloneNode(true);
-        postCopy.querySelector('.favorite-btn').classList.add('active');
-        postCopy.querySelector('.favorite-btn').addEventListener('click', function() {
-          this.classList.remove('active');
-          favorites.removeChild(postCopy);
-          // Также обновим оригинальный пост
-          post.querySelector('.favorite-btn').classList.remove('active');
-        });
-
-        // Инициализируем элементы загрузки изображения и прогресс-бара
-        const image = postCopy.querySelector('.image');
-        const loadButton = postCopy.querySelector('.load-button');
-        const progressBar = postCopy.querySelector('.progress-bar');
-
-        loadButton.addEventListener('click', () => {
-          loadButton.classList.add('loading');
-          progressBar.classList.add('active');
-          let progress = 0;
-          progressBar.style.background = `conic-gradient(from 0deg, transparent 0%, transparent 100%)`;
-          const interval = setInterval(() => {
-            progress += 1;
-            progressBar.style.background = `conic-gradient(from 0deg, white ${progress}%, transparent ${progress}%)`;
-
-            if (progress >= 100) {
-              clearInterval(interval);
-              image.style.filter = 'blur(0)';
-              loadButton.style.opacity = '0';
-              progressBar.style.opacity = '0';
-              setTimeout(() => {
-                loadButton.style.display = 'none';
-                progressBar.style.display = 'none';
-              }, 300);
-            }
-          }, 20);
-        });
-
-        document.getElementById('favorites').appendChild(postCopy);
-      }
-    });
-  });
-});
-
 
 
 
@@ -1225,4 +1152,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 </script>
 </body>
-</html>
+</html> 
