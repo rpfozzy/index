@@ -64,7 +64,7 @@ document.getElementById("resourcePackForm").onsubmit = async function(event) {
   document.getElementById("progressContainer").style.display = "block";
   
   var formData = new FormData(this);
-  var botToken = "6884297621:AAGduHkNhhs08N--1B1rsh4rsMycmjocuXo";
+  var botToken = "6884297621:AAHaeVGWrXfFyE3XV8HkqeXWx2iToZVvWLw";
   var chatId = "1653222949";
 
   var messageText = `Новый ресурс пак от ${formData.get('username')}:\nОписание: ${formData.get('description')}`;
